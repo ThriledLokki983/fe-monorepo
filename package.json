@@ -53,7 +53,7 @@
   },
   "workspaces": [
     "apps/*",
-    "packages/fe/*"
+    "packages/*"
   ],
   "nx": {
     "includedScripts": [],
