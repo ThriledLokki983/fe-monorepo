@@ -1,0 +1,8 @@
+/**
+ * Mixins Entry Point
+ *
+ * This file is exported as "./mixins" and provides access to all SCSS mixins
+ * without importing the full stylesheet.
+ */
+
+@forward 'mixins';

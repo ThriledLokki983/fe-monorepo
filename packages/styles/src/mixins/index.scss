@@ -1,0 +1,155 @@
+/**
+ * SCSS Mixins
+ *
+ * Reusable SCSS mixins for common patterns.
+ * These are available when importing the package as SCSS.
+ */
+
+// Media query mixins
+@mixin breakpoint($size) {
+  @if $size == 'sm' {
+    @media (min-width: 640px) {
+      @content;
+    }
+  } @else if $size == 'md' {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $size == 'lg' {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  } @else if $size == 'xl' {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  } @else if $size == '2xl' {
+    @media (min-width: 1536px) {
+      @content;
+    }
+  }
+}
+
+// Focus styles mixin
+@mixin focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+// Visually hidden mixin
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Truncate text mixin
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Line clamp mixin
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Button reset mixin
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+// Container mixin
+@mixin container($max-width: null) {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+
+  @if $max-width {
+    max-width: $max-width;
+  } @else {
+    @include breakpoint('sm') {
+      max-width: 640px;
+    }
+
+    @include breakpoint('md') {
+      max-width: 768px;
+    }
+
+    @include breakpoint('lg') {
+      max-width: 1024px;
+    }
+
+    @include breakpoint('xl') {
+      max-width: 1280px;
+    }
+
+    @include breakpoint('2xl') {
+      max-width: 1536px;
+    }
+  }
+}
+
+// Aspect ratio mixin
+@mixin aspect-ratio($width, $height) {
+  aspect-ratio: #{$width} / #{$height};
+
+  // Fallback for older browsers
+  @supports not (aspect-ratio: 1 / 1) {
+    &::before {
+      content: '';
+      display: block;
+      padding-top: percentage($height / $width);
+    }
+  }
+}
+
+// Flexbox center mixin
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Grid center mixin
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// Transition mixin
+@mixin transition($property: all, $duration: var(--transition-base), $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+// Box shadow mixin
+@mixin shadow($level: 'base') {
+  @if $level == 'sm' {
+    box-shadow: var(--shadow-sm);
+  } @else if $level == 'base' {
+    box-shadow: var(--shadow-base);
+  } @else if $level == 'md' {
+    box-shadow: var(--shadow-md);
+  } @else if $level == 'lg' {
+    box-shadow: var(--shadow-lg);
+  } @else if $level == 'xl' {
+    box-shadow: var(--shadow-xl);
+  }
+}

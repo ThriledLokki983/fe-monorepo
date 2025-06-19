@@ -1,0 +1,94 @@
+/**
+ * Themes Layer
+ *
+ * Theme variations that override design tokens.
+ * Themes allow for different visual appearances.
+ */
+
+@layer themes {
+  /* Dark Theme */
+  [data-theme='dark'] {
+    --color-background-primary: var(--color-neutral-900);
+    --color-background-secondary: var(--color-neutral-800);
+    --color-text-primary: var(--color-neutral-50);
+    --color-text-secondary: var(--color-neutral-300);
+    --color-text-muted: var(--color-neutral-500);
+    --color-border: var(--color-neutral-700);
+    --color-link: var(--color-primary-400);
+    --color-focus: var(--color-primary-400);
+  }
+
+  /* High Contrast Theme */
+  [data-theme='high-contrast'] {
+    --color-background-primary: #000000;
+    --color-background-secondary: #1a1a1a;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #e5e5e5;
+    --color-text-muted: #b3b3b3;
+    --color-border: #666666;
+    --color-link: #00ccff;
+    --color-focus: #ffff00;
+    --color-primary-600: #00ccff;
+    --color-primary-700: #0099cc;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    * {
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+      text-decoration: underline;
+    }
+
+    a[href]:after {
+      content: ' (' attr(href) ')';
+    }
+
+    abbr[title]:after {
+      content: ' (' attr(title) ')';
+    }
+
+    pre,
+    blockquote {
+      border: 1px solid var(--color-border);
+      page-break-inside: avoid;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tr,
+    img {
+      page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
+
+    h2,
+    h3 {
+      page-break-after: avoid;
+    }
+  }
+}

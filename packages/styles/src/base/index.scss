@@ -1,0 +1,90 @@
+/**
+ * Base Layer
+ *
+ * Base styles for HTML elements.
+ * No classes or IDs, only element selectors.
+ */
+
+@layer base {
+  html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--color-text-primary, #1a1a1a);
+    background-color: var(--color-background-primary, #ffffff);
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1.25rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+
+  a {
+    color: var(--color-link, #0066cc);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-focus, #0066cc);
+      outline-offset: 2px;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+
+    &:focus {
+      outline: 2px solid var(--color-focus, #0066cc);
+      outline-offset: 2px;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    &:focus {
+      outline: 2px solid var(--color-focus, #0066cc);
+      outline-offset: 2px;
+    }
+  }
+}

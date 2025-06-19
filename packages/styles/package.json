@@ -1,0 +1,41 @@
+{
+  "name": "@mono/styles",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "sass": "./src/mixins.scss",
+      "style": "./dist/styles.css",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./scss": "./src/index.scss",
+    "./mixins": "./src/mixins.scss",
+    "./scss/*": "./src/*",
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "name": "styles",
+    "tags": [
+      "scope:fe",
+      "type:library"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "sass": "^1.81.0",
+    "glob": "^10.3.10",
+    "vite-plugin-dts": "^3.7.2",
+    "jsdom": "^24.0.0"
+  }
+}

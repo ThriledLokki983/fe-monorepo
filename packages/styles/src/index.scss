@@ -1,0 +1,40 @@
+/**
+ * @mono/styles - Main Entry Point
+ *
+ * A CSS Layers-based design system library.
+ *
+ * IMPORTANT: Layer import order matters!
+ * Layers declared first have lower priority in the cascade.
+ *
+ * Usage:
+ * - Import SCSS: @use '@mono/styles/scss' as styles;
+ * - Import CSS: import '@mono/styles';
+ * - Import mixins: @use '@mono/styles/mixins' as mixins;
+ */
+
+// 1. LAYERS DECLARATION (must be first)
+@forward 'layers';
+
+// 2. VENDOR IMPORTS
+@forward 'vendor';
+
+// 3. RESET LAYER
+@forward 'reset';
+
+// 4. BASE LAYER
+@forward 'base';
+
+// 5. TOKENS LAYER
+@forward 'tokens';
+
+// 6. COMPONENTS LAYER
+@forward 'components';
+
+// 7. PATTERNS LAYER
+@forward 'patterns';
+
+// 8. THEMES LAYER
+@forward 'themes';
+
+// 9. UTILITIES LAYER (highest priority)
+@forward 'utilities';

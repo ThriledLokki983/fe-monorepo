@@ -1,0 +1,11 @@
+/**
+ * CSS Layers Declaration
+ *
+ * This file declares all CSS layers in the correct order.
+ * Layers declared first have lower priority in the cascade.
+ *
+ * Import this file FIRST in any stylesheet that uses the design system.
+ */
+
+// @layer reset, base, tokens, components, patterns, themes, utilities;
+@layer reset, base, tokens, components, patterns, utilities, themes, overrides;
