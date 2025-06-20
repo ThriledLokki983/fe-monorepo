@@ -2,30 +2,10 @@
 @layer themes {
   // Custom theme overrides that should take precedence over design system tokens
   :root {
-    /* Override design system tokens with custom values */
-    --color-primary-50: #eee; /* Override the design system's #eff6ff */
-    --color-background-primary: #ffffff; /* Use design system naming */
-    --color-text-primary: #000000; /* Override design system value */
-
-    /* Custom variables not in design system */
-    --color-bg-primary: #ffffff; /* Legacy naming - consider migrating to --color-background-primary */
-    --color-brand-primary: #007bff;
-    --color-brand-secondary: #6c757d;
-    --color-border: #dee2e6; /* Consider using --color-border from tokens */
-    --color-focus: #0056b3;
-
-    /* Font families - these override design system defaults */
-    --font-family-heading: 'Helvetica Neue', Arial, sans-serif;
-    --font-family-body: 'Helvetica Neue', Arial, sans-serif;
-    --font-family-ui: 'Helvetica Neue', Arial, sans-serif;
-
-    /* Legacy font variables - consider migrating to design system naming */
-    --font-heading: 'Helvetica Neue', Arial, sans-serif;
-    --font-body: 'Helvetica Neue', Arial, sans-serif;
-    --font-ui: 'Helvetica Neue', Arial, sans-serif;
-    --font-size-base: 1rem; /* This should override tokens layer */
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
+    /* Green (Olive/Avocado) Brand Variables */
+    --brand-hue: 85; /* Olive/Avocado green hue */
+    --brand-saturation: 45%;
+    --brand-lightness: 35%;
   }
 }
 

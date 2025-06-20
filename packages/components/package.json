@@ -1,0 +1,43 @@
+{
+  "name": "@mono/components",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "React component library for the monorepo",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "nx": {
+    "name": "@mono/components",
+    "tags": [
+      "scope:fe",
+      "type:library"
+    ]
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mono/styles": "file:../styles",
+    "react-aria-components": "^1.10.1"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {}
+}
