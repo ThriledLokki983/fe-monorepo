@@ -35,6 +35,27 @@ const scssPlugin = () => {
         console.error('✗ SCSS compilation failed:', error);
         throw error;
       }
+
+      // Compile TypeScript declarations
+      try {
+        const tscCmd = `npx tsc --project tsconfig.lib.json`;
+        console.log(`Running: ${tscCmd}`);
+        execSync(tscCmd, { cwd: __dirname, stdio: 'inherit' });
+        console.log('✓ TypeScript declarations generated');
+      } catch (error) {
+        console.error('✗ TypeScript compilation failed:', error);
+        throw error;
+      }
+    },
+    handleHotUpdate({ file, server }: { file: string; server: any }) {
+      // Handle hot reloading for SCSS files
+      if (file.includes('.scss')) {
+        console.log(`🔄 SCSS file changed: ${file}`);
+        // Trigger rebuild for SCSS files
+        server.ws.send({
+          type: 'full-reload'
+        });
+      }
     },
   };
 };

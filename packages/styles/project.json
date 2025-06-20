@@ -1,0 +1,29 @@
+{
+  "name": "styles",
+  "targets": {
+    "watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/styles",
+        "command": "vite build --watch"
+      },
+      "continuous": true,
+      "metadata": {
+        "description": "Watch for changes in src directory and rebuild automatically",
+        "technologies": ["vite"]
+      }
+    },
+    "watch:scss": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/styles",
+        "command": "sass --watch src:dist --style=expanded --no-source-map"
+      },
+      "continuous": true,
+      "metadata": {
+        "description": "Watch SCSS files and compile automatically",
+        "technologies": ["sass"]
+      }
+    }
+  }
+}

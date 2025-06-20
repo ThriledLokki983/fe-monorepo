@@ -1,0 +1,142 @@
+// =============================================================================
+// LAYER UTILITY MIXINS
+// =============================================================================
+// Helper mixins for working with CSS layers
+// These provide a consistent API for applying styles to specific layers
+
+// =============================================================================
+// LAYER MIXINS
+// =============================================================================
+
+/// Apply styles to the reset layer
+/// Use for CSS resets, normalize, and foundational resets
+/// @content The CSS to apply to the reset layer
+@mixin reset {
+  @layer reset {
+    @content;
+  }
+}
+
+/// Apply styles to the base layer
+/// Use for HTML element defaults and typography
+/// @content The CSS to apply to the base layer
+@mixin base {
+  @layer base {
+    @content;
+  }
+}
+
+/// Apply styles to the tokens layer
+/// Use for CSS custom properties and design tokens
+/// @content The CSS to apply to the tokens layer
+@mixin tokens {
+  @layer tokens {
+    @content;
+  }
+}
+
+/// Apply styles to the components layer
+/// Use for component-specific styles
+/// @content The CSS to apply to the components layer
+@mixin components {
+  @layer components {
+    @content;
+  }
+}
+
+/// Apply styles to the patterns layer
+/// Use for layout patterns, grids, and containers
+/// @content The CSS to apply to the patterns layer
+@mixin patterns {
+  @layer patterns {
+    @content;
+  }
+}
+
+/// Apply styles to the utilities layer
+/// Use for utility classes and helper styles
+/// @content The CSS to apply to the utilities layer
+@mixin utilities {
+  @layer utilities {
+    @content;
+  }
+}
+
+/// Apply styles to the themes layer
+/// Use for theme variations (light/dark, brand themes)
+/// @content The CSS to apply to the themes layer
+@mixin themes {
+  @layer themes {
+    @content;
+  }
+}
+
+/// Apply styles to the overrides layer
+/// Use for app-specific overrides and customizations
+/// @content The CSS to apply to the overrides layer
+@mixin overrides {
+  @layer overrides {
+    @content;
+  }
+}
+
+// =============================================================================
+// CONVENIENCE MIXINS
+// =============================================================================
+
+/// Apply styles to a specific layer by name
+/// @param {String} $layer - The layer name (reset, base, tokens, components, patterns, utilities, themes, overrides)
+/// @content The CSS to apply to the specified layer
+@mixin layer($layer) {
+  @if $layer == 'reset' {
+    @include reset { @content; }
+  } @else if $layer == 'base' {
+    @include base { @content; }
+  } @else if $layer == 'tokens' {
+    @include tokens { @content; }
+  } @else if $layer == 'components' {
+    @include components { @content; }
+  } @else if $layer == 'patterns' {
+    @include patterns { @content; }
+  } @else if $layer == 'utilities' {
+    @include utilities { @content; }
+  } @else if $layer == 'themes' {
+    @include themes { @content; }
+  } @else if $layer == 'overrides' {
+    @include overrides { @content; }
+  } @else {
+    @error 'Invalid layer name: #{$layer}. Valid layers are: reset, base, tokens, components, patterns, utilities, themes, overrides';
+  }
+}
+
+// =============================================================================
+// USAGE EXAMPLES
+// =============================================================================
+
+/*
+EXAMPLE USAGE:
+
+// Direct layer mixin usage:
+@include components {
+  .button {
+    padding: 1rem;
+    background: var(--color-primary);
+  }
+}
+
+// Dynamic layer usage:
+@include layer('utilities') {
+  .text-center {
+    text-align: center;
+  }
+}
+
+// Component file structure:
+@use '@mono/styles/utility/layer-mixins' as layers;
+
+@include layers.components {
+  .my-component {
+    // Component styles here
+  }
+}
+*/
