@@ -11,9 +11,22 @@ export function NxWelcome({ title }: { title: string }) {
       <div className="base-container">
         <header className="base-header">
           <section>
-            <h1 className="base-title">
-              Welcome {title} 👋
-            </h1>
+            <a href="/" className="base-logo">
+              {title} 👋
+            </a>
+            <nav className="base-nav">
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/tools">Tools</a>
+                </li>
+                <li>
+                  <a href="/components">components</a>
+                </li>
+              </ul>
+            </nav>
           </section>
         </header>
 
@@ -38,8 +51,12 @@ export function NxWelcome({ title }: { title: string }) {
                   Text Color 1
                 </h1>
                 <h1 className="base-text2">
-                  <span className="base-swatch base-ext2 base-rad-shadow"></span>
+                  <span className="base-swatch base-text2 base-rad-shadow"></span>
                   Text Color 2
+                </h1>
+                <h1 className="base-text3">
+                  <span className="base-swatch base-text3 base-rad-shadow"></span>
+                  Text Color 3
                 </h1>
                 <br/>
                 <p className="base-text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -69,6 +86,9 @@ export function NxWelcome({ title }: { title: string }) {
               </code>
               <code className="base-variable-sample">
                 <span className="base-variable-name">--text2</span>: hsl(var(--brand-hue) 30% 30%);
+              </code>
+              <code className="base-variable-sample">
+                <span className="base-variable-name">--text3</span>: hsl(var(--brand-hue) 35% 15%);
               </code>
             </div>
             <div className="base-variable-sample-group">

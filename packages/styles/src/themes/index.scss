@@ -20,6 +20,7 @@
     );
     --text1-light: hsl(var(--brand-hue) var(--brand-saturation) 10%);
     --text2-light: hsl(var(--brand-hue) 30% 30%);
+    --text3-light: hsl(var(--brand-hue) 35% 15%); /* Much darker than text2 */
     --surface1-light: hsl(var(--brand-hue) 25% 90%);
     --surface2-light: hsl(var(--brand-hue) 20% 99%);
     --surface3-light: hsl(var(--brand-hue) 20% 92%);
@@ -64,6 +65,7 @@
     );
     --text1-dark: hsl(var(--brand-hue) 15% 85%);
     --text2-dark: hsl(var(--brand-hue) 5% 65%);
+    --text3-dark: hsl(var(--brand-hue) 8% 45%); /* Much darker than text2 */
     --surface1-dark: hsl(var(--brand-hue) 10% 10%);
     --surface2-dark: hsl(var(--brand-hue) 10% 15%);
     --surface3-dark: hsl(var(--brand-hue) 5%  20%);
@@ -80,6 +82,7 @@
     );
     --text1-dim: hsl(var(--brand-hue) 15% 75%);
     --text2-dim: hsl(var(--brand-hue) 10% 61%);
+    --text3-dim: hsl(var(--brand-hue) 12% 40%); /* Much darker than text2 */
     --surface1-dim: hsl(var(--brand-hue) 10% 20%);
     --surface2-dim: hsl(var(--brand-hue) 10% 25%);
     --surface3-dim: hsl(var(--brand-hue) 5%  30%);
@@ -108,6 +111,7 @@
       --brand: var(--brand-light);
       --text1: var(--text1-light);
       --text2: var(--text2-light);
+      --text3: var(--text3-light);
       --surface1: var(--surface1-light);
       --surface2: var(--surface2-light);
       --surface3: var(--surface3-light);
@@ -123,6 +127,7 @@
       --brand: var(--brand-dark);
       --text1: var(--text1-dark);
       --text2: var(--text2-dark);
+      --text3: var(--text3-dark);
       --surface1: var(--surface1-dark);
       --surface2: var(--surface2-dark);
       --surface3: var(--surface3-dark);
@@ -138,6 +143,7 @@
       --brand: var(--brand-dim);
       --text1: var(--text1-dim);
       --text2: var(--text2-dim);
+      --text3: var(--text3-dim);
       --surface1: var(--surface1-dim);
       --surface2: var(--surface2-dim);
       --surface3: var(--surface3-dim);
@@ -155,6 +161,7 @@
         --brand: var(--brand-light);
         --text1: var(--text1-light);
         --text2: var(--text2-light);
+        --text3: var(--text3-light);
         --surface1: var(--surface1-light);
         --surface2: var(--surface2-light);
         --surface3: var(--surface3-light);
@@ -172,6 +179,7 @@
         --brand: var(--brand-dark);
         --text1: var(--text1-dark);
         --text2: var(--text2-dark);
+        --text3: var(--text3-dark);
         --surface1: var(--surface1-dark);
         --surface2: var(--surface2-dark);
         --surface3: var(--surface3-dark);
