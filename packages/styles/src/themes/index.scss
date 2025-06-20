@@ -147,9 +147,7 @@
     }
 
 
-  }
-
-      /* Light Scheme */
+    /* Light Scheme */
     @media (prefers-color-scheme: light) {
       :root {
         color-scheme: light;
@@ -181,6 +179,7 @@
         --surface-shadow: var(--surface-shadow-dark);
         --shadow-strength: var(--shadow-strength-dark);
       }
+    }
 
 
   /* Reduced Motion */
