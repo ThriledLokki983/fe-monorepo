@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { componentDemos } from '../ComponentsPage/demos/componentDemos';
+import { Button, Icon } from '@mono/components';
 import styles from './Components.module.scss';
 
 interface ComponentDemo {
@@ -47,6 +47,23 @@ const componentDemos: ComponentDemo[] = [
           <div className={styles.componentRow}>
             <Button onClick={() => alert('onClick fired!')}>onClick (React)</Button>
             <Button onPress={() => alert('onPress fired!')}>onPress (React Aria)</Button>
+          </div>
+        </div>
+        <div className={styles.variantGroup}>
+          <h4>Link Buttons</h4>
+          <div className={styles.componentRow}>
+            <Button url="https://example.com" variant="primary">
+              External Link
+            </Button>
+            <Button url="https://example.com" variant="secondary" target="_blank">
+              Open in New Tab
+            </Button>
+            <Button url="/internal-page" variant="tertiary">
+              Internal Link
+            </Button>
+            <Button url="https://example.com" variant="danger" disabled>
+              Disabled Link
+            </Button>
           </div>
         </div>
       </div>

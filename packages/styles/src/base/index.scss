@@ -163,12 +163,10 @@
 
   button {
     cursor: pointer;
-    border: none;
-    background: none;
-    padding: 0;
 
-    &:focus {
-      outline: 2px solid var(--brand, #0066cc);
+    &:focus,
+    &:focus-visible {
+      outline: 2px solid var(--surface2);
       outline-offset: 2px;
     }
   }
@@ -176,8 +174,9 @@
   input,
   textarea,
   select {
-    &:focus {
-      outline: 2px solid var(--brand, #0066cc);
+    &:focus,
+    &:focus-visible {
+      outline: 2px solid var(--brand);
       outline-offset: 2px;
     }
   }

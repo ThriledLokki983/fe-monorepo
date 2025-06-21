@@ -6,6 +6,7 @@
  */
 
 @layer components {
+  a[data-link="button-link"],
   button {
     display: inline-flex;
     align-items: center;
@@ -34,12 +35,13 @@
     }
 
     /* Button Variants */
-    &--primary {
-      background-color: var(--color-primary-600);
-      color: white;
+    &[data-variant='primary'] {
+      background-color: var(--brand);
+      color: var(--text1);
 
-      &:hover:not(:disabled) {
-        background-color: var(--color-primary-700);
+      &:hover:not(:disabled),
+      &[data-hovered]:not(:disabled) {
+        background-color: color-mix(in hsl, var(--brand) 80%, white 5%);
       }
 
       &:active {
@@ -47,7 +49,7 @@
       }
     }
 
-    &--secondary {
+    &[data-variant='secondary'] {
       background-color: var(--color-neutral-100);
       color: var(--color-neutral-900);
       border-color: var(--color-border);
@@ -61,7 +63,7 @@
       }
     }
 
-    &--outline {
+    &[data-variant='tertiary'] {
       background-color: transparent;
       color: var(--color-primary-600);
       border-color: var(--color-primary-600);
@@ -75,13 +77,49 @@
       }
     }
 
+    &[data-variant='danger'] {
+      background-color: var(--color-error);
+      color: white;
+
+      &:hover:not(:disabled) {
+        background-color: var(--color-error-600);
+      }
+
+      &:active {
+        background-color: var(--color-error-700);
+      }
+    }
+
+    &[data-variant='transparent'] {
+      background-color: transparent;
+      color: var(--brand);
+      border: none;
+      text-decoration: none;
+
+      &:hover:not(:disabled) {
+        background-color: color-mix(in hsl, white 90%, var(--brand) 20%);
+        color: var(--color-neutral-900);
+      }
+
+      &:active {
+        background-color: var(--color-neutral-200);
+      }
+
+      &:focus,
+      &[data-focus-visible] {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
+        background-color: var(--color-neutral-50);
+      }
+    }
+
     /* Button Sizes */
-    &--sm {
+    &[data-size='small'] {
       padding: var(--space-1) var(--space-3);
       font-size: var(--font-size-sm);
     }
 
-    &--lg {
+    &[data-size='large'] {
       padding: var(--space-3) var(--space-6);
       font-size: var(--font-size-lg);
     }

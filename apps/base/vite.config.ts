@@ -9,7 +9,12 @@ export default defineConfig(() => ({
   resolve: {
     alias: {
       '@mono/styles': path.resolve(__dirname, '../../packages/styles/src'),
+      '@mono/components': path.resolve(__dirname, '../../packages/components/src'),
     },
+  },
+  optimizeDeps: {
+    include: ['react-aria-components'],
+    exclude: ['@mono/components', '@mono/styles'],
   },
   server: {
     port: 4200,

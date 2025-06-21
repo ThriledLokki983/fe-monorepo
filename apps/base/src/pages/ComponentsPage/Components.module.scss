@@ -165,7 +165,7 @@
 }
 
 .codeBlock {
-  background: #1f2937;
+  background: var(--surface1);
   border-radius: 8px;
   padding: 1.5rem;
   overflow-x: auto;

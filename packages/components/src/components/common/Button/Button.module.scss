@@ -6,12 +6,26 @@
   text-decoration: none;
   /* Testing watch mode */
 
-
-
   // React Aria disabled state
   &[data-disabled] {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  // Links
+  &[data-link="button-link"] {
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--text1);
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
   }
 
   // Variants
@@ -20,67 +34,74 @@
     color: var(--text1);
 
     &[data-hovered]:not([data-disabled]) {
+      background-color: color-mix(in hsl, black 15%, var(--brand));
+    }
+
+    &[data-pressed]:not([data-disabled]) {
       background-color: var(--text2);
     }
 
     &[data-pressed]:not([data-disabled]) {
-      background-color: #1e40af;
+      background-color: color-mix(in srgb, 20%, var(--brand) 80%);
     }
   }
 
   &--secondary {
-    background-color: #e5e7eb;
-    color: #374151;
+    background-color: color-mix(in hsl, white 80%, var(--brand) 40%);
+    color: var(--brand);
 
     &[data-hovered]:not([data-disabled]) {
-      background-color: #d1d5db;
+      background-color: color-mix(in hsl, white 90%, var(--brand) 30%);
     }
 
     &[data-pressed]:not([data-disabled]) {
-      background-color: #9ca3af;
+      background-color: color-mix(in hsl, white 95%, var(--brand) 20%);
     }
   }
 
   &--tertiary {
     background-color: transparent;
-    color: #2563eb;
-    border: 1px solid #2563eb;
+    color: var(--brand);
+    border: 1px solid var(--brand);
 
     &[data-hovered]:not([data-disabled]) {
-      background-color: #eff6ff;
+      background-color: color-mix(in hsl, white 90%, var(--brand) 20%);
     }
 
     &[data-pressed]:not([data-disabled]) {
-      background-color: #dbeafe;
+      background-color: color-mix(in hsl, white 95%, var(--brand) 10%);
     }
   }
 
   &--danger {
-    background-color: #dc2626;
+    background-color: var(--color-error);
     color: white;
 
     &[data-hovered]:not([data-disabled]) {
-      background-color: #b91c1c;
+      background-color: color-mix(in hsl, black 15%, var(--color-error));
     }
 
     &[data-pressed]:not([data-disabled]) {
-      background-color: #991b1b;
+      background-color: color-mix(in hsl, black 20%, var(--color-error));
     }
   }
 
   // Sizes
   &--small {
-    padding: 0.5rem 0.75rem;
+    min-block-size: var(--space-2xl); min-inline-size: 8ch;
+    padding-inline: var(--space-md);
     font-size: 0.875rem;
   }
 
   &--medium {
-    padding: 0.75rem 1rem;
+    min-block-size: var(--space-3xl); min-inline-size: 12ch;
+    padding-inline: var(--space-lg);
     font-size: 1rem;
   }
 
   &--large {
-    padding: 1rem 1.5rem;
+    min-block-size: var(--space-4xl); min-inline-size: 16ch;
+    padding-inline: var(--space-2xl);
     font-size: 1.125rem;
   }
 }
