@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -10,8 +10,9 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      entryRoot: 'src',
-      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      insertTypesEntry: true,
+      include: ['src/**/*'],
+      exclude: ['src/**/*.spec.ts', 'src/**/*.spec.tsx', 'src/**/*.test.ts', 'src/**/*.test.tsx']
     })
   ],
   resolve: {
@@ -31,6 +32,7 @@ export default defineConfig({
     }
   },
   build: {
+    outDir: 'dist',
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'MonoComponents',

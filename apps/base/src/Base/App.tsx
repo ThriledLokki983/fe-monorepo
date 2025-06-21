@@ -1,12 +1,22 @@
-import NxWelcome from './Base';
-// import { Route, Routes, Link } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
+import type { ReactElement } from 'react';
+import ROUTES from '../configs/routes';
 
-export function App() {
-  return (
-    <div>
-      <NxWelcome title="@base-design-system" />
-    </div>
-  );
+export function Core() {
+    const routes = useRoutes(ROUTES);
+
+  return <App routes={routes} />;
 }
 
-export default App;
+interface AppProps {
+  routes: ReactElement | null;
+}
+
+/**
+ * Main App component that renders routes based on props
+ */
+export function App({ routes }: AppProps) {
+  return routes;
+}
+
+export default Core;

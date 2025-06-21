@@ -33,6 +33,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "glob": "^10.3.10"
+    "sass": "^1.81.0",
+    "glob": "^10.3.10",
+    "vite-plugin-dts": "^3.7.2",
+    "jsdom": "^24.0.0"
   }
 }

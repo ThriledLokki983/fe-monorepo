@@ -6,7 +6,7 @@
  */
 
 @layer components {
-  .btn {
+  button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -20,8 +20,11 @@
     transition: all var(--transition-fast);
     text-decoration: none;
 
+
+    // React Aria focus management
+    &[data-focus-visible],
     &:focus {
-      outline: 2px solid var(--color-focus);
+      outline: 2px solid var(--brand);
       outline-offset: 2px;
     }
 

@@ -15,12 +15,12 @@ export interface RouteConfig {
 export const buildUrl = (path: string, params?: Record<string, string | number>): string => {
   if (!params) return path;
 
-  const queryPairs: string[] = [];
+  const searchParams = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
-    queryPairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(value.toString())}`);
+    searchParams.append(key, value.toString());
   });
 
-  const queryString = queryPairs.join('&');
+  const queryString = searchParams.toString();
   return queryString ? `${path}?${queryString}` : path;
 };
 
@@ -31,21 +31,29 @@ export const parseQueryParams = (url: string): Record<string, string> => {
   const params: Record<string, string> = {};
 
   try {
-    const queryStart = url.indexOf('?');
-    if (queryStart === -1) return params;
-
-    const queryString = url.substring(queryStart + 1);
-    const pairs = queryString.split('&');
-
-    pairs.forEach(pair => {
-      const [key, value] = pair.split('=');
-      if (key && value) {
-        params[decodeURIComponent(key)] = decodeURIComponent(value);
-      }
+    const urlObj = new URL(url, typeof window !== 'undefined' ? window.location.origin : 'http://localhost');
+    urlObj.searchParams.forEach((value, key) => {
+      params[key] = value;
     });
   } catch {
     // Fallback for invalid URLs
   }
 
   return params;
+};
+
+/**
+ * Validates if a path matches a route pattern
+ */
+export const matchesRoute = (path: string, pattern: string): boolean => {
+  const pathSegments = path.split('/').filter(Boolean);
+  const patternSegments = pattern.split('/').filter(Boolean);
+
+  if (pathSegments.length !== patternSegments.length) {
+    return false;
+  }
+
+  return patternSegments.every((segment, index) => {
+    return segment.startsWith(':') || segment === pathSegments[index];
+  });
 };

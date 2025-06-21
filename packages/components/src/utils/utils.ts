@@ -1,35 +1,49 @@
 /**
- * General utility functions
+ * Utility functions for component library
  */
 
 /**
- * Combines class names, filtering out falsy values
+ * Combines multiple CSS class names, filtering out falsy values
  */
 export const cn = (...classes: (string | undefined | null | false)[]): string => {
   return classes.filter(Boolean).join(' ');
 };
 
 /**
- * Capitalizes the first letter of a string
+ * Generates a unique ID with optional prefix
  */
-export const capitalize = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-/**
- * Generates a random ID string
- */
-export const generateId = (prefix = 'id'): string => {
+export const generateId = (prefix = 'component'): string => {
   return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
 };
 
 /**
- * Checks if a value is empty (null, undefined, empty string, empty array, or empty object)
+ * Deep merges two objects
  */
-export const isEmpty = (value: unknown): boolean => {
-  if (value == null) return true;
-  if (typeof value === 'string') return value.trim() === '';
-  if (Array.isArray(value)) return value.length === 0;
-  if (typeof value === 'object') return Object.keys(value).length === 0;
-  return false;
+export const deepMerge = <T extends Record<string, unknown>>(
+  target: T,
+  source: Partial<T>
+): T => {
+  const result = { ...target };
+
+  for (const key in source) {
+    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+      result[key] = deepMerge(
+        result[key] as Record<string, unknown>,
+        source[key] as Record<string, unknown>
+      ) as T[Extract<keyof T, string>];
+    } else {
+      result[key] = source[key] as T[Extract<keyof T, string>];
+    }
+  }
+
+  return result;
+};
+
+/**
+ * Formats a string by replacing placeholders with values
+ */
+export const formatString = (template: string, values: Record<string, string | number>): string => {
+  return template.replace(/\{(\w+)\}/g, (match, key) => {
+    return values[key]?.toString() || match;
+  });
 };

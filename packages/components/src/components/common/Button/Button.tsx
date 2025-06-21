@@ -1,37 +1,47 @@
-import { forwardRef, type ElementRef } from 'react';
-import { Button as AriaButton } from 'react-aria-components';
-import type { ButtonProps } from './Button.interface';
+import React from 'react';
+import { Button as ReactAriaButton } from 'react-aria-components';
 import styles from './Button.module.scss';
+import { ButtonProps } from './Button.interface';
 
-export const Button = forwardRef<ElementRef<'button'>, ButtonProps>(({
-  variant = 'default',
-  size = 'md',
-  loading = false,
-  leftIcon,
-  rightIcon,
+export const Button: React.FC<ButtonProps> = ({
   children,
+  variant = 'primary',
+  size = 'medium',
+  disabled = false,
+  isDisabled = false,
+  onPress,
+  onClick,
+  type = 'button',
   className = '',
-  isDisabled,
   ...props
-}, ref) => {
-  const buttonDisabled = isDisabled || loading;
+}) => {
+  const buttonClasses = [
+    styles.button,
+    styles[`button--${variant}`],
+    styles[`button--${size}`],
+    className
+  ].filter(Boolean).join(' ');
+
+  // Handle both onClick (standard React) and onPress (React Aria) patterns
+  const handlePress = () => {
+    if (onPress) onPress();
+    if (onClick) onClick();
+  };
+
+  // Support both disabled and isDisabled for backward compatibility
+  const buttonDisabled = disabled || isDisabled;
 
   return (
-    <AriaButton
-      ref={ref}
-      className={`${styles.button} ${className}`.trim()}
-      data-variant={variant}
-      data-size={size}
-      data-loading={loading}
+    <ReactAriaButton
+      className={buttonClasses}
       isDisabled={buttonDisabled}
+      onPress={handlePress}
+      type={type}
       {...props}
     >
-      {loading && <span className={styles.loader} />}
-      {leftIcon && !loading && <span className={styles.leftIcon}>{leftIcon}</span>}
-      <span className={styles.content}>{children}</span>
-      {rightIcon && !loading && <span className={styles.rightIcon}>{rightIcon}</span>}
-    </AriaButton>
+      {children}
+    </ReactAriaButton>
   );
-});
+};
 
-Button.displayName = 'Button';
+export default Button;

@@ -191,9 +191,8 @@
   ***************************************************************************
   ***************************************************************************/
   .base-wrapper {
-    block-size: 100dvh;
-    display: flex;
-    flex-direction: column;
+    block-size: 100%;
+    display: flex; flex-direction: column;
   }
   .base-container {
     inline-size: 100%;
@@ -378,16 +377,5 @@
       0 41.8px 33.4px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .03)),
       0 100px 80px hsl(var(--surface-shadow) / var(--shadow-strength))
     ;
-  }
-
-  .base-love {
-    display: flex; gap: 2ch;
-    inline-size: min(100%, 1440px);
-    margin-inline: auto;
-    padding: 2rem 3rem;
-    margin-block-start: 5rem;
-    border-top: 1px solid var(--text2);
-    align-items: center;
-    justify-content: flex-start;
   }
 }

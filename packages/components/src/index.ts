@@ -12,8 +12,8 @@ export * from './components/layout/MainLayout';
 export * from './types/common-interfaces';
 
 // Utils
-export * from './types/utils/utils';
-export * from './types/utils/routes.utils';
+export * from './utils/utils';
+export * from './utils/routes.utils';
 
 // Re-export hooks when created
 // export * from './hooks';

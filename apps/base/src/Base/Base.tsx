@@ -6,30 +6,10 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  */
 export function NxWelcome({ title }: { title: string }) {
+
   return (
     <div className="base-wrapper">
       <div className="base-container">
-        <header className="base-header">
-          <section>
-            <a href="/" className="base-logo">
-              {title} 👋
-            </a>
-            <nav className="base-nav">
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="/tools">Tools</a>
-                </li>
-                <li>
-                  <a href="/components">components</a>
-                </li>
-              </ul>
-            </nav>
-          </section>
-        </header>
-
         <main id="hero" className="base-rounded">
           <section>
             <div className="base-surface-samples">
@@ -109,7 +89,7 @@ export function NxWelcome({ title }: { title: string }) {
           </div>
         </section>
 
-        <footer className="base-footer">
+        {/* <footer className="base-footer">
           <p id="love" className="base-love base-text1">
             Carefully crafted with
             <svg
@@ -127,7 +107,7 @@ export function NxWelcome({ title }: { title: string }) {
             </svg>
             <small>--- Gideon Nimoh ---</small>
           </p>
-        </footer>
+        </footer> */}
 
       </div>
     </div>

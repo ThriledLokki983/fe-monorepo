@@ -5,6 +5,13 @@
   "projectType": "library",
   "tags": ["type:lib", "scope:fe"],
   "targets": {
+    "watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/components",
+        "command": "vite build --watch"
+      }
+    },
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],

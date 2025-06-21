@@ -6,7 +6,9 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.26.1",
-    "@mono/styles": "file:../../packages/styles"
+    "react-aria-components": "^1.0.0",
+    "@mono/styles": "file:../../packages/styles",
+    "@mono/components": "file:../../packages/components"
   },
   "devDependencies": {
     "@types/react": "18.3.1",
