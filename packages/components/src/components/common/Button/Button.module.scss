@@ -28,9 +28,63 @@
     }
   }
 
+  // Focus styles for button variants (not links)
+  &:not([data-link]):focus-visible,
+  &[data-focus-visible]:not([data-link]) {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  // Variant-specific focus styles for better accessibility
+  &--primary {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--color-focus, var(--brand));
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 20%, transparent);
+    }
+  }
+
+  &--secondary {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 15%, transparent);
+    }
+  }
+
+  &--tertiary {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 10%, transparent);
+    }
+  }
+
+  &--danger {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--color-error);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--color-error) 20%, transparent);
+    }
+  }
+
+  &--transparent {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 15%, transparent);
+      background-color: color-mix(in hsl, var(--brand) 5%, transparent);
+    }
+  }
+
   // Variants
   &--primary {
-    background-color: va(--brand);
+    background-color: var(--brand);
     color: var(--text1);
 
     &[data-hovered]:not([data-disabled]) {
@@ -38,11 +92,7 @@
     }
 
     &[data-pressed]:not([data-disabled]) {
-      background-color: var(--text2);
-    }
-
-    &[data-pressed]:not([data-disabled]) {
-      background-color: color-mix(in srgb, 20%, var(--brand) 80%);
+      background-color: color-mix(in hsl, black 20%, var(--brand));
     }
   }
 
@@ -83,6 +133,20 @@
 
     &[data-pressed]:not([data-disabled]) {
       background-color: color-mix(in hsl, black 20%, var(--color-error));
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+    color: var(--brand);
+    border: none;
+
+    &[data-hovered]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 95%, var(--brand) 10%);
+    }
+
+    &[data-pressed]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 90%, var(--brand) 15%);
     }
   }
 

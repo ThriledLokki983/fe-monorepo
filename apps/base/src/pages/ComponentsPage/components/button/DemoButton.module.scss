@@ -70,3 +70,106 @@
   min-height: 200px;
   padding: 1rem 0;
 }
+
+/* Usage Section */
+.usageSection {
+  h5 {
+    margin: 1.5rem 0 0.75rem 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.codeBlock {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 0.5rem 0 1rem 0;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #1a202c;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Props Section */
+.propsSection {
+  h5 {
+    margin: 1.5rem 0 1rem 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+
+  th {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  td {
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
+    vertical-align: top;
+
+    code {
+      background-color: #f1f5f9;
+      padding: 0.125rem 0.25rem;
+      border-radius: 3px;
+      font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+      font-size: 0.75rem;
+      color: #1e293b;
+    }
+  }
+
+  tr:nth-child(even) {
+    background-color: #fafbfc;
+  }
+}
+
+.note {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 1rem;
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #1e40af;
+
+    strong {
+      font-weight: 600;
+    }
+
+    code {
+      background-color: #dbeafe;
+      padding: 0.125rem 0.25rem;
+      border-radius: 3px;
+      font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+      font-size: 0.75rem;
+    }
+  }
+}

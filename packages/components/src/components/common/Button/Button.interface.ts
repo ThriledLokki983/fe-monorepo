@@ -19,6 +19,23 @@ interface BaseButtonProps {
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
+  // Allow common React Aria props
+  id?: string;
+  slot?: string;
+  excludeFromTabOrder?: boolean;
+  autoFocus?: boolean;
+  onHover?: (isHovering: boolean) => void;
+  onHoverStart?: (e: React.PointerEvent) => void;
+  onHoverEnd?: (e: React.PointerEvent) => void;
+  onFocus?: (e: React.FocusEvent) => void;
+  onBlur?: (e: React.FocusEvent) => void;
+  onFocusChange?: (isFocused: boolean) => void;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
+  onKeyUp?: (e: React.KeyboardEvent) => void;
+  onPressStart?: (e: React.PointerEvent) => void;
+  onPressEnd?: (e: React.PointerEvent) => void;
+  onPressChange?: (isPressed: boolean) => void;
+  onPressUp?: (e: React.PointerEvent) => void;
 }
 
 // Button-specific props when no url is provided

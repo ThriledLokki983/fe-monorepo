@@ -13,8 +13,58 @@ export const Button: React.FC<ButtonProps> = (props) => {
     onPress,
     onClick,
     className = '',
+    // Extract all props that should not be passed to React Aria components
     ...restProps
   } = props;
+
+  // Custom props that should be filtered out from React Aria components
+  const customProps = ['variant', 'size'];
+
+  // Props that are already handled explicitly in our component
+  const handledProps = ['children', 'className', 'disabled', 'isDisabled', 'onPress', 'onClick', 'aria-label', 'aria-labelledby', 'aria-describedby'];
+
+  // Button-specific props that should not be passed to Link components
+  const buttonOnlyProps = ['type', 'form', 'formAction', 'formEncType', 'formMethod', 'formNoValidate', 'formTarget', 'autoFocus', 'formTarget'];
+
+  // Link-specific props that should not be passed to Button components
+  const linkOnlyProps = ['url', 'target', 'rel', 'href', 'download', 'ping', 'referrerPolicy'];
+
+  // Filter out custom props and invalid combinations
+  const getFilteredProps = (isLink: boolean) => {
+    const filteredProps: Record<string, any> = {};
+
+    // Only include props that are valid for the specific component type
+    Object.keys(restProps).forEach(key => {
+      // Skip our custom props
+      if (customProps.includes(key)) return;
+
+      // Skip props that are already handled explicitly
+      if (handledProps.includes(key)) return;
+
+      // For button mode, exclude link-specific props
+      if (!isLink && linkOnlyProps.includes(key)) return;
+
+      // For link mode, exclude button-specific props
+      if (isLink && buttonOnlyProps.includes(key)) return;
+
+      // Allow data-* and aria-* attributes (but not ones we handle explicitly)
+      if (key.startsWith('data-') || (key.startsWith('aria-') && !handledProps.includes(key))) {
+        filteredProps[key] = (restProps as any)[key];
+        return;
+      }
+
+      // Allow common React Aria props
+      const allowedReactAriaProps = [
+        'id', 'slot', 'excludeFromTabOrder', 'autoFocus', 'onHover', 'onHoverStart', 'onHoverEnd', 'onFocus', 'onBlur', 'onFocusChange', 'onKeyDown', 'onKeyUp', 'onPressStart', 'onPressEnd', 'onPressChange', 'onPressUp'
+      ];
+
+      if (allowedReactAriaProps.includes(key)) {
+        filteredProps[key] = (restProps as any)[key];
+      }
+    });
+
+    return filteredProps;
+  };
 
   const buttonClasses = [
     styles.button,
@@ -35,8 +85,10 @@ export const Button: React.FC<ButtonProps> = (props) => {
   // If url is provided, render as a link using React Aria's Link
   if ('url' in props && props.url) {
     const { url, target, rel } = props;
+    const linkFilteredProps = getFilteredProps(true);
 
-    const LinkComponent = ReactAriaLink as any;
+    // Use type assertion to fix React Aria compatibility issues
+    const LinkComponent = ReactAriaLink as React.ComponentType<any>;
 
     return (
       <LinkComponent
@@ -49,7 +101,10 @@ export const Button: React.FC<ButtonProps> = (props) => {
         data-variant={variant}
         data-size={size}
         isDisabled={buttonDisabled}
-        {...(restProps as any)}
+        aria-label={props['aria-label']}
+        aria-labelledby={props['aria-labelledby']}
+        aria-describedby={props['aria-describedby']}
+        {...linkFilteredProps}
       >
         {children}
       </LinkComponent>
@@ -58,7 +113,10 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   // Otherwise, render as a button using React Aria
   const { type = 'button' } = props;
-  const ButtonComponent = ReactAriaButton as any;
+  const buttonFilteredProps = getFilteredProps(false);
+
+  // Use type assertion to fix React Aria compatibility issues
+  const ButtonComponent = ReactAriaButton as React.ComponentType<any>;
 
   return (
     <ButtonComponent
@@ -68,7 +126,10 @@ export const Button: React.FC<ButtonProps> = (props) => {
       data-variant={variant}
       data-size={size}
       type={type}
-      {...(restProps as any)}
+      aria-label={props['aria-label']}
+      aria-labelledby={props['aria-labelledby']}
+      aria-describedby={props['aria-describedby']}
+      {...buttonFilteredProps}
     >
       {children}
     </ButtonComponent>

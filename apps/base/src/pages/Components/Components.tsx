@@ -52,7 +52,8 @@ const componentDemos: ComponentDemo[] = [
         <div className={styles.variantGroup}>
           <h4>Link Buttons</h4>
           <div className={styles.componentRow}>
-            <Button url="https://example.com" variant="primary">
+            {/* Temporarily commenting out while fixing React Aria type compatibility */}
+            {/* <Button url="https://example.com" variant="primary">
               External Link
             </Button>
             <Button url="https://example.com" variant="secondary" target="_blank">
@@ -63,7 +64,8 @@ const componentDemos: ComponentDemo[] = [
             </Button>
             <Button url="https://example.com" variant="danger" disabled>
               Disabled Link
-            </Button>
+            </Button> */}
+            <p>Link functionality temporarily disabled while fixing React Aria compatibility.</p>
           </div>
         </div>
       </div>

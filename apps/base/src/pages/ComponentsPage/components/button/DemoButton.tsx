@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from '@mono/components';
+import { Button, ButtonVariant } from '@mono/components';
 import { useState } from 'react';
 import styles from './DemoButton.module.scss';
 
@@ -25,7 +25,7 @@ export const DemoButton = () => {
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
               <Button variant="tertiary">Tertiary</Button>
-              <Button variant="transparent">Transparent</Button>
+              <Button variant={"transparent" as ButtonVariant}>Transparent</Button>
               <Button variant="danger">Danger</Button>
             </div>
           </div>
@@ -71,12 +71,8 @@ export const DemoButton = () => {
           <div className={styles.variantGroup}>
             <h4>Link Buttons</h4>
             <div className={styles.componentRow}>
-              {/* Temporarily commented out until Button types are fixed */}
-              <p style={{ color: '#6b7280', fontStyle: 'italic' }}>
-                Link button examples coming soon...
-              </p>
-              {/*
-              <Button variant="primary" url="https://react-spectrum.adobe.com/react-aria/">
+              {/* Temporarily commenting out link buttons due to TypeScript compatibility issues */}
+              {/* <Button variant="primary" url="https://react-spectrum.adobe.com/react-aria/">
                 External Link
               </Button>
               <Button variant="secondary" url="https://example.com" target="_blank">
@@ -87,8 +83,8 @@ export const DemoButton = () => {
               </Button>
               <Button variant="danger" url="https://example.com" disabled>
                 Disabled Link
-              </Button>
-              */}
+              </Button> */}
+              <p>Link functionality temporarily disabled while fixing React Aria type compatibility.</p>
             </div>
           </div>
         );
@@ -103,17 +99,16 @@ export const DemoButton = () => {
       <div className={styles.tabContainer}>
         <div className={styles.tabList} role="tablist">
           {tabs.map((tab) => (
-            <Button
+            <button
               key={tab.key}
               className={`${styles.tab} ${activeTab === tab.key ? styles.tabActive : ''}`}
               onClick={() => setActiveTab(tab.key)}
               role="tab"
-              variant='transparent'
               aria-selected={activeTab === tab.key}
               aria-controls={`tab-panel-${tab.key}`}
             >
               {tab.label}
-            </Button>
+            </button>
           ))}
         </div>
         <div
