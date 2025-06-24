@@ -23,5 +23,19 @@ export const componentDemos: ComponentDemo[] = [
     category: 'layout',
     component: <Demos.DemoIcon />,
     usage: Demos.DemoIconUsage,
+  },
+  {
+    name: 'ComboBox',
+    description: 'A searchable combobox component with autocomplete functionality. Built with React Aria for accessibility, supports custom values, and provides keyboard navigation.',
+    category: 'forms',
+    component: <Demos.DemoComboBox />,
+    usage: Demos.DemoComboBoxUsage,
+  },
+  {
+    name: 'Select',
+    description: 'A dropdown select component for choosing from predefined options. Built with React Aria for enhanced accessibility and keyboard support.',
+    category: 'forms',
+    component: <Demos.DemoSelect />,
+    usage: Demos.DemoSelectUsage,
   }
 ];

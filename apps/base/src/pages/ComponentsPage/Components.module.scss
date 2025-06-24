@@ -335,6 +335,45 @@
   }
 }
 
+.exampleDescription {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  color: var(--text2);
+  font-style: italic;
+}
+
+.required {
+  color: var(--color-error);
+  font-weight: bold;
+}
+
+.notes {
+  margin-top: 2rem;
+
+  h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text1);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text2);
+      line-height: 1.5;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
 // Responsive design
 @media (max-width: 768px) {
   .componentsPage {

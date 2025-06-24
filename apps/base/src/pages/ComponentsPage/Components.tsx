@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { componentDemos } from './demos/componentDemos';
-import { Button } from '@mono/components';
+import { componentDocumentation } from './data/componentDocumentation';
 import styles from './Components.module.scss';
 
 type UsageTabKey = 'usage' | 'props';
@@ -26,60 +26,33 @@ export const Components = () => {
   const renderUsageContent = () => {
     if (!selectedDemo) return null;
 
+    const documentation = componentDocumentation[selectedDemo.name];
+    if (!documentation) return null;
+
     switch (activeUsageTab) {
       case 'usage':
         return (
           <div className={styles.usageContent}>
-            <h4>Basic Usage</h4>
-            <div className={styles.usageExample}>
-              <div className={styles.exampleDemo}>
-                <Button variant="primary">Click me</Button>
+            {documentation.usageExamples.map((example, index) => (
+              <div key={index}>
+                <h4>{example.title}</h4>
+                {example.description && (
+                  <p className={styles.exampleDescription}>{example.description}</p>
+                )}
+                <div className={styles.usageExample}>
+                  <pre className={styles.codeBlock}>
+                    {example.code}
+                  </pre>
+                </div>
               </div>
-              <pre className={styles.codeBlock}>
-{`<Button variant="primary">Click me</Button>`}
-              </pre>
-            </div>
-
-            <h4>Button as Link</h4>
-            <div className={styles.usageExample}>
-              <div className={styles.exampleDemo}>
-                <span style={{ color: '#6b7280', fontStyle: 'italic' }}>
-                  Link examples coming soon...
-                </span>
-              </div>
-              <pre className={styles.codeBlock}>
-{`<Button variant="secondary" url="https://example.com">
-  Visit Website
-</Button>`}
-              </pre>
-            </div>
-
-            <h4>Form Actions</h4>
-            <div className={styles.usageExample}>
-              <div className={styles.exampleDemo}>
-                <Button variant="secondary" type="button">
-                  Cancel
-                </Button>
-                <Button variant="primary" type="submit">
-                  Save Changes
-                </Button>
-              </div>
-              <pre className={styles.codeBlock}>
-{`<Button variant="secondary" type="button">
-  Cancel
-</Button>
-<Button variant="primary" type="submit">
-  Save Changes
-</Button>`}
-              </pre>
-            </div>
+            ))}
           </div>
         );
 
       case 'props':
         return (
           <div className={styles.propsContent}>
-            <h4>Button Mode (default)</h4>
+            <h4>Props</h4>
             <table className={styles.propsTable}>
               <thead>
                 <tr>
@@ -90,86 +63,30 @@ export const Components = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><code>variant</code></td>
-                  <td><code>'primary' | 'secondary' | 'tertiary' | 'danger' | 'transparent'</code></td>
-                  <td><code>'primary'</code></td>
-                  <td>Visual style variant</td>
-                </tr>
-                <tr>
-                  <td><code>size</code></td>
-                  <td><code>'small' | 'medium' | 'large'</code></td>
-                  <td><code>'medium'</code></td>
-                  <td>Size of the button</td>
-                </tr>
-                <tr>
-                  <td><code>type</code></td>
-                  <td><code>'button' | 'submit' | 'reset'</code></td>
-                  <td><code>'button'</code></td>
-                  <td>HTML button type</td>
-                </tr>
-                <tr>
-                  <td><code>disabled</code></td>
-                  <td><code>boolean</code></td>
-                  <td><code>false</code></td>
-                  <td>Disables the button (standard React)</td>
-                </tr>
-                <tr>
-                  <td><code>isDisabled</code></td>
-                  <td><code>boolean</code></td>
-                  <td><code>false</code></td>
-                  <td>Disables the button (React Aria)</td>
-                </tr>
-                <tr>
-                  <td><code>onClick</code></td>
-                  <td><code>{'() => void'}</code></td>
-                  <td><code>-</code></td>
-                  <td>Click handler (standard React)</td>
-                </tr>
-                <tr>
-                  <td><code>onPress</code></td>
-                  <td><code>{'() => void'}</code></td>
-                  <td><code>-</code></td>
-                  <td>Press handler (React Aria)</td>
-                </tr>
+                {documentation.props.map((prop, index) => (
+                  <tr key={index}>
+                    <td>
+                      <code>{prop.name}</code>
+                      {prop.required && <span className={styles.required}> *</span>}
+                    </td>
+                    <td><code>{prop.type}</code></td>
+                    <td><code>{prop.defaultValue}</code></td>
+                    <td>{prop.description}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
 
-            <h4>Link Mode (when url is provided)</h4>
-            <table className={styles.propsTable}>
-              <thead>
-                <tr>
-                  <th>Prop</th>
-                  <th>Type</th>
-                  <th>Default</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>url</code></td>
-                  <td><code>string</code></td>
-                  <td><code>-</code></td>
-                  <td><strong>Required</strong> for link mode. The destination URL</td>
-                </tr>
-                <tr>
-                  <td><code>target</code></td>
-                  <td><code>'_blank' | '_self' | '_parent' | '_top'</code></td>
-                  <td><code>'_self'</code></td>
-                  <td>Where to open the link</td>
-                </tr>
-                <tr>
-                  <td><code>rel</code></td>
-                  <td><code>string</code></td>
-                  <td><code>auto</code></td>
-                  <td>Link relationship (auto-sets security for external links)</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div className={styles.note}>
-              <p><strong>Note:</strong> When <code>url</code> is provided, <code>type</code> prop is not available (links don't have a type).</p>
-            </div>
+            {documentation.notes && documentation.notes.length > 0 && (
+              <div className={styles.notes}>
+                <h4>Notes</h4>
+                <ul>
+                  {documentation.notes.map((note, index) => (
+                    <li key={index}>{note}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         );
 

@@ -2093,7 +2093,8 @@
 "@mono/components@file:packages/components":
   version "0.0.1"
   dependencies:
-    "@mono/styles" "file:../../../Library/Caches/Yarn/v6/npm-@mono-components-0.0.1-94b7d685-e7dc-4902-91b4-ee3183bc3deb-1750500095242/node_modules/@mono/styles"
+    "@mono/styles" "file:../../../Library/Caches/Yarn/v6/npm-@mono-components-0.0.1-46593a26-bd84-4ecc-a96a-e9b57bc2ec94-1750791658543/node_modules/@mono/styles"
+    react-aria-components "^1.10.1"
 
 "@mono/styles@file:packages/styles":
   version "0.0.1"
@@ -9414,6 +9415,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lucide-react@^0.523.0:
+  version "0.523.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.523.0.tgz#a855a3b5b6fdcdee597ecbbd3c16141711a1d974"
+  integrity sha512-rUjQoy7egZT9XYVXBK1je9ckBnNp7qzRZOhLQx5RcEp2dCGlXo+mv6vf7Am4LimEcFBJIIZzSGfgTqc9QCrPSw==
 
 luxon@^3.2.1:
   version "3.6.1"
