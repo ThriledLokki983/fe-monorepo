@@ -1,0 +1,227 @@
+// Tooltip Styles
+.tooltip {
+  background: color-mix(in srgb, var(--surface1) 15%, var(--text1) 85%);
+  color: var(--surface2);
+  border: 1px solid color-mix(in srgb, var(--surface4) 30%, var(--text1) 70%);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.25;
+  font-weight: var(--font-weight-medium);
+  max-width: 250px;
+  word-wrap: break-word;
+  z-index: var(--z-index-tooltip);
+  box-shadow: var(--shadow-sm);
+  outline: none;
+
+  // Size variants
+  &.small {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-xs);
+    max-width: 200px;
+  }
+
+  &.medium {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+    max-width: 250px;
+  }
+
+  &.large {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-base);
+    max-width: 300px;
+  }
+
+  // Animation states
+  &[data-entering] {
+    animation: tooltip-fade-in var(--transition-fast);
+  }
+
+  &[data-exiting] {
+    animation: tooltip-fade-out var(--transition-fast);
+  }
+
+  // Placement-specific adjustments
+  &[data-placement="top"] {
+    margin-bottom: var(--space-xxs);
+  }
+
+  &[data-placement="bottom"] {
+    margin-top: var(--space-xxs);
+  }
+
+  &[data-placement="left"] {
+    margin-right: var(--space-xxs);
+  }
+
+  &[data-placement="right"] {
+    margin-left: var(--space-xxs);
+  }
+}
+
+//...existing code...
+
+// Tooltip Arrow
+.tooltipArrow {
+  position: absolute;
+  color: color-mix(in srgb, var(--surface1) 15%, var(--text1) 85%);
+  z-index: calc(var(--z-index-tooltip) + 1);
+
+  // Arrow placement adjustments
+  &[data-placement="top"] {
+    bottom: -4px;
+    transform: rotate(180deg);
+  }
+
+  &[data-placement="bottom"] {
+    top: -4px;
+    transform: none;
+  }
+
+  &[data-placement="left"] {
+    right: -4px;
+    transform: rotate(90deg);
+  }
+
+  &[data-placement="right"] {
+    left: -4px;
+    transform: rotate(-90deg);
+  }
+
+  .arrowSvg {
+    width: 8px;
+    height: 8px;
+    fill: color-mix(in srgb, var(--surface1) 15%, var(--text1) 85%);
+    filter: drop-shadow(0 1px 1px hsl(var(--surface-shadow) / 0.15));
+
+    // Add border to match tooltip
+    stroke: color-mix(in srgb, var(--surface4) 30%, var(--text1) 70%);
+    stroke-width: 0.5;
+  }
+}
+
+// Tooltip Content
+.tooltipContent {
+  color: var(--surface2);
+  font-weight: inherit;
+
+  // Reset margins for direct children
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  // Typography adjustments for tooltips
+  p {
+    margin: 0;
+    color: inherit;
+  }
+
+  strong, b {
+    font-weight: var(--font-weight-semibold);
+    color: inherit;
+  }
+
+  em, i {
+    font-style: italic;
+    color: inherit;
+  }
+
+  code {
+    background: color-mix(in srgb, var(--surface2) 80%, var(--text1) 20%);
+    padding: var(--space-xxs) var(--space-xs);
+    border-radius: var(--radius-sm);
+    font-size: 0.85em;
+    font-family: var(--font-family-mono);
+    color: var(--text1);
+  }
+}
+
+// Animation keyframes
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes tooltip-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9) translateY(-2px);
+  }
+}
+
+// High contrast mode adjustments
+@media (prefers-contrast: high) {
+  .tooltip {
+    border: 2px solid var(--text1);
+    background: var(--surface1);
+    color: var(--text1);
+  }
+
+  .tooltipArrow {
+    color: var(--surface1);
+
+    .arrowSvg {
+      fill: var(--surface1);
+      stroke: var(--text1);
+      stroke-width: 1;
+    }
+  }
+
+  .tooltipContent {
+    color: var(--text1);
+
+    code {
+      background: var(--surface3);
+      border: 1px solid var(--surface4);
+      color: var(--text1);
+    }
+  }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    &[data-entering],
+    &[data-exiting] {
+      animation: none;
+      transition: opacity var(--transition-fast);
+    }
+
+    &[data-entering] {
+      opacity: 1;
+    }
+
+    &[data-exiting] {
+      opacity: 0;
+    }
+  }
+}
+
+// Mobile adjustments
+@media (max-width: 640px) {
+  .tooltip {
+    max-width: 90vw;
+    font-size: var(--font-size-sm);
+
+    &.small,
+    &.medium,
+    &.large {
+      padding: var(--space-sm) var(--space-md);
+      max-width: 90vw;
+    }
+  }
+}

@@ -10,7 +10,7 @@ export const Components = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeUsageTab, setActiveUsageTab] = useState<UsageTabKey>('usage');
 
-  const categories = ['all', 'buttons', 'forms', 'layout', 'feedback'];
+  const categories = ['all', 'buttons', 'forms', 'layout', 'feedback', 'overlays'];
 
   const filteredComponents = componentDemos.filter(
     demo => selectedCategory === 'all' || demo.category === selectedCategory

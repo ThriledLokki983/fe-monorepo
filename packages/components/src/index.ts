@@ -3,6 +3,12 @@
 // Common components
 export * from './components/common';
 
+// Form components
+export * from './components/forms';
+
+// Overlay components
+export * from './components/overlays';
+
 // Layout components
 export * from './components/layout/Header';
 export * from './components/layout/Sidebar';
