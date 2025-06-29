@@ -18,6 +18,13 @@ export const componentDemos: ComponentDemo[] = [
     usage: Demos.DemoButtonUsage,
   },
   {
+    name: 'ToggleButton',
+    description: 'An accessible toggle button component built on React Aria. Supports pressed/unpressed states with multiple variants, sizes, and comprehensive keyboard navigation.',
+    category: 'buttons',
+    component: <Demos.DemoToggleButton />,
+    usage: Demos.DemoToggleButtonUsage,
+  },
+  {
     name: 'Icon',
     description: 'A simple icon component with predefined SVG icons.',
     category: 'layout',
@@ -100,6 +107,27 @@ export const componentDemos: ComponentDemo[] = [
     category: 'navigation',
     component: <Demos.DemoTabs />,
     usage: Demos.DemoTabsUsage,
+  },
+  {
+    name: 'Link',
+    description: 'Accessible link component built on React Aria. Supports both native navigation and JavaScript-handled links with various styling options and full accessibility features.',
+    category: 'navigation',
+    component: <Demos.DemoLink />,
+    usage: Demos.DemoLinkUsage,
+  },
+  {
+    name: 'Breadcrumbs',
+    description: 'Navigation breadcrumbs component built on React Aria. Displays hierarchical navigation paths with support for dynamic collections, different variants, and full accessibility features.',
+    category: 'navigation',
+    component: <Demos.DemoBreadcrumbs />,
+    usage: Demos.DemoBreadcrumbsUsage,
+  },
+  {
+    name: 'Disclosure',
+    description: 'Collapsible disclosure component built on React Aria. Provides accessible expand/collapse functionality with multiple variants, sizes, and full keyboard navigation support.',
+    category: 'navigation',
+    component: <Demos.DemoDisclosure />,
+    usage: Demos.DemoDisclosureUsage,
   },
   {
     name: 'TextField',

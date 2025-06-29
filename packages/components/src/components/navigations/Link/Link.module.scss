@@ -1,0 +1,102 @@
+.link {
+  color: var(--brand);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+  display: inline;
+
+  // React Aria focus management
+  &[data-focus-visible],
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    text-decoration: none;
+  }
+
+  // Hover state
+  &:hover:not([data-disabled]) {
+    color: color-mix(in hsl, var(--brand) 80%, black 20%);
+    text-decoration: none;
+  }
+
+  // Pressed state
+  &[data-pressed]:not([data-disabled]) {
+    color: color-mix(in hsl, var(--brand) 70%, black 30%);
+  }
+
+  // Disabled state
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      color: var(--brand);
+      text-decoration: underline;
+    }
+  }
+
+  /* Link Variants */
+  &--default {
+    color: var(--brand);
+
+    &:hover:not([data-disabled]) {
+      color: color-mix(in hsl, var(--brand) 80%, black 20%);
+    }
+  }
+
+  &--primary {
+    color: var(--brand);
+    font-weight: var(--font-weight-medium);
+
+    &:hover:not([data-disabled]) {
+      color: color-mix(in hsl, var(--brand) 80%, black 20%);
+    }
+  }
+
+  &--secondary {
+    color: var(--text2);
+
+    &:hover:not([data-disabled]) {
+      color: var(--text1);
+    }
+  }
+
+  &--muted {
+    color: var(--text3);
+    text-decoration: none;
+
+    &:hover:not([data-disabled]) {
+      color: var(--text2);
+      text-decoration: underline;
+    }
+  }
+
+  /* Link Sizes */
+  &--small {
+    font-size: var(--font-size-sm);
+  }
+
+  &--medium {
+    font-size: var(--font-size-base);
+  }
+
+  &--large {
+    font-size: var(--font-size-lg);
+  }
+
+  // External link icon support (if data-external is provided)
+  &[data-external]::after {
+    content: '';
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    margin-left: 0.25em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15,3 21,3 21,9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: text-top;
+  }
+}

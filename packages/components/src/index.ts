@@ -1,5 +1,8 @@
 // Main component library exports
 
+// Button components
+export * from './components/button';
+
 // Common components
 export * from './components/common';
 

@@ -2603,4 +2603,616 @@ export const componentDocumentation: Record<string, ComponentDocumentation> = {
       'Tab panels automatically become focusable when containing no interactive elements.',
     ],
   },
+  Disclosure: {
+    name: 'Disclosure',
+    description: 'An accessible disclosure component built on React Aria. Provides collapsible content sections with keyboard navigation, focus management, and multiple styling variants.',
+    usageExamples: [
+      {
+        title: 'Basic Disclosure',
+        description: 'Simple disclosure with title and collapsible content',
+        code: `<Disclosure title="System Requirements">
+  <DisclosurePanel>
+    <p>Details about system requirements here.</p>
+  </DisclosurePanel>
+</Disclosure>`,
+      },
+      {
+        title: 'Different Variants',
+        description: 'Visual variants for different design contexts',
+        code: `<Disclosure variant="default" title="Default Disclosure">
+  <DisclosurePanel>
+    <p>Default styling with subtle background and border.</p>
+  </DisclosurePanel>
+</Disclosure>
+
+<Disclosure variant="minimal" title="Minimal Disclosure">
+  <DisclosurePanel>
+    <p>Clean styling without borders.</p>
+  </DisclosurePanel>
+</Disclosure>
+
+<Disclosure variant="bordered" title="Bordered Disclosure">
+  <DisclosurePanel>
+    <p>Distinct border and background styling.</p>
+  </DisclosurePanel>
+</Disclosure>`,
+      },
+      {
+        title: 'Different Sizes',
+        description: 'Various sizes for different contexts',
+        code: `<Disclosure size="small" title="Small Disclosure">
+  <DisclosurePanel>
+    <p>Compact size with smaller padding.</p>
+  </DisclosurePanel>
+</Disclosure>
+
+<Disclosure size="large" title="Large Disclosure">
+  <DisclosurePanel>
+    <p>Larger size with generous padding.</p>
+  </DisclosurePanel>
+</Disclosure>`,
+      },
+      {
+        title: 'Controlled Disclosure',
+        description: 'External state control with expansion tracking',
+        code: `const [isExpanded, setIsExpanded] = useState(false);
+
+<Disclosure
+  title="Controlled Disclosure"
+  isExpanded={isExpanded}
+  onExpandedChange={setIsExpanded}
+>
+  <DisclosurePanel>
+    <p>This disclosure is controlled by external state.</p>
+  </DisclosurePanel>
+</Disclosure>`,
+      },
+      {
+        title: 'Pre-expanded State',
+        description: 'Start with content expanded by default',
+        code: `<Disclosure title="Pre-expanded" defaultExpanded>
+  <DisclosurePanel>
+    <p>This content starts expanded by default.</p>
+  </DisclosurePanel>
+</Disclosure>`,
+      },
+      {
+        title: 'Custom Icon and States',
+        description: 'Custom icons and disabled states',
+        code: `<Disclosure title="No Icon" hideIcon>
+  <DisclosurePanel>
+    <p>This disclosure doesn't show an icon.</p>
+  </DisclosurePanel>
+</Disclosure>
+
+<Disclosure title="Disabled" isDisabled>
+  <DisclosurePanel>
+    <p>This disclosure cannot be opened.</p>
+  </DisclosurePanel>
+</Disclosure>
+
+const CustomIcon = () => <svg>...</svg>;
+
+<Disclosure title="Custom Icon" icon={<CustomIcon />}>
+  <DisclosurePanel>
+    <p>This disclosure uses a custom icon.</p>
+  </DisclosurePanel>
+</Disclosure>`,
+      },
+    ],
+    props: [
+      {
+        name: 'variant',
+        type: "'default' | 'minimal' | 'bordered'",
+        defaultValue: "'default'",
+        description: 'Visual style variant of the disclosure',
+        required: false,
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'Size of the disclosure trigger and content',
+        required: false,
+      },
+      {
+        name: 'title',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'Title text for the disclosure trigger',
+        required: false,
+      },
+      {
+        name: 'children',
+        type: 'React.ReactNode',
+        defaultValue: '',
+        description: 'Content of the disclosure (typically DisclosurePanel)',
+        required: true,
+      },
+      {
+        name: 'icon',
+        type: 'React.ReactNode',
+        defaultValue: 'undefined',
+        description: 'Custom icon to display in the trigger',
+        required: false,
+      },
+      {
+        name: 'hideIcon',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether to hide the expand/collapse icon',
+        required: false,
+      },
+      {
+        name: 'defaultExpanded',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the disclosure starts expanded (uncontrolled)',
+        required: false,
+      },
+      {
+        name: 'isExpanded',
+        type: 'boolean',
+        defaultValue: 'undefined',
+        description: 'Whether the disclosure is expanded (controlled)',
+        required: false,
+      },
+      {
+        name: 'onExpandedChange',
+        type: '(isExpanded: boolean) => void',
+        defaultValue: 'undefined',
+        description: 'Handler called when expansion state changes',
+        required: false,
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the disclosure is disabled and cannot be toggled',
+        required: false,
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: "''",
+        description: 'Additional CSS class names',
+        required: false,
+      },
+      {
+        name: 'aria-label',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'Accessible label for screen readers',
+        required: false,
+      },
+      {
+        name: 'aria-labelledby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that labels the disclosure',
+        required: false,
+      },
+      {
+        name: 'aria-describedby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that describes the disclosure',
+        required: false,
+      },
+    ],
+    notes: [
+      'Built on React Aria Components Disclosure for comprehensive accessibility support.',
+      'Supports both controlled and uncontrolled modes for expansion state management.',
+      'Keyboard navigation is handled automatically (Enter/Space to toggle).',
+      'Focus management and ARIA attributes are applied automatically.',
+      'Content panel is hidden from assistive technologies when collapsed.',
+      'Supports "until-found" hidden attribute for improved find-in-page and SEO.',
+      'Icon automatically rotates to indicate expanded/collapsed state.',
+      'Different variants provide various visual styles for different design contexts.',
+      'Size variants affect both trigger and panel padding and typography.',
+      'Custom icons can be provided to replace the default chevron.',
+      'Disabled state properly prevents interaction and announces state to screen readers.',
+      'All ARIA attributes are forwarded to underlying elements for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+  Breadcrumbs: {
+    name: 'Breadcrumbs',
+    description: 'An accessible breadcrumbs navigation component built on React Aria. Displays hierarchical navigation paths with support for static and dynamic collections, different variants, and full accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic Breadcrumbs',
+        description: 'Simple breadcrumbs with static navigation links',
+        code: `<Breadcrumbs>
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link href="/products">Products</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Current Page</Link>
+  </Breadcrumb>
+</Breadcrumbs>`,
+      },
+      {
+        title: 'Different Variants',
+        description: 'Visual variants for different design needs',
+        code: `<Breadcrumbs variant="minimal">
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link href="/docs">Documentation</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Breadcrumbs</Link>
+  </Breadcrumb>
+</Breadcrumbs>
+
+<Breadcrumbs variant="compact">
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link href="/category">Category</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Page</Link>
+  </Breadcrumb>
+</Breadcrumbs>`,
+      },
+      {
+        title: 'Different Sizes',
+        description: 'Various sizes for different contexts',
+        code: `<Breadcrumbs size="small">
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Page</Link>
+  </Breadcrumb>
+</Breadcrumbs>
+
+<Breadcrumbs size="large">
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Page</Link>
+  </Breadcrumb>
+</Breadcrumbs>`,
+      },
+      {
+        title: 'Dynamic Breadcrumbs',
+        description: 'Breadcrumbs from data with navigation handling',
+        code: `const breadcrumbItems = [
+  { id: 1, label: 'Home', href: '/' },
+  { id: 2, label: 'Products', href: '/products' },
+  { id: 3, label: 'Electronics', href: '/products/electronics' },
+  { id: 4, label: 'Current Item' }, // No href for current page
+];
+
+const handleNavigation = (key) => {
+  // Handle breadcrumb navigation
+  console.log('Navigate to:', key);
+};
+
+<Breadcrumbs
+  items={breadcrumbItems}
+  onAction={handleNavigation}
+/>`,
+      },
+      {
+        title: 'Navigation Landmark',
+        description: 'Breadcrumbs as accessible navigation landmark',
+        code: `<Breadcrumbs
+  isNavigationLandmark
+  navigationLabel="Page navigation"
+>
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link href="/section">Section</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Current Page</Link>
+  </Breadcrumb>
+</Breadcrumbs>`,
+      },
+      {
+        title: 'Disabled States',
+        description: 'Disabled breadcrumbs and individual items',
+        code: `<Breadcrumbs isDisabled>
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link href="/category">Category</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Current Page</Link>
+  </Breadcrumb>
+</Breadcrumbs>
+
+<Breadcrumbs>
+  <Breadcrumb>
+    <Link href="/">Home</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link href="/restricted" isDisabled>Restricted</Link>
+  </Breadcrumb>
+  <Breadcrumb>
+    <Link>Current Page</Link>
+  </Breadcrumb>
+</Breadcrumbs>`,
+      },
+    ],
+    props: [
+      {
+        name: 'variant',
+        type: "'default' | 'minimal' | 'compact'",
+        defaultValue: "'default'",
+        description: 'Visual style variant of the breadcrumbs',
+        required: false,
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'Size of the breadcrumbs text',
+        required: false,
+      },
+      {
+        name: 'children',
+        type: 'React.ReactNode',
+        defaultValue: '',
+        description: 'Breadcrumb items (when using static collection)',
+        required: false,
+      },
+      {
+        name: 'items',
+        type: 'Iterable<BreadcrumbItem>',
+        defaultValue: 'undefined',
+        description: 'Array of breadcrumb items for dynamic collections',
+        required: false,
+      },
+      {
+        name: 'onAction',
+        type: '(key: React.Key) => void',
+        defaultValue: 'undefined',
+        description: 'Handler called when a breadcrumb is activated (dynamic collections)',
+        required: false,
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether all breadcrumbs are disabled',
+        required: false,
+      },
+      {
+        name: 'isNavigationLandmark',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether to wrap breadcrumbs in a navigation landmark',
+        required: false,
+      },
+      {
+        name: 'navigationLabel',
+        type: 'string',
+        defaultValue: "'Breadcrumbs'",
+        description: 'Accessible label for the navigation landmark',
+        required: false,
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: "''",
+        description: 'Additional CSS class names',
+        required: false,
+      },
+      {
+        name: 'aria-label',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'Accessible label for screen readers',
+        required: false,
+      },
+      {
+        name: 'aria-labelledby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that labels the breadcrumbs',
+        required: false,
+      },
+      {
+        name: 'aria-describedby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that describes the breadcrumbs',
+        required: false,
+      },
+    ],
+    notes: [
+      'Built on React Aria Components Breadcrumbs and Breadcrumb for comprehensive accessibility support.',
+      'Supports both static collections (children) and dynamic collections (items prop).',
+      'Last breadcrumb item is automatically marked as current page using aria-current.',
+      'Breadcrumbs are rendered as an ordered list (<ol>) with proper semantic structure.',
+      'Use isNavigationLandmark for main page navigation breadcrumbs to create proper landmarks.',
+      'Focus management and keyboard navigation are handled automatically by React Aria.',
+      'Separators are styled via CSS pseudo-elements and hidden from screen readers.',
+      'Different variants provide visual separation styles: default (/), minimal (›), compact (▸).',
+      'Individual breadcrumb links can be disabled while keeping others interactive.',
+      'Dynamic collections automatically handle navigation state and item rendering.',
+      'All ARIA attributes are forwarded to the underlying elements for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+  Link: {
+    name: 'Link',
+    description: 'An accessible link component built on React Aria. Supports both native navigation (href) and JavaScript-handled links (onPress) with multiple styling variants and full accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic Link with href',
+        description: 'Standard link that navigates to a URL',
+        code: `<Link href="https://example.com" target="_blank" rel="noopener noreferrer">
+  External Link
+</Link>`,
+      },
+      {
+        title: 'Internal Navigation Link',
+        description: 'Link for internal page navigation',
+        code: `<Link href="/about">
+  About Page
+</Link>`,
+      },
+      {
+        title: 'JavaScript Handled Link',
+        description: 'Link that triggers JavaScript actions instead of navigation',
+        code: `<Link onPress={() => console.log('Link clicked!')}>
+  JavaScript Action
+</Link>`,
+      },
+      {
+        title: 'Link Variants',
+        description: 'Different visual styles for links',
+        code: `<Link variant="primary" href="/home">Primary Link</Link>
+<Link variant="secondary" href="/docs">Secondary Link</Link>
+<Link variant="muted" href="/archive">Muted Link</Link>`,
+      },
+      {
+        title: 'Link Sizes',
+        description: 'Different sizes for various contexts',
+        code: `<Link size="small" href="/small">Small Link</Link>
+<Link size="medium" href="/medium">Medium Link</Link>
+<Link size="large" href="/large">Large Link</Link>`,
+      },
+      {
+        title: 'External Link with Icon',
+        description: 'External link with visual indicator',
+        code: `<Link
+  href="https://external.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  data-external="true"
+>
+  External Link with Icon
+</Link>`,
+      },
+      {
+        title: 'Disabled Link',
+        description: 'Non-interactive link state',
+        code: `<Link href="/disabled" isDisabled>
+  Disabled Link
+</Link>`,
+      },
+    ],
+    props: [
+      {
+        name: 'variant',
+        type: "'default' | 'primary' | 'secondary' | 'muted'",
+        defaultValue: "'default'",
+        description: 'Visual style variant of the link',
+        required: false,
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'Size of the link text',
+        required: false,
+      },
+      {
+        name: 'href',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'URL to navigate to. When provided, renders as native <a> element',
+        required: false,
+      },
+      {
+        name: 'target',
+        type: "'_blank' | '_self' | '_parent' | '_top'",
+        defaultValue: 'undefined',
+        description: 'Where to open the linked document (only with href)',
+        required: false,
+      },
+      {
+        name: 'rel',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'Relationship between current and linked document (only with href)',
+        required: false,
+      },
+      {
+        name: 'onPress',
+        type: '() => void',
+        defaultValue: 'undefined',
+        description: 'Function to call when link is activated. Required when href is not provided',
+        required: false,
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the link is disabled and non-interactive',
+        required: false,
+      },
+      {
+        name: 'children',
+        type: 'React.ReactNode',
+        defaultValue: '',
+        description: 'Content of the link',
+        required: true,
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: "''",
+        description: 'Additional CSS class names',
+        required: false,
+      },
+      {
+        name: 'data-external',
+        type: 'boolean',
+        defaultValue: 'undefined',
+        description: 'When true, shows external link icon indicator',
+        required: false,
+      },
+      {
+        name: 'aria-label',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'Accessible label for screen readers',
+        required: false,
+      },
+      {
+        name: 'aria-labelledby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that labels this link',
+        required: false,
+      },
+      {
+        name: 'aria-describedby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that describes this link',
+        required: false,
+      },
+    ],
+    notes: [
+      'Built on React Aria Components Link for comprehensive accessibility support.',
+      'Automatically renders as <a> element when href is provided, or <span role="link"> when using onPress.',
+      'Supports both native browser navigation and JavaScript-handled interactions.',
+      'Focus management and keyboard navigation (Enter/Space activation) are handled automatically.',
+      'External links should use target="_blank" with rel="noopener noreferrer" for security.',
+      'Use data-external="true" to show visual indicator for external links.',
+      'JavaScript-handled links do not support browser features like "Open in new tab".',
+      'Disabled links are properly announced to screen readers and cannot be activated.',
+      'All ARIA attributes are forwarded to the underlying element for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
 };
