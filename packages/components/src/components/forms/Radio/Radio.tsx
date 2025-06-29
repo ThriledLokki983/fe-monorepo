@@ -60,14 +60,14 @@ export const Radio: React.FC<RadioProps> = ({
   className = '',
   indicatorClassName = '',
   labelClassName = '',
-  isSelected,
-  defaultSelected,
+  // isSelected,
+  // defaultSelected,
   isDisabled,
-  isReadOnly,
-  isInvalid,
-  isRequired,
-  onChange,
-  name,
+  // isReadOnly,
+  // isInvalid,
+  // isRequired,
+  // onChange,
+  // name,
   value,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
@@ -77,9 +77,9 @@ export const Radio: React.FC<RadioProps> = ({
   const radioClasses = [
     styles.radio,
     styles[size],
-    isInvalid && styles.invalid,
+    // isInvalid && styles.invalid,
     isDisabled && styles.disabled,
-    isReadOnly && styles.readOnly,
+    // isReadOnly && styles.readOnly,
     className,
   ]
     .filter(Boolean)
@@ -94,10 +94,10 @@ export const Radio: React.FC<RadioProps> = ({
       {...props}
       className={radioClasses}
       isDisabled={isDisabled}
-      isReadOnly={isReadOnly}
-      isInvalid={isInvalid}
-      isRequired={isRequired}
-      name={name}
+      // isReadOnly={isReadOnly}
+      // isInvalid={isInvalid}
+      // isRequired={isRequired}
+      // name={name}
       value={value}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
@@ -112,7 +112,7 @@ export const Radio: React.FC<RadioProps> = ({
         {children && (
           <span className={labelClasses}>
             {children}
-            {isRequired && <span className={styles.required} aria-hidden="true">*</span>}
+            {/* {isRequired && <span className={styles.required} aria-hidden="true">*</span>} */}
           </span>
         )}
       </>

@@ -37,7 +37,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'MonoComponents',
       formats: ['es'],
-      fileName: 'index'
+      fileName: (format) => format === 'es' ? 'index.js' : `index.${format}.js`
     },
     rollupOptions: {
       external: [

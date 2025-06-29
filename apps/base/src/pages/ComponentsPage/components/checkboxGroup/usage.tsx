@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CheckboxGroup, Checkbox } from '@mono/components';
 
 // Basic usage
@@ -71,12 +71,12 @@ export const CheckboxGroupSizes = () => (
       <Checkbox value="option1">Option 1</Checkbox>
       <Checkbox value="option2">Option 2</Checkbox>
     </CheckboxGroup>
-    
+
     <CheckboxGroup size="medium" label="Medium checkbox group">
       <Checkbox value="option1">Option 1</Checkbox>
       <Checkbox value="option2">Option 2</Checkbox>
     </CheckboxGroup>
-    
+
     <CheckboxGroup size="large" label="Large checkbox group">
       <Checkbox value="option1">Option 1</Checkbox>
       <Checkbox value="option2">Option 2</Checkbox>
@@ -95,7 +95,7 @@ export const DisabledCheckboxGroup = () => (
       <Checkbox value="option1">Option 1</Checkbox>
       <Checkbox value="option2">Option 2</Checkbox>
     </CheckboxGroup>
-    
+
     <CheckboxGroup label="Individual disabled items">
       <Checkbox value="available">Available option</Checkbox>
       <Checkbox value="disabled" isDisabled>Disabled option</Checkbox>
@@ -117,7 +117,7 @@ export const FormCheckboxGroup = () => (
       <Checkbox value="python">Python</Checkbox>
       <Checkbox value="rust">Rust</Checkbox>
     </CheckboxGroup>
-    
+
     <button type="submit">Submit</button>
   </form>
 );

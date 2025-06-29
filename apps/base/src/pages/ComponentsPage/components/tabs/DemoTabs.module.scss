@@ -1,0 +1,288 @@
+// Demo Tabs Styles
+.componentShowcase {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.tabContainer {
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--surface3);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tab {
+  padding: var(--space-sm) var(--space-lg);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: var(--text1);
+    background: var(--surface2);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  &.tabActive {
+    color: var(--brand);
+    border-bottom-color: var(--brand);
+    background: var(--surface2);
+  }
+}
+
+.tabPanel {
+  min-height: 400px;
+}
+
+.section {
+  margin-bottom: var(--space-3xl);
+
+  h3 {
+    color: var(--text1);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-lg);
+    border-bottom: 2px solid var(--surface4);
+    padding-bottom: var(--space-sm);
+  }
+
+  h4 {
+    color: var(--text2);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-sm);
+  }
+}
+
+.variantGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+
+  h4 {
+    margin: 0 0 var(--space-md) 0;
+    color: var(--text1);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  h5 {
+    margin: 0 0 var(--space-sm) 0;
+    color: var(--text1);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text2);
+    line-height: var(--line-height-normal);
+  }
+}
+
+.exampleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.example {
+  background: var(--surface2);
+  border: 1px solid var(--surface4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+
+  h4 {
+    margin-top: 0;
+  }
+}
+
+.componentRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--surface2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface4);
+}
+
+.sizeDemo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: var(--space-2xl);
+  }
+}
+
+.sizeExample {
+  flex: 1;
+  min-width: 0;
+
+  h5 {
+    margin: 0 0 var(--space-md) 0;
+    color: var(--text1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+  }
+}
+
+.dynamicControls {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 300px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-size: var(--font-size-sm);
+    color: var(--text1);
+  }
+
+  input {
+    padding: var(--space-sm);
+    border: 1px solid var(--surface4);
+    border-radius: var(--radius-base);
+    background: var(--surface1);
+    color: var(--text1);
+    font-size: var(--font-size-sm);
+
+    &:focus {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      border-color: var(--brand);
+    }
+  }
+
+  button {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--brand);
+    color: var(--color-success, white);
+    border: none;
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: color-mix(in hsl, var(--brand) 90%, black);
+    }
+
+    &:focus {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.demoTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  background: var(--surface1);
+
+  th,
+  td {
+    padding: var(--space-sm);
+    text-align: left;
+    border-bottom: 1px solid var(--surface4);
+  }
+
+  th {
+    background: var(--surface3);
+    color: var(--text1);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  td {
+    color: var(--text2);
+  }
+
+  button {
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--surface3);
+    color: var(--text1);
+    border: 1px solid var(--surface4);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-size-xs);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--surface4);
+    }
+
+    &:focus {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .componentRow {
+    padding: var(--space-md);
+  }
+
+  .sizeDemo {
+    .sizeExample {
+      h5 {
+        text-align: left;
+      }
+    }
+  }
+}
+
+// Focus improvements for demo
+.componentShowcase :global(.react-aria-Tab) {
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+.componentShowcase :global(.react-aria-TabPanel) {
+  &[tabindex="0"]:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}

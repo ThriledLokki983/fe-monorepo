@@ -6,7 +6,7 @@ interface ComponentDemo {
   description: string;
   component: React.ReactNode;
   usage: string;
-  category: 'buttons' | 'forms' | 'layout' | 'feedback' | 'overlays';
+  category: 'buttons' | 'forms' | 'layout' | 'feedback' | 'overlays' | 'navigation';
 }
 
 export const componentDemos: ComponentDemo[] = [
@@ -53,6 +53,20 @@ export const componentDemos: ComponentDemo[] = [
     usage: Demos.DemoCheckboxGroupUsage,
   },
   {
+    name: 'Form',
+    description: 'Accessible form container component built on React Aria. Provides form validation, submission handling, error management, and supports various layouts and styling variants.',
+    category: 'forms',
+    component: <Demos.DemoForm />,
+    usage: Demos.DemoFormUsage,
+  },
+  {
+    name: 'NumberField',
+    description: 'Accessible number field component built on React Aria. Allows users to enter numeric values with stepper buttons, validation, formatting options, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoNumberField />,
+    usage: Demos.DemoNumberFieldUsage,
+  },
+  {
     name: 'RadioGroup',
     description: 'Accessible radio group component built on React Aria. Allows users to select a single item from a list with validation, orientation options, and form integration.',
     category: 'forms',
@@ -60,11 +74,32 @@ export const componentDemos: ComponentDemo[] = [
     usage: Demos.DemoRadioGroupUsage,
   },
   {
+    name: 'SearchField',
+    description: 'Accessible search field component built on React Aria. Allows users to enter and clear search queries with keyboard shortcuts, validation, and customizable clear button.',
+    category: 'forms',
+    component: <Demos.DemoSearchField />,
+    usage: Demos.DemoSearchFieldUsage,
+  },
+  {
+    name: 'Slider',
+    description: 'Accessible slider component built on React Aria. Allows users to select values within a range using draggable thumbs. Supports single values, ranges, different orientations, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoSlider />,
+    usage: Demos.DemoSliderUsage,
+  },
+  {
     name: 'Switch',
     description: 'Accessible switch component built on React Aria. Allows users to turn a setting on or off with full accessibility support, form integration, and customizable styling.',
     category: 'forms',
     component: <Demos.DemoSwitch />,
     usage: Demos.DemoSwitchUsage,
+  },
+  {
+    name: 'Tabs',
+    description: 'Accessible tabs component built on React Aria. Organize content into multiple sections with horizontal/vertical orientations, different variants, and full keyboard navigation support.',
+    category: 'navigation',
+    component: <Demos.DemoTabs />,
+    usage: Demos.DemoTabsUsage,
   },
   {
     name: 'TextField',

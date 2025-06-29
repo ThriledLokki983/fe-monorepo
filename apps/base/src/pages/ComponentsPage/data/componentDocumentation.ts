@@ -675,6 +675,174 @@ export const componentDocumentation: Record<string, ComponentDocumentation> = {
       'All accessibility features are built-in, including keyboard navigation and screen reader support.',
     ],
   },
+
+  Form: {
+    name: 'Form',
+    description: 'An accessible form container component built on React Aria. Provides form validation, submission handling, error management, and supports various layouts and styling variants.',
+    usageExamples: [
+      {
+        title: 'Basic Usage',
+        code: `<Form onSubmit={handleSubmit}>
+  <TextField
+    name="name"
+    label="Full Name"
+    placeholder="Enter your full name"
+    isRequired
+  />
+  <TextField
+    name="email"
+    label="Email"
+    type="email"
+    placeholder="your@email.com"
+    isRequired
+  />
+  <div>
+    <Button type="submit">Submit</Button>
+    <Button type="reset" variant="secondary">Reset</Button>
+  </div>
+</Form>`,
+      },
+      {
+        title: 'Server-side Validation',
+        code: `<Form
+  validationErrors={{
+    username: 'This username is already taken',
+    email: 'Please enter a valid email address'
+  }}
+  onSubmit={handleSubmit}
+>
+  <TextField name="username" label="Username" isRequired />
+  <TextField name="email" label="Email" type="email" isRequired />
+  <Button type="submit">Register</Button>
+</Form>`,
+      },
+      {
+        title: 'Card Variant with Label',
+        code: `<Form
+  variant="card"
+  label="Contact Form"
+  description="Please fill out all required fields"
+  onSubmit={handleSubmit}
+>
+  <TextField name="subject" label="Subject" isRequired />
+  <TextField name="message" label="Message" isMultiline rows={4} />
+  <Button type="submit">Send Message</Button>
+</Form>`,
+      },
+      {
+        title: 'Inline Form',
+        code: `<Form variant="inline" onSubmit={handleSearch}>
+  <TextField
+    name="query"
+    label="Search"
+    placeholder="Enter search terms..."
+  />
+  <Button type="submit">Search</Button>
+</Form>`,
+      },
+    ],
+    props: [
+      {
+        name: 'children',
+        type: 'React.ReactNode',
+        defaultValue: '-',
+        description: 'The form content including fields and buttons',
+      },
+      {
+        name: 'variant',
+        type: "'default' | 'card' | 'inline'",
+        defaultValue: "'default'",
+        description: 'Visual variant of the form layout',
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'Size variant affecting spacing and typography',
+      },
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Form label for accessibility (creates a form landmark)',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Descriptive text explaining the form purpose',
+      },
+      {
+        name: 'validationBehavior',
+        type: "'native' | 'aria'",
+        defaultValue: "'native'",
+        description: 'How validation errors are displayed and handled',
+      },
+      {
+        name: 'validationErrors',
+        type: 'Record<string, string | string[]>',
+        defaultValue: '-',
+        description: 'Server-side validation errors mapped by field name',
+      },
+      {
+        name: 'showInlineErrors',
+        type: 'boolean',
+        defaultValue: 'true',
+        description: 'Whether to show a summary of validation errors',
+      },
+      {
+        name: 'onSubmit',
+        type: '(event: React.FormEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the form is submitted',
+      },
+      {
+        name: 'onReset',
+        type: '(event: React.FormEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the form is reset',
+      },
+      {
+        name: 'onInvalid',
+        type: '(event: React.FormEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when form validation fails',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the entire form is disabled',
+      },
+      {
+        name: 'isLoading',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the form is in a loading state',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: "''",
+        description: 'Additional CSS class name for the form container',
+      },
+      {
+        name: 'id',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Form ID for identification and accessibility',
+      },
+    ],
+    notes: [
+      'The form provides semantic HTML structure with proper accessibility landmarks.',
+      'Server-side validation errors are automatically cleared when field values change.',
+      'The card variant provides visual containment and enhanced styling.',
+      'The inline variant is perfect for search forms and simple inputs.',
+      'Form submission prevents default browser behavior and provides form data access.',
+      'All form fields within support automatic validation and error display.',
+    ],
+  },
+
   RadioGroup: {
     name: 'RadioGroup',
     description: 'An accessible radio group component built on React Aria. Allows users to select a single item from a list of mutually exclusive options with validation, orientation options, and form integration.',
@@ -821,6 +989,194 @@ export const componentDocumentation: Record<string, ComponentDocumentation> = {
       'Form integration allows the selected value to be submitted with the group name.',
       'All accessibility features are built-in, including keyboard navigation and screen reader support.',
       'Arrow keys can be used to navigate between radio options within the group.',
+    ],
+  },
+
+  SearchField: {
+    name: 'SearchField',
+    description: 'An accessible search field component built on React Aria. Allows users to enter and clear search queries with keyboard shortcuts, validation, and customizable clear button.',
+    usageExamples: [
+      {
+        title: 'Basic Search Field',
+        description: 'A simple search field with label and placeholder.',
+        code: `<SearchField
+  label="Search Products"
+  placeholder="Enter search terms..."
+/>`,
+      },
+      {
+        title: 'Controlled Search Field',
+        description: 'A search field with controlled state and event handlers.',
+        code: `const [query, setQuery] = useState('');
+
+<SearchField
+  label="Search Users"
+  value={query}
+  onChange={setQuery}
+  onSubmit={(value) => handleSearch(value)}
+  onClear={() => clearResults()}
+/>`,
+      },
+      {
+        title: 'Search with Live Results',
+        description: 'A search field that shows results as you type.',
+        code: `<SearchField
+  label="Live Search"
+  placeholder="Search as you type..."
+  onChange={handleLiveSearch}
+  description="Results update automatically"
+/>`,
+      },
+      {
+        title: 'Search with Validation',
+        description: 'A search field with validation and error message.',
+        code: `<SearchField
+  label="Product Search"
+  isRequired
+  isInvalid={query.length > 0 && query.length < 3}
+  errorMessage="Search query must be at least 3 characters"
+/>`,
+      },
+      {
+        title: 'Custom Clear Button',
+        description: 'A search field with custom clear button content.',
+        code: `<SearchField
+  label="Custom Clear"
+  placeholder="Search with custom clear icon"
+  clearButtonContent="🗑️"
+/>`,
+      },
+      {
+        title: 'Different Sizes',
+        description: 'Search fields in different sizes.',
+        code: `<SearchField size="small" label="Small" placeholder="Small search" />
+<SearchField size="medium" label="Medium" placeholder="Medium search" />
+<SearchField size="large" label="Large" placeholder="Large search" />`,
+      },
+    ],
+    props: [
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The label for the search field',
+      },
+      {
+        name: 'placeholder',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Placeholder text for the input',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Description text to help users understand the field',
+      },
+      {
+        name: 'errorMessage',
+        type: 'string | ((validation: ValidationResult) => string)',
+        defaultValue: '-',
+        description: 'Error message to display when the field is invalid',
+      },
+      {
+        name: 'size',
+        type: '"small" | "medium" | "large"',
+        defaultValue: '"medium"',
+        description: 'Size variant for the search field',
+      },
+      {
+        name: 'variant',
+        type: '"default" | "success" | "warning" | "error"',
+        defaultValue: '"default"',
+        description: 'Visual variant for the search field',
+      },
+      {
+        name: 'value',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The current value of the search field (controlled)',
+      },
+      {
+        name: 'defaultValue',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Default value (uncontrolled)',
+      },
+      {
+        name: 'onChange',
+        type: '(value: string) => void',
+        defaultValue: '-',
+        description: 'Callback when the value changes',
+      },
+      {
+        name: 'onSubmit',
+        type: '(value: string) => void',
+        defaultValue: '-',
+        description: 'Callback when the search is submitted (e.g., Enter key pressed)',
+      },
+      {
+        name: 'onClear',
+        type: '() => void',
+        defaultValue: '-',
+        description: 'Callback when the search field is cleared',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the search field is disabled',
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the search field is read-only',
+      },
+      {
+        name: 'isRequired',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the search field is required',
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the search field is invalid',
+      },
+      {
+        name: 'showClearButton',
+        type: 'boolean',
+        defaultValue: 'true',
+        description: 'Whether to show the clear button',
+      },
+      {
+        name: 'clearButtonContent',
+        type: 'React.ReactNode',
+        defaultValue: '"✕"',
+        description: 'Custom clear button icon or text',
+      },
+      {
+        name: 'autoFocus',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Auto-focus the input on mount',
+      },
+      {
+        name: 'name',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Name attribute for HTML forms',
+      },
+    ],
+    notes: [
+      'Users can press Enter to submit the search or Escape to clear the field.',
+      'The clear button appears automatically when there is text in the field.',
+      'All accessibility features are built-in, including proper labeling and keyboard navigation.',
+      'Supports controlled and uncontrolled usage patterns.',
+      'Form integration allows the search value to be submitted with forms.',
+      'The component handles focus management and provides visual feedback for all interactions.',
     ],
   },
 
@@ -1575,6 +1931,676 @@ export const componentDocumentation: Record<string, ComponentDocumentation> = {
       'Use TooltipWrapper for the trigger behavior, Tooltip for the content.',
       'Consider using aria-label or aria-describedby on triggers for screen readers.',
       'Keep tooltip content concise and helpful.',
+    ],
+  },
+
+  NumberField: {
+    name: 'NumberField',
+    description: 'A number field allows users to enter and modify numeric values with stepper buttons for incrementing and decrementing. Supports internationalized number formatting, validation, and accessibility features. Built on top of React Aria\'s NumberField for robust accessibility and interaction support.',
+    usageExamples: [
+      {
+        title: 'Basic Usage',
+        description: 'Simple number input with min/max constraints',
+        code: `<NumberField
+  label="Age"
+  placeholder="Enter your age"
+  minValue={0}
+  maxValue={120}
+/>`,
+      },
+      {
+        title: 'Currency Formatting',
+        description: 'Display numbers as currency with proper formatting',
+        code: `<NumberField
+  label="Price"
+  defaultValue={29.99}
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD'
+  }}
+  step={0.01}
+  minValue={0}
+/>`,
+      },
+      {
+        title: 'Percentage Field',
+        description: 'Format numbers as percentages',
+        code: `<NumberField
+  label="Discount Rate"
+  defaultValue={0.15}
+  formatOptions={{
+    style: 'percent'
+  }}
+  step={0.01}
+  minValue={0}
+  maxValue={1}
+/>`,
+      },
+      {
+        title: 'Controlled with Validation',
+        description: 'Controlled component with custom validation and error handling',
+        code: `function ControlledNumberField() {
+  const [quantity, setQuantity] = useState(1);
+  const isInvalid = quantity > 50;
+
+  return (
+    <NumberField
+      label="Quantity"
+      value={quantity}
+      onChange={setQuantity}
+      minValue={1}
+      maxValue={100}
+      step={1}
+      isRequired
+      isInvalid={isInvalid}
+      errorMessage={isInvalid ? "Quantity cannot exceed 50" : undefined}
+      description="Enter a quantity between 1 and 100"
+    />
+  );
+}`,
+      },
+      {
+        title: 'Without Stepper Buttons',
+        description: 'Hide stepper buttons for a cleaner input appearance',
+        code: `<NumberField
+  label="Custom Amount"
+  placeholder="Enter amount"
+  showStepperButtons={false}
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD'
+  }}
+/>`,
+      },
+    ],
+    props: [
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The label text for the number field',
+      },
+      {
+        name: 'placeholder',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Placeholder text shown when the field is empty',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional description text displayed below the field',
+      },
+      {
+        name: 'errorMessage',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Error message to display when the field is invalid',
+      },
+      {
+        name: 'value',
+        type: 'number',
+        defaultValue: '-',
+        description: 'The current value (controlled component)',
+      },
+      {
+        name: 'defaultValue',
+        type: 'number',
+        defaultValue: '-',
+        description: 'The default value (uncontrolled component)',
+      },
+      {
+        name: 'onChange',
+        type: '(value: number) => void',
+        defaultValue: '-',
+        description: 'Callback fired when the value changes',
+      },
+      {
+        name: 'minValue',
+        type: 'number',
+        defaultValue: '-',
+        description: 'The minimum allowed value',
+      },
+      {
+        name: 'maxValue',
+        type: 'number',
+        defaultValue: '-',
+        description: 'The maximum allowed value',
+      },
+      {
+        name: 'step',
+        type: 'number',
+        defaultValue: '1',
+        description: 'The step value for increment/decrement operations',
+      },
+      {
+        name: 'formatOptions',
+        type: 'Intl.NumberFormatOptions',
+        defaultValue: '-',
+        description: 'Options for number formatting (currency, percentage, etc.)',
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'The size variant of the number field',
+      },
+      {
+        name: 'variant',
+        type: "'default' | 'filled'",
+        defaultValue: "'default'",
+        description: 'The visual variant of the number field',
+      },
+      {
+        name: 'isRequired',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the field is required',
+        required: false,
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the field is disabled',
+        required: false,
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the field is read-only',
+        required: false,
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the field is in an invalid state',
+        required: false,
+      },
+      {
+        name: 'showStepperButtons',
+        type: 'boolean',
+        defaultValue: 'true',
+        description: 'Whether to show increment/decrement stepper buttons',
+        required: false,
+      },
+      {
+        name: 'autoFocus',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the field should auto-focus on mount',
+        required: false,
+      },
+      {
+        name: 'incrementButtonContent',
+        type: 'ReactNode',
+        defaultValue: "'+'",
+        description: 'Content for the increment button',
+        required: false,
+      },
+      {
+        name: 'decrementButtonContent',
+        type: 'ReactNode',
+        defaultValue: "'−'",
+        description: 'Content for the decrement button',
+        required: false,
+      },
+      {
+        name: 'inputMode',
+        type: "'numeric' | 'decimal'",
+        defaultValue: '-',
+        description: 'The input mode for mobile keyboards',
+        required: false,
+      },
+    ],
+    notes: [
+      'Built on React Aria\'s NumberField for robust accessibility support.',
+      'Supports internationalized number formatting through formatOptions.',
+      'Automatically handles keyboard navigation and screen reader announcements.',
+      'Stepper buttons can be hidden with showStepperButtons={false}.',
+      'Use formatOptions to display currency, percentages, or custom number formats.',
+      'Supports both controlled and uncontrolled usage patterns.',
+      'Validates input against min/max constraints automatically.',
+      'Provides proper ARIA attributes for accessibility compliance.',
+    ],
+  },
+
+  Slider: {
+    name: 'Slider',
+    description: 'A slider allows users to select one or more values within a range using draggable thumbs. Supports single values, ranges, different orientations, and comprehensive accessibility features. Built on top of React Aria\'s Slider for robust accessibility and interaction support.',
+    usageExamples: [
+      {
+        title: 'Basic Slider',
+        description: 'Simple slider for selecting a single value',
+        code: `<Slider
+  label="Volume"
+  defaultValue={50}
+  minValue={0}
+  maxValue={100}
+/>`,
+      },
+      {
+        title: 'Range Slider',
+        description: 'Slider with two thumbs for selecting a range of values',
+        code: `<RangeSlider
+  label="Price Range"
+  defaultValue={[20, 80]}
+  minValue={0}
+  maxValue={100}
+  thumbLabels={['Min Price', 'Max Price']}
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD'
+  }}
+/>`,
+      },
+      {
+        title: 'Controlled Slider',
+        description: 'Slider with controlled state and event handling',
+        code: `function ControlledSlider() {
+  const [value, setValue] = useState(50);
+
+  return (
+    <Slider
+      label="Volume Level"
+      value={value}
+      onChange={setValue}
+      minValue={0}
+      maxValue={100}
+      description="Adjust the volume level"
+    />
+  );
+}`,
+      },
+      {
+        title: 'Currency Formatting',
+        description: 'Slider with currency formatting',
+        code: `<Slider
+  label="Budget"
+  defaultValue={1500}
+  minValue={0}
+  maxValue={5000}
+  step={100}
+  formatOptions={{
+    style: 'currency',
+    currency: 'USD'
+  }}
+/>`,
+      },
+      {
+        title: 'Vertical Orientation',
+        description: 'Slider with vertical orientation',
+        code: `<Slider
+  label="Height"
+  defaultValue={150}
+  minValue={100}
+  maxValue={200}
+  orientation="vertical"
+  formatOptions={{
+    style: 'unit',
+    unit: 'centimeter'
+  }}
+/>`,
+      },
+      {
+        title: 'With Validation',
+        description: 'Slider with validation and error handling',
+        code: `function ValidatedSlider() {
+  const [quality, setQuality] = useState(3);
+  const isInvalid = quality < 5;
+
+  return (
+    <Slider
+      label="Quality Level"
+      value={quality}
+      onChange={setQuality}
+      minValue={1}
+      maxValue={10}
+      step={1}
+      isRequired
+      isInvalid={isInvalid}
+      errorMessage={isInvalid ? "Quality must be at least 5" : undefined}
+      description="Select quality level from 1 to 10"
+    />
+  );
+}`,
+      },
+    ],
+    props: [
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The label text for the slider',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional description text displayed below the slider',
+      },
+      {
+        name: 'errorMessage',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Error message to display when the slider is invalid',
+      },
+      {
+        name: 'value',
+        type: 'number | number[]',
+        defaultValue: '-',
+        description: 'The current value (controlled component)',
+      },
+      {
+        name: 'defaultValue',
+        type: 'number | number[]',
+        defaultValue: '-',
+        description: 'The default value (uncontrolled component)',
+      },
+      {
+        name: 'onChange',
+        type: '(value: number | number[]) => void',
+        defaultValue: '-',
+        description: 'Callback fired when the value changes',
+      },
+      {
+        name: 'onChangeEnd',
+        type: '(value: number | number[]) => void',
+        defaultValue: '-',
+        description: 'Callback fired when the user stops dragging',
+      },
+      {
+        name: 'minValue',
+        type: 'number',
+        defaultValue: '0',
+        description: 'The minimum allowed value',
+      },
+      {
+        name: 'maxValue',
+        type: 'number',
+        defaultValue: '100',
+        description: 'The maximum allowed value',
+      },
+      {
+        name: 'step',
+        type: 'number',
+        defaultValue: '1',
+        description: 'The step value for increment/decrement operations',
+      },
+      {
+        name: 'formatOptions',
+        type: 'Intl.NumberFormatOptions',
+        defaultValue: '-',
+        description: 'Options for value formatting (currency, percentage, etc.)',
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'The size variant of the slider',
+      },
+      {
+        name: 'variant',
+        type: "'default' | 'success' | 'warning' | 'error'",
+        defaultValue: "'default'",
+        description: 'The visual variant of the slider',
+      },
+      {
+        name: 'orientation',
+        type: "'horizontal' | 'vertical'",
+        defaultValue: "'horizontal'",
+        description: 'The orientation of the slider',
+      },
+      {
+        name: 'showOutput',
+        type: 'boolean',
+        defaultValue: 'true',
+        description: 'Whether to show the value output',
+      },
+      {
+        name: 'thumbLabels',
+        type: 'string[]',
+        defaultValue: '-',
+        description: 'Accessibility labels for thumbs (for multi-thumb sliders)',
+      },
+      {
+        name: 'isRequired',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the slider is required',
+        required: false,
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the slider is disabled',
+        required: false,
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the slider is in an invalid state',
+        required: false,
+      },
+      {
+        name: 'name',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Name attribute for HTML forms (applied to thumb inputs)',
+        required: false,
+      },
+    ],
+    notes: [
+      'Built on React Aria\'s Slider for robust accessibility support.',
+      'Supports both single-value and range (multi-thumb) sliders.',
+      'Automatically handles keyboard navigation and screen reader announcements.',
+      'Use formatOptions to display currency, percentages, or custom number formats.',
+      'Supports both controlled and uncontrolled usage patterns.',
+      'Validates input against min/max/step constraints automatically.',
+      'Provides proper ARIA attributes for accessibility compliance.',
+      'Supports both horizontal and vertical orientations.',
+      'Range sliders require thumbLabels for proper accessibility.',
+      'Value output can be hidden with showOutput={false}.',
+    ],
+  },
+
+  Tabs: {
+    name: 'Tabs',
+    description: 'A tabs component organizes content into multiple sections and allows users to navigate between them. Built on React Aria Components for accessibility, supporting horizontal/vertical orientations, various visual styles, and comprehensive keyboard navigation.',
+    usageExamples: [
+      {
+        title: 'Basic Tabs',
+        description: 'Simple tabs with static content',
+        code: `<Tabs defaultSelectedKey="tab1">
+  <TabList aria-label="Basic tabs">
+    <Tab id="tab1">Overview</Tab>
+    <Tab id="tab2">Details</Tab>
+    <Tab id="tab3">Settings</Tab>
+  </TabList>
+  <TabPanel id="tab1">
+    Overview content goes here
+  </TabPanel>
+  <TabPanel id="tab2">
+    Detailed information
+  </TabPanel>
+  <TabPanel id="tab3">
+    Settings and preferences
+  </TabPanel>
+</Tabs>`,
+      },
+      {
+        title: 'Controlled Tabs',
+        description: 'Control tab selection with state',
+        code: `function ControlledTabs() {
+  const [selectedTab, setSelectedTab] = useState('features');
+
+  return (
+    <Tabs
+      selectedKey={selectedTab}
+      onSelectionChange={setSelectedTab}
+    >
+      <TabList aria-label="Product tabs">
+        <Tab id="features">Features</Tab>
+        <Tab id="pricing">Pricing</Tab>
+        <Tab id="support">Support</Tab>
+      </TabList>
+      <TabPanel id="features">Product features</TabPanel>
+      <TabPanel id="pricing">Pricing information</TabPanel>
+      <TabPanel id="support">Support options</TabPanel>
+    </Tabs>
+  );
+}`,
+      },
+      {
+        title: 'Visual Variants',
+        description: 'Different visual styles for tabs',
+        code: `// Pills variant
+<Tabs variant="pills" defaultSelectedKey="dashboard">
+  <TabList aria-label="Navigation">
+    <Tab id="dashboard">Dashboard</Tab>
+    <Tab id="analytics">Analytics</Tab>
+    <Tab id="reports">Reports</Tab>
+  </TabList>
+  <TabPanel id="dashboard">Dashboard content</TabPanel>
+  <TabPanel id="analytics">Analytics data</TabPanel>
+  <TabPanel id="reports">Report summaries</TabPanel>
+</Tabs>
+
+// Underline variant
+<Tabs variant="underline" defaultSelectedKey="home">
+  <TabList aria-label="Main navigation">
+    <Tab id="home">Home</Tab>
+    <Tab id="about">About</Tab>
+    <Tab id="contact">Contact</Tab>
+  </TabList>
+  <TabPanel id="home">Welcome page</TabPanel>
+  <TabPanel id="about">About us</TabPanel>
+  <TabPanel id="contact">Contact information</TabPanel>
+</Tabs>`,
+      },
+      {
+        title: 'Vertical Orientation',
+        description: 'Vertical tab layout for navigation-heavy interfaces',
+        code: `<Tabs orientation="vertical" defaultSelectedKey="general">
+  <TabList aria-label="Settings">
+    <Tab id="general">General</Tab>
+    <Tab id="security">Security</Tab>
+    <Tab id="appearance">Appearance</Tab>
+    <Tab id="advanced">Advanced</Tab>
+  </TabList>
+  <TabPanel id="general">General settings</TabPanel>
+  <TabPanel id="security">Security preferences</TabPanel>
+  <TabPanel id="appearance">Theme and layout</TabPanel>
+  <TabPanel id="advanced">Advanced options</TabPanel>
+</Tabs>`,
+      },
+      {
+        title: 'Dynamic Tabs',
+        description: 'Programmatically generated tabs from data',
+        code: `function DynamicTabsExample() {
+  const [tabs, setTabs] = useState([
+    { id: 'profile', title: 'Profile', content: 'User profile settings' },
+    { id: 'account', title: 'Account', content: 'Account management' },
+    { id: 'notifications', title: 'Notifications', content: 'Notification preferences' }
+  ]);
+
+  return (
+    <DynamicTabs
+      items={tabs}
+      selectedKey={selectedTab}
+      onSelectionChange={setSelectedTab}
+    />
+  );
+}`,
+      },
+    ],
+    props: [
+      {
+        name: 'children',
+        type: 'ReactNode',
+        defaultValue: '',
+        description: 'TabList and TabPanel components',
+        required: true,
+      },
+      {
+        name: 'selectedKey',
+        type: 'Key',
+        defaultValue: 'undefined',
+        description: 'The currently selected tab (controlled)',
+      },
+      {
+        name: 'defaultSelectedKey',
+        type: 'Key',
+        defaultValue: 'undefined',
+        description: 'The default selected tab (uncontrolled)',
+      },
+      {
+        name: 'onSelectionChange',
+        type: '(key: Key) => void',
+        defaultValue: 'undefined',
+        description: 'Callback when tab selection changes',
+      },
+      {
+        name: 'orientation',
+        type: '"horizontal" | "vertical"',
+        defaultValue: '"horizontal"',
+        description: 'Orientation of the tabs',
+      },
+      {
+        name: 'size',
+        type: '"small" | "medium" | "large"',
+        defaultValue: '"medium"',
+        description: 'Size variant of the tabs',
+      },
+      {
+        name: 'variant',
+        type: '"default" | "pills" | "underline"',
+        defaultValue: '"default"',
+        description: 'Visual variant of the tabs',
+      },
+      {
+        name: 'keyboardActivation',
+        type: '"automatic" | "manual"',
+        defaultValue: '"automatic"',
+        description: 'How tabs are activated via keyboard',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether all tabs are disabled',
+      },
+      {
+        name: 'disabledKeys',
+        type: 'Iterable<Key>',
+        defaultValue: 'undefined',
+        description: 'Keys of disabled tabs',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'Additional CSS classes',
+      },
+    ],
+    notes: [
+      'Built on React Aria Components for comprehensive accessibility support.',
+      'Follows ARIA tabs pattern with proper roles and relationships.',
+      'Supports keyboard navigation with arrow keys between tabs.',
+      'Use manual keyboard activation for complex interfaces to prevent accidental tab changes.',
+      'Always provide aria-label for TabList components for screen readers.',
+      'Tab IDs should be meaningful and describe the content.',
+      'Vertical orientation is ideal for navigation-heavy interfaces.',
+      'Pills variant works well for filter-style navigation.',
+      'Underline variant is great for traditional web navigation.',
+      'DynamicTabs component handles programmatically generated tabs.',
+      'Disabled tabs are properly announced to screen readers.',
+      'Tab panels automatically become focusable when containing no interactive elements.',
     ],
   },
 };

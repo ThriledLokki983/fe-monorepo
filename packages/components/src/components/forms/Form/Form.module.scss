@@ -1,0 +1,174 @@
+/* Form Component Styles */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+/* Size variants */
+.small {
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+}
+
+.medium {
+  gap: var(--space-md);
+  font-size: var(--font-size-base);
+}
+
+.large {
+  gap: var(--space-lg);
+  font-size: var(--font-size-lg);
+}
+
+/* Visual variants */
+.card {
+  padding: var(--space-xl);
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.inline {
+  flex-direction: row;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+/* Form label */
+.formLabel {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+/* Form description */
+.formDescription {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* Form actions container */
+.formActions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.formActions.inline {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+/* Loading state */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Disabled state */
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Error state */
+.invalid {
+  border-color: var(--color-error);
+}
+
+.invalid.card {
+  border-color: var(--color-error);
+  background-color: color-mix(in srgb, var(--color-error) 5%, var(--color-background-secondary));
+}
+
+/* Form error container */
+.formError {
+  padding: var(--space-md);
+  background-color: color-mix(in srgb, var(--color-error) 10%, var(--color-background-secondary));
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.formError h3 {
+  margin: 0 0 var(--space-xs) 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.formError p {
+  margin: 0;
+}
+
+/* Focus management */
+.formError:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card {
+    padding: var(--space-md);
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+
+  .formActions.inline {
+    flex-direction: row;
+    justify-content: stretch;
+  }
+}
+
+/* Size-specific adjustments for inline forms */
+.inline.small {
+  gap: var(--space-sm);
+}
+
+.inline.small .formActions {
+  gap: var(--space-sm);
+}
+
+.inline.large {
+  gap: var(--space-lg);
+}
+
+.inline.large .formActions {
+  gap: var(--space-lg);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+
+  .formError {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .form,
+  .formActions,
+  .formError {
+    transition: none;
+  }
+}
