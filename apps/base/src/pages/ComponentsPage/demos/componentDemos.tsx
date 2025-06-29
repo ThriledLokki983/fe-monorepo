@@ -25,6 +25,13 @@ export const componentDemos: ComponentDemo[] = [
     usage: Demos.DemoToggleButtonUsage,
   },
   {
+    name: 'ToggleButtonGroup',
+    description: 'A group of toggle buttons that work together as a cohesive unit. Built on React Aria Components with support for single and multiple selection modes, various orientations, and comprehensive accessibility features.',
+    category: 'buttons',
+    component: <Demos.DemoToggleButtonGroup />,
+    usage: Demos.DemoToggleButtonGroupUsage,
+  },
+  {
     name: 'Icon',
     description: 'A simple icon component with predefined SVG icons.',
     category: 'layout',

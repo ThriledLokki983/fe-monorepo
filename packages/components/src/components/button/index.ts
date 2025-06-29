@@ -1,5 +1,5 @@
 // Re-export all button components and types
 export * from './Button';
-export * from './ToggleButton';
-export * from './ToggleButtonGroup';
-export * from './FileTrigger';
+export * from './ToggleButton/index';
+export * from './ToggleButtonGroup/index';
+export * from './FileTrigger/index';

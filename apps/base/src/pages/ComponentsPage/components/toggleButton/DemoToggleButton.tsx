@@ -1,22 +1,6 @@
 import React, { useState } from 'react';
 import { ToggleButton } from '@mono/components';
 import styles from './DemoToggleButton.module.scss';
-import { usageExamples } from './usage';
-
-interface CodeExampleProps {
-  title: string;
-  code: string;
-  language?: string;
-}
-
-const CodeExample: React.FC<CodeExampleProps> = ({ title, code, language = 'tsx' }) => (
-  <div className={styles.codeExample}>
-    <h4 className={styles.codeTitle}>{title}</h4>
-    <pre className={styles.codeBlock}>
-      <code className={`language-${language}`}>{code.trim()}</code>
-    </pre>
-  </div>
-);
 
 interface DemoSectionProps {
   title: string;
@@ -54,8 +38,6 @@ const Tab: React.FC<TabProps> = ({ activeTab, tabKey, onClick, children }) => (
 
 const DemoToggleButton: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('variants');
-  const [selectedVariant, setSelectedVariant] = useState<string>('primary');
-  const [selectedSize, setSelectedSize] = useState<string>('medium');
   const [isPressed, setIsPressed] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [eventLog, setEventLog] = useState<string[]>([]);
@@ -109,10 +91,6 @@ const DemoToggleButton: React.FC = () => {
           </ToggleButton>
         </div>
       </div>
-
-      <div className={styles.codeExamples}>
-        <CodeExample title="Variants Usage" code={usageExamples.variants} />
-      </div>
     </DemoSection>
   );
 
@@ -151,10 +129,6 @@ const DemoToggleButton: React.FC = () => {
           <ToggleButton size="medium" variant="secondary">Medium</ToggleButton>
           <ToggleButton size="large" variant="secondary">Large</ToggleButton>
         </div>
-      </div>
-
-      <div className={styles.codeExamples}>
-        <CodeExample title="Sizes Usage" code={usageExamples.sizes} />
       </div>
     </DemoSection>
   );
@@ -223,10 +197,6 @@ const DemoToggleButton: React.FC = () => {
           Controlled Toggle
         </ToggleButton>
       </div>
-
-      <div className={styles.codeExamples}>
-        <CodeExample title="States Usage" code={usageExamples.states} />
-      </div>
     </DemoSection>
   );
 
@@ -274,10 +244,6 @@ const DemoToggleButton: React.FC = () => {
             )}
           </div>
         </div>
-      </div>
-
-      <div className={styles.codeExamples}>
-        <CodeExample title="Events Usage" code={usageExamples.events} />
       </div>
     </DemoSection>
   );

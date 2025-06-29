@@ -1,6 +1,7 @@
 // Demo Components Export
 export { DemoButton } from './button/DemoButton';
 export { default as DemoToggleButton } from './toggleButton/DemoToggleButton';
+export { default as DemoToggleButtonGroup } from './toggleButtonGroup/DemoToggleButtonGroup';
 export { DemoIcon } from './icon/DemoIcon';
 export { DemoComboBox } from './combobox/DemoComboBox';
 export { DemoSelect } from './select/DemoSelect';
@@ -25,6 +26,7 @@ export { DemoDisclosure } from './disclosure/DemoDisclosure';
 // Demo Usages Export
 export { DemoButtonUsage } from './button/usage';
 export { DemoToggleButtonUsage } from './toggleButton/usage';
+export { DemoToggleButtonGroupUsage } from './toggleButtonGroup/usage';
 export { DemoIconUsage } from './icon/usage';
 export { DemoComboBoxUsage } from './combobox/usage';
 export { DemoSelectUsage } from './select/usage';

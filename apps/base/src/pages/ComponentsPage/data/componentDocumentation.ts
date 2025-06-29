@@ -115,6 +115,328 @@ export const componentDocumentation: Record<string, ComponentDocumentation> = {
     ],
   },
 
+  ToggleButton: {
+    name: 'ToggleButton',
+    description: 'An accessible toggle button component that allows users to switch between pressed and unpressed states, built with React Aria for enhanced accessibility.',
+    usageExamples: [
+      {
+        title: 'Basic Usage',
+        code: `<ToggleButton variant="primary">
+  Toggle Me
+</ToggleButton>`,
+      },
+      {
+        title: 'Controlled State',
+        description: 'Control the selected state with React state management',
+        code: `const [isSelected, setIsSelected] = useState(false);
+
+<ToggleButton
+  isSelected={isSelected}
+  onChange={setIsSelected}
+  variant="primary"
+>
+  {isSelected ? 'ON' : 'OFF'}
+</ToggleButton>`,
+      },
+      {
+        title: 'Different Variants',
+        code: `<ToggleButton variant="primary">Primary</ToggleButton>
+<ToggleButton variant="secondary">Secondary</ToggleButton>
+<ToggleButton variant="tertiary">Tertiary</ToggleButton>
+<ToggleButton variant="danger">Danger</ToggleButton>
+<ToggleButton variant="transparent">Transparent</ToggleButton>`,
+      },
+      {
+        title: 'Sizes',
+        code: `<ToggleButton size="small">Small</ToggleButton>
+<ToggleButton size="medium">Medium</ToggleButton>
+<ToggleButton size="large">Large</ToggleButton>`,
+      },
+      {
+        title: 'States and Events',
+        code: `<ToggleButton
+  onChange={(isSelected) => console.log('Changed:', isSelected)}
+  onPress={() => console.log('Pressed')}
+  onFocus={() => console.log('Focused')}
+  variant="primary"
+>
+  Interactive Toggle
+</ToggleButton>
+
+<ToggleButton isDisabled={true}>
+  Disabled Toggle
+</ToggleButton>`,
+      },
+    ],
+    props: [
+      {
+        name: 'variant',
+        type: "'primary' | 'secondary' | 'tertiary' | 'danger' | 'transparent'",
+        defaultValue: "'primary'",
+        description: 'Visual style variant of the toggle button',
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'Size of the toggle button',
+      },
+      {
+        name: 'isSelected',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the toggle button is currently selected/pressed',
+      },
+      {
+        name: 'defaultSelected',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Default selected state for uncontrolled usage',
+      },
+      {
+        name: 'onChange',
+        type: '(isSelected: boolean) => void',
+        defaultValue: '-',
+        description: 'Callback fired when the selection state changes',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the toggle button is disabled (React Aria)',
+      },
+      {
+        name: 'onPress',
+        type: '(e: PressEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the toggle button is pressed (React Aria)',
+      },
+      {
+        name: 'onFocus',
+        type: '(e: FocusEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the toggle button receives focus',
+      },
+      {
+        name: 'onBlur',
+        type: '(e: FocusEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the toggle button loses focus',
+      },
+      {
+        name: 'children',
+        type: 'React.ReactNode',
+        defaultValue: '-',
+        description: 'Content to display inside the toggle button',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply',
+      },
+      {
+        name: 'aria-label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Accessibility label for screen readers',
+      },
+    ],
+    notes: [
+      'Built on React Aria Components ToggleButton for comprehensive accessibility support.',
+      'Supports both controlled and uncontrolled usage patterns.',
+      'Automatically manages ARIA attributes and keyboard interactions.',
+      'Provides visual feedback for pressed/selected state through styling.',
+      'Focus management and keyboard navigation (Enter/Space activation) are handled automatically.',
+      'The onChange callback provides the new selection state as a boolean.',
+      'Use isSelected prop for controlled usage, defaultSelected for uncontrolled.',
+      'Disabled state is properly announced to screen readers and prevents interaction.',
+    ],
+  },
+
+  ToggleButtonGroup: {
+    name: 'ToggleButtonGroup',
+    description: 'A group of toggle buttons that work together as a cohesive unit. Built on React Aria Components with support for single and multiple selection modes, various orientations, and comprehensive accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic Usage (Single Selection)',
+        code: `const [selectedKeys, setSelectedKeys] = useState(['center']);
+
+<ToggleButtonGroup
+  selectedKeys={selectedKeys}
+  onSelectionChange={(keys) => setSelectedKeys(Array.from(keys))}
+>
+  <ToggleButton id="left">Left</ToggleButton>
+  <ToggleButton id="center">Center</ToggleButton>
+  <ToggleButton id="right">Right</ToggleButton>
+</ToggleButtonGroup>`,
+      },
+      {
+        title: 'Multiple Selection Mode',
+        description: 'Allow multiple buttons to be selected simultaneously',
+        code: `const [selectedKeys, setSelectedKeys] = useState(['bold', 'italic']);
+
+<ToggleButtonGroup
+  selectionMode="multiple"
+  selectedKeys={selectedKeys}
+  onSelectionChange={(keys) => setSelectedKeys(Array.from(keys))}
+>
+  <ToggleButton id="bold">Bold</ToggleButton>
+  <ToggleButton id="italic">Italic</ToggleButton>
+  <ToggleButton id="underline">Underline</ToggleButton>
+</ToggleButtonGroup>`,
+      },
+      {
+        title: 'Different Variants',
+        code: `<ToggleButtonGroup variant="default" defaultSelectedKeys={['option1']}>
+  <ToggleButton id="option1">Default</ToggleButton>
+  <ToggleButton id="option2">Variant</ToggleButton>
+</ToggleButtonGroup>
+
+<ToggleButtonGroup variant="bordered" defaultSelectedKeys={['option1']}>
+  <ToggleButton id="option1">Bordered</ToggleButton>
+  <ToggleButton id="option2">Variant</ToggleButton>
+</ToggleButtonGroup>
+
+<ToggleButtonGroup variant="seamless" defaultSelectedKeys={['option1']}>
+  <ToggleButton id="option1">Seamless</ToggleButton>
+  <ToggleButton id="option2">Variant</ToggleButton>
+</ToggleButtonGroup>`,
+      },
+      {
+        title: 'Vertical Orientation',
+        code: `<ToggleButtonGroup
+  orientation="vertical"
+  selectionMode="multiple"
+  defaultSelectedKeys={['option2']}
+>
+  <ToggleButton id="option1">Top</ToggleButton>
+  <ToggleButton id="option2">Middle</ToggleButton>
+  <ToggleButton id="option3">Bottom</ToggleButton>
+</ToggleButtonGroup>`,
+      },
+      {
+        title: 'Sizes',
+        code: `<ToggleButtonGroup size="small" defaultSelectedKeys={['option1']}>
+  <ToggleButton id="option1">Small</ToggleButton>
+  <ToggleButton id="option2">Group</ToggleButton>
+</ToggleButtonGroup>
+
+<ToggleButtonGroup size="large" defaultSelectedKeys={['option1']}>
+  <ToggleButton id="option1">Large</ToggleButton>
+  <ToggleButton id="option2">Group</ToggleButton>
+</ToggleButtonGroup>`,
+      },
+      {
+        title: 'Event Handling',
+        code: `<ToggleButtonGroup
+  selectionMode="multiple"
+  onSelectionChange={(keys) => console.log('Selection:', Array.from(keys))}
+  onFocus={() => console.log('Group focused')}
+  onBlur={() => console.log('Group blurred')}
+>
+  <ToggleButton id="option1">Option 1</ToggleButton>
+  <ToggleButton id="option2">Option 2</ToggleButton>
+  <ToggleButton id="option3">Option 3</ToggleButton>
+</ToggleButtonGroup>`,
+      },
+    ],
+    props: [
+      {
+        name: 'selectionMode',
+        type: "'single' | 'multiple'",
+        defaultValue: "'single'",
+        description: 'Whether to allow single or multiple selection',
+      },
+      {
+        name: 'variant',
+        type: "'default' | 'bordered' | 'seamless'",
+        defaultValue: "'default'",
+        description: 'Visual style variant of the toggle button group',
+      },
+      {
+        name: 'size',
+        type: "'small' | 'medium' | 'large'",
+        defaultValue: "'medium'",
+        description: 'Size of the toggle buttons in the group',
+      },
+      {
+        name: 'orientation',
+        type: "'horizontal' | 'vertical'",
+        defaultValue: "'horizontal'",
+        description: 'Layout orientation of the toggle button group',
+      },
+      {
+        name: 'selectedKeys',
+        type: 'string[]',
+        defaultValue: '[]',
+        description: 'Currently selected toggle button keys (controlled)',
+      },
+      {
+        name: 'defaultSelectedKeys',
+        type: 'string[]',
+        defaultValue: '[]',
+        description: 'Default selected keys for uncontrolled usage',
+      },
+      {
+        name: 'onSelectionChange',
+        type: '(keys: Set<string>) => void',
+        defaultValue: '-',
+        description: 'Callback fired when the selection changes',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the entire toggle button group is disabled',
+      },
+      {
+        name: 'onFocus',
+        type: '(e: FocusEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the group receives focus',
+      },
+      {
+        name: 'onBlur',
+        type: '(e: FocusEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the group loses focus',
+      },
+      {
+        name: 'children',
+        type: 'React.ReactNode',
+        defaultValue: '-',
+        description: 'ToggleButton components to display in the group',
+        required: true,
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply to the group',
+      },
+      {
+        name: 'aria-label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Accessibility label for the toggle button group',
+      },
+    ],
+    notes: [
+      'Built on React Aria Components ToggleButtonGroup for comprehensive accessibility support.',
+      'Supports both single and multiple selection modes.',
+      'Automatically manages ARIA attributes, keyboard navigation, and focus management.',
+      'Arrow keys navigate between buttons, Space/Enter toggles selection.',
+      'In single selection mode, only one button can be selected at a time.',
+      'In multiple selection mode, multiple buttons can be selected simultaneously.',
+      'Each ToggleButton child must have a unique id prop for proper selection tracking.',
+      'The onSelectionChange callback provides a Set of selected keys.',
+      'Vertical orientation stacks buttons vertically with appropriate keyboard navigation.',
+      'All variants maintain consistent styling and spacing between buttons.',
+      'Disabled state applies to the entire group and all child buttons.',
+    ],
+  },
+
   ComboBox: {
     name: 'ComboBox',
     description: 'An accessible combobox component that allows users to select from a list of options or enter custom values, built with React Aria.',
