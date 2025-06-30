@@ -1,0 +1,271 @@
+.disclosure {
+  border: none;
+  background: transparent;
+
+  // Default variant
+  &--default {
+    .trigger {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+
+      &:hover {
+        background: var(--surface3);
+      }
+
+      &[data-pressed] {
+        background: var(--surface4);
+      }
+
+      &[data-focus-visible] {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  // Minimal variant
+  &--minimal {
+    .trigger {
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+
+      &:hover {
+        background: var(--surface2);
+      }
+
+      &[data-pressed] {
+        background: var(--surface3);
+      }
+
+      &[data-focus-visible] {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  // Bordered variant
+  &--bordered {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface1);
+
+    .trigger {
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-md);
+
+      &:hover {
+        background: var(--surface2);
+      }
+
+      &[data-pressed] {
+        background: var(--surface3);
+      }
+
+      &[data-focus-visible] {
+        outline: 2px solid var(--brand);
+        outline-offset: -2px;
+      }
+    }
+  }
+
+  // Small size
+  &--small {
+    .trigger {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--font-size-sm);
+      min-height: 2rem;
+    }
+
+    .icon {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .panel {
+      padding: var(--space-sm);
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  // Medium size (default)
+  &--medium {
+    .trigger {
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--font-size-base);
+      min-height: 2.5rem;
+    }
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .panel {
+      padding: var(--space-md);
+      font-size: var(--font-size-base);
+    }
+  }
+
+  // Large size
+  &--large {
+    .trigger {
+      padding: var(--space-md) var(--space-lg);
+      font-size: var(--font-size-lg);
+      min-height: 3rem;
+    }
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .panel {
+      padding: var(--space-lg);
+      font-size: var(--font-size-base);
+    }
+  }
+
+  // Disabled state
+  &[data-disabled] {
+    .trigger {
+      opacity: 0.6;
+      cursor: not-allowed;
+
+      &:hover {
+        background: inherit;
+      }
+    }
+  }
+}
+
+.heading {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: var(--font-weight-medium);
+  color: var(--text1);
+  transition: all var(--transition-fast);
+  border: none;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[data-focus-visible] {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+.customTrigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text1);
+  transition: all var(--transition-fast);
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[data-focus-visible] {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+  color: var(--text2);
+
+  // Rotation when expanded
+  [data-expanded] & {
+    transform: rotate(90deg);
+  }
+
+  &--small {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &--medium {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &--large {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.title {
+  flex: 1;
+  text-align: left;
+}
+
+.panel {
+  color: var(--text2);
+  line-height: var(--line-height-relaxed);
+
+  &[data-entering] {
+    animation: disclosure-expand var(--transition-base) forwards;
+  }
+
+  &[data-exiting] {
+    animation: disclosure-collapse var(--transition-base) forwards;
+  }
+}
+
+@keyframes disclosure-expand {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: auto;
+    opacity: 1;
+  }
+}
+
+@keyframes disclosure-collapse {
+  from {
+    height: auto;
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+ // sclosure Component Styles
+ /*
+ *
+ * Built with design system tokens from styles package
+ * Supports variants: default, minimal, bordered
+ */
+

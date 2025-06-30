@@ -1,0 +1,11 @@
+/* Base App Custom Theme Overrides */
+@layer themes {
+  // Custom theme overrides that should take precedence over design system tokens
+  :root {
+    /* Green (Olive/Avocado) Brand Variables */
+    --brand-hue: 85; /* Olive/Avocado green hue */
+    --brand-saturation: 45%;
+    --brand-lightness: 35%;
+  }
+}
+

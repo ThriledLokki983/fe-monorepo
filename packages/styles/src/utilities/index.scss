@@ -4,6 +4,8 @@
  * Single-purpose utility classes.
  * These have the highest specificity and override other styles.
  */
+ @forward 'layer-mixins';
+ @forward 'font-mixins';
 
 @layer utilities {
   /* Display */

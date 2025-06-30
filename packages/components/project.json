@@ -1,0 +1,47 @@
+{
+  "name": "@mono/components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/components/src",
+  "projectType": "library",
+  "tags": ["type:lib", "scope:fe"],
+  "targets": {
+    "watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/components",
+        "command": "vite build --watch"
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "packages/components/dist"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/components"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/components/src/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

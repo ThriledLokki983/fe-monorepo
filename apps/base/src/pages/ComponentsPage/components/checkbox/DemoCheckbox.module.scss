@@ -1,0 +1,182 @@
+// Demo Checkbox Styles
+.demoContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+}
+
+.tabs {
+  .tabContent {
+    padding: var(--space-lg) 0;
+  }
+}
+
+.section {
+  margin-bottom: var(--space-3xl);
+
+  h3 {
+    color: var(--text1);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-lg);
+    border-bottom: 2px solid var(--surface4);
+    padding-bottom: var(--space-sm);
+  }
+
+  h4 {
+    color: var(--text2);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-sm);
+  }
+}
+
+.exampleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.example {
+  background: var(--surface2);
+  border: 1px solid var(--surface4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+
+  h4 {
+    margin-top: 0;
+  }
+}
+
+.sizeGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  background: var(--surface2);
+  border: 1px solid var(--surface4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.sizeExample {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  background: var(--surface3);
+  border-radius: var(--radius-md);
+}
+
+.stateGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.controlledGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.status {
+  color: var(--text2);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  padding: var(--space-sm);
+  background: var(--surface3);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--brand);
+}
+
+.selectAllGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.subOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-left: var(--space-lg);
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--surface4);
+}
+
+.toggleButton {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface3);
+  border: 1px solid var(--surface4);
+  border-radius: var(--radius-md);
+  color: var(--text2);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: var(--surface4);
+    border-color: var(--brand);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background: var(--surface2);
+  border: 1px solid var(--surface4);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.submitButton {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--brand);
+  color: var(--surface2);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  margin-top: var(--space-md);
+  align-self: flex-start;
+
+  &:hover {
+    background: color-mix(in srgb, var(--brand) 90%, var(--text1) 10%);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demoContainer {
+    padding: var(--space-md);
+  }
+
+  .exampleGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .section {
+    margin-bottom: var(--space-2xl);
+
+    h3 {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  .subOptions {
+    margin-left: var(--space-md);
+  }
+}

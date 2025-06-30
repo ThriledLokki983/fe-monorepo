@@ -1,0 +1,313 @@
+// ComboBox component styles following design system patterns
+.combobox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: inherit;
+
+  // React Aria disabled state
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text3);
+  font-size: var(--font-size-sm);
+
+  &.medium {
+    font-size: var(--font-size-base);
+  }
+
+  &.large {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.container {
+  block-size: 2.7rem;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease-in-out;
+
+  // Size variants
+  &.small {
+    min-height: var(--space-2xl);
+  }
+
+  &.medium {
+    min-height: var(--space-3xl);
+  }
+
+  &.large {
+    min-height: var(--space-4xl);
+  }
+
+  // Focus-within state
+  &:focus-within {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 15%, transparent);
+  }
+
+  // Disabled state
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.input {
+  flex: 1;
+  border: 1px solid var(--surface4);
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  background-color: var(--surface1);
+  color: var(--text1);
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+
+  // Size-based padding
+  &.small {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  &.medium {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-base);
+  }
+
+  &.large {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-lg);
+  }
+
+  &::placeholder {
+    color: var(--text2);
+  }
+
+  // Remove focus styles here since we handle it on container
+  &:focus {
+    border-color: var(--brand);
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--surface2);
+    color: var(--text2);
+    cursor: not-allowed;
+  }
+}
+
+.button {
+  inline-size: 2.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--surface4);
+  border-left: none;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background-color: var(--surface1);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  // Size-based padding
+  &.small {
+    padding: 0 var(--space-sm);
+  }
+
+  &.medium {
+    padding: 0 var(--space-md);
+  }
+
+  &.large {
+    padding: 0 var(--space-lg);
+  }
+
+  // Hover state
+  &[data-hovered]:not([data-disabled]) {
+    background-color: var(--surface2);
+    color: var(--text1);
+  }
+
+  // Pressed state
+  &[data-pressed]:not([data-disabled]) {
+    background-color: var(--surface3);
+  }
+
+  // Focus state handled by container
+  &:focus {
+    outline: none;
+    border-color: var(--brand);
+  }
+
+  &:disabled {
+    background-color: var(--surface2);
+    color: var(--text3);
+    cursor: not-allowed;
+  }
+
+  // Chevron rotation when combobox is open
+  .combobox[data-open] & svg {
+    transform: rotate(180deg);
+  }
+
+  // SVG transition for smooth icon changes
+  svg {
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.description {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--text2);
+}
+
+.error {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+.popover {
+  background-color: var(--surface1);
+  border: 1px solid var(--surface4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  max-height: 12rem;
+  overflow: hidden;
+  z-index: var(--z-index-dropdown);
+
+  &[data-placement="top"] {
+    margin-bottom: var(--space-xs);
+  }
+
+  &[data-placement="bottom"] {
+    margin-top: var(--space-xs);
+  }
+}
+
+.listbox {
+  max-height: 12rem;
+  overflow-y: auto;
+  padding: var(--space-sm) 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text1);
+
+  &:hover,
+  &[data-focused] {
+    background-color: var(--surface2);
+  }
+
+  &[data-selected] {
+    background-color: color-mix(in hsl, var(--brand) 10%, var(--surface1));
+    color: var(--brand);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &[data-disabled] {
+    color: var(--text3);
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.optionLabel {
+  font-weight: inherit;
+  color: inherit;
+}
+
+.optionDescription {
+  font-size: var(--font-size-sm);
+  color: var(--text2);
+  margin-top: var(--space-xxs);
+  font-weight: var(--font-weight-normal);
+}
+
+.emptyState {
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--text2);
+  font-style: italic;
+  font-size: var(--font-size-sm);
+}
+
+// Variant styles
+.combobox {
+  // Default variant
+  &.default {
+    .input {
+      background-color: var(--surface4);
+      border-color: var(--surface4);
+      padding: var(--space-xs) var(--space-sm);
+    }
+
+    .button {
+      background-color: var(--surface3);
+      border-color: var(--surface4);
+    }
+  }
+
+  // Filled variant
+  &.filled {
+    .input {
+      background-color: var(--surface4);
+      border-color: transparent;
+      padding: var(--space-xs) var(--space-sm);
+    }
+
+    .button {
+      background-color: var(--surface3);
+      border-color: transparent;
+    }
+  }
+
+  // Outlined variant
+  &.outlined {
+    .input {
+      background-color: transparent;
+      border-color: var(--brand);
+      padding: var(--space-xs) var(--space-sm);
+    }
+
+    .button {
+      background-color: transparent;
+      border-color: var(--brand);
+    }
+  }
+}

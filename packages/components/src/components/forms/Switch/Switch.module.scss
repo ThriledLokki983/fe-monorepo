@@ -1,0 +1,300 @@
+// Switch Styles
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+  font-family: var(--font-family-sans);
+  position: relative;
+  user-select: none;
+
+  // Size variants
+  &.small {
+    gap: var(--space-xs);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+
+    .switchIndicator {
+      width: 32px;
+      height: 18px;
+
+      &::after {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    &[data-selected] .switchIndicator::after {
+      transform: translateX(14px) translateY(-50%);
+    }
+  }
+
+  &.medium {
+    gap: var(--space-sm);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+
+    .switchIndicator {
+      width: 40px;
+      height: 22px;
+
+      &::after {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &[data-selected] .switchIndicator::after {
+      transform: translateX(18px) translateY(-50%);
+    }
+  }
+
+  &.large {
+    gap: var(--space-md);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-normal);
+
+    .switchIndicator {
+      width: 48px;
+      height: 26px;
+
+      &::after {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    &[data-selected] .switchIndicator::after {
+      transform: translateX(24px) translateY(-50%);
+    }
+  }
+
+  // States
+  &[data-hovered] {
+    .switchIndicator {
+      border-color: var(--brand);
+      background: color-mix(in srgb, var(--brand) 5%, var(--surface2));
+    }
+
+    .switchLabel {
+      color: var(--text1);
+    }
+  }
+
+  &[data-pressed] {
+    .switchIndicator {
+      border-color: var(--brand);
+      background: color-mix(in srgb, var(--brand) 10%, var(--surface2));
+      transform: scale(0.98);
+    }
+  }
+
+  &[data-focus-visible] {
+    .switchIndicator {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+  }
+
+  &[data-selected] {
+    .switchIndicator {
+      border-color: var(--brand);
+      background: var(--brand);
+
+      &::after {
+        background: white;
+      }
+    }
+
+    .switchLabel {
+      color: var(--text1);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  // Disabled state
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .switchIndicator {
+      border-color: var(--border3);
+      background: var(--surface3);
+    }
+
+    .switchLabel {
+      color: var(--text3);
+    }
+
+    &[data-selected] {
+      .switchIndicator {
+        background: var(--surface3);
+        border-color: var(--border3);
+
+        &::after {
+          background: var(--text3);
+        }
+      }
+    }
+  }
+
+  // Read-only state
+  &.readOnly {
+    cursor: default;
+
+    .switchIndicator {
+      border-color: var(--border2);
+      background: var(--surface2);
+    }
+
+    &[data-selected] {
+      .switchIndicator {
+        background: var(--surface2);
+        border-color: var(--brand);
+      }
+    }
+  }
+
+  // Invalid state
+  &.invalid {
+    .switchIndicator {
+      border-color: var(--color-error);
+    }
+
+    .switchLabel {
+      color: var(--color-error);
+    }
+
+    &[data-selected] {
+      .switchIndicator {
+        background: var(--color-error);
+        border-color: var(--color-error);
+      }
+    }
+
+    &[data-focus-visible] {
+      .switchIndicator {
+        outline-color: var(--color-error);
+      }
+    }
+  }
+
+  // Variant styles
+  &.success {
+    &[data-selected] {
+      .switchIndicator {
+        background: var(--color-success);
+        border-color: var(--color-success);
+      }
+    }
+
+    &[data-focus-visible] {
+      .switchIndicator {
+        outline-color: var(--color-success);
+      }
+    }
+  }
+
+  &.warning {
+    &[data-selected] {
+      .switchIndicator {
+        background: var(--color-warning);
+        border-color: var(--color-warning);
+      }
+    }
+
+    &[data-focus-visible] {
+      .switchIndicator {
+        outline-color: var(--color-warning);
+      }
+    }
+  }
+
+  &.error {
+    &[data-selected] {
+      .switchIndicator {
+        background: var(--color-error);
+        border-color: var(--color-error);
+      }
+    }
+
+    &[data-focus-visible] {
+      .switchIndicator {
+        outline-color: var(--color-error);
+      }
+    }
+  }
+}
+
+// Switch indicator (the toggle track)
+.switchIndicator {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--border2);
+  border-radius: 50px; // Rounded track
+  background: var(--surface1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+
+  // Inner toggle (the sliding circle)
+  &::after {
+    content: '';
+    border-radius: 50%;
+    background: var(--text2);
+    transition: all 0.2s ease;
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+// Switch label
+.switchLabel {
+  color: var(--text2);
+  transition: color 0.2s ease;
+  line-height: inherit;
+  flex: 1;
+}
+
+// Required indicator
+.required {
+  color: var(--color-error);
+  margin-left: var(--space-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .switch {
+    .switchIndicator {
+      border-width: 3px;
+    }
+
+    &[data-focus-visible] {
+      .switchIndicator {
+        outline-width: 3px;
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .switch,
+  .switchIndicator,
+  .switchLabel {
+    transition: none;
+  }
+
+  .switchIndicator::after {
+    transition: none;
+  }
+
+  .switch[data-pressed] {
+    .switchIndicator {
+      transform: none;
+    }
+  }
+}

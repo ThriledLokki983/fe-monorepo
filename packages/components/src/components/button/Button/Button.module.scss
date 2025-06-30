@@ -1,0 +1,171 @@
+.button {
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  /* Testing watch mode */
+
+  // React Aria disabled state
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Links
+  &[data-link="button-link"] {
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--text1);
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+  }
+
+  // Focus styles for button variants (not links)
+  &:not([data-link]):focus-visible,
+  &[data-focus-visible]:not([data-link]) {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  // Variant-specific focus styles for better accessibility
+  &--primary {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--color-focus, var(--brand));
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 20%, transparent);
+    }
+  }
+
+  &--secondary {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 15%, transparent);
+    }
+  }
+
+  &--tertiary {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 10%, transparent);
+    }
+  }
+
+  &--danger {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--color-error);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--color-error) 20%, transparent);
+    }
+  }
+
+  &--transparent {
+    &:not([data-link]):focus-visible,
+    &[data-focus-visible]:not([data-link]) {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px color-mix(in hsl, var(--brand) 15%, transparent);
+      background-color: color-mix(in hsl, var(--brand) 5%, transparent);
+    }
+  }
+
+  // Variants
+  &--primary {
+    background-color: var(--brand);
+    color: var(--text1);
+
+    &[data-hovered]:not([data-disabled]) {
+      background-color: color-mix(in hsl, black 15%, var(--brand));
+    }
+
+    &[data-pressed]:not([data-disabled]) {
+      background-color: color-mix(in hsl, black 20%, var(--brand));
+    }
+  }
+
+  &--secondary {
+    background-color: color-mix(in hsl, white 80%, var(--brand) 40%);
+    color: var(--brand);
+
+    &[data-hovered]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 90%, var(--brand) 30%);
+    }
+
+    &[data-pressed]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 95%, var(--brand) 20%);
+    }
+  }
+
+  &--tertiary {
+    background-color: transparent;
+    color: var(--brand);
+    border: 1px solid var(--brand);
+
+    &[data-hovered]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 90%, var(--brand) 20%);
+    }
+
+    &[data-pressed]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 95%, var(--brand) 10%);
+    }
+  }
+
+  &--danger {
+    background-color: var(--color-error);
+    color: white;
+
+    &[data-hovered]:not([data-disabled]) {
+      background-color: color-mix(in hsl, black 15%, var(--color-error));
+    }
+
+    &[data-pressed]:not([data-disabled]) {
+      background-color: color-mix(in hsl, black 20%, var(--color-error));
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+    color: var(--brand);
+    border: none;
+
+    &[data-hovered]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 95%, var(--brand) 10%);
+    }
+
+    &[data-pressed]:not([data-disabled]) {
+      background-color: color-mix(in hsl, white 90%, var(--brand) 15%);
+    }
+  }
+
+  // Sizes
+  &--small {
+    min-block-size: var(--space-2xl); min-inline-size: 8ch;
+    padding-inline: var(--space-md);
+    font-size: 0.875rem;
+  }
+
+  &--medium {
+    min-block-size: var(--space-3xl); min-inline-size: 12ch;
+    padding-inline: var(--space-lg);
+    font-size: 1rem;
+  }
+
+  &--large {
+    min-block-size: var(--space-4xl); min-inline-size: 16ch;
+    padding-inline: var(--space-2xl);
+    font-size: 1.125rem;
+  }
+}

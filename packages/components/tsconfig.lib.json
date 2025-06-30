@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/lib",
+    "declaration": true,
+    "declarationMap": true,
+    "types": []
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
+  "references": [
+    {
+      "path": "../styles/tsconfig.lib.json"
+    }
+  ]
+}

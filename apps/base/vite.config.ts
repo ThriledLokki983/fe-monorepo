@@ -1,10 +1,21 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import * as path from 'path';
 
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/base',
+  resolve: {
+    alias: {
+      '@mono/styles': path.resolve(__dirname, '../../packages/styles/src'),
+      '@mono/components': path.resolve(__dirname, '../../packages/components/src'),
+    },
+  },
+  optimizeDeps: {
+    include: ['react-aria-components'],
+    exclude: ['@mono/components', '@mono/styles'],
+  },
   server: {
     port: 4200,
     host: 'localhost',

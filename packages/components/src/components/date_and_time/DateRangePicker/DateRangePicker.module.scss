@@ -1,0 +1,243 @@
+@use "@mono/styles" as styles;
+
+.dateRangePicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: relative;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  background: var(--color-background-primary);
+  padding: var(--space-sm) var(--space-md);
+  min-height: 40px;
+
+  &:focus-within {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-color: var(--color-focus);
+  }
+
+  &[data-invalid] {
+    border-color: var(--color-error);
+  }
+}
+
+.dateInput {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+
+  &:focus-within {
+    outline: none;
+  }
+}
+
+.dateSegment {
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  outline: none;
+
+  &[data-placeholder] {
+    color: var(--color-text-secondary);
+  }
+
+  &:focus {
+    background: var(--color-background-accent);
+    color: var(--color-text-primary);
+  }
+}
+
+.separator {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  padding: 0 var(--space-xs);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-left: var(--space-xs);
+  flex-shrink: 0;
+
+  &:hover {
+    background: var(--color-background-hover);
+    color: var(--color-text-primary);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+.popover {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-md);
+  z-index: 1000;
+
+  &[data-placement="bottom"] {
+    margin-top: var(--space-xs);
+  }
+
+  &[data-placement="top"] {
+    margin-bottom: var(--space-xs);
+  }
+}
+
+.dialog {
+  outline: none;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-xs);
+}
+
+.heading {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-background-hover);
+    color: var(--color-text-primary);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.calendarGrid {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.calendarHeaderCell {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: var(--space-xs);
+  width: 40px;
+  height: 40px;
+}
+
+.calendarCell {
+  font-size: var(--font-size-sm);
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+
+  &:hover {
+    background: var(--color-background-hover);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  &[data-selected] {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  &[data-selection-start],
+  &[data-selection-end] {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  &[data-range-selection] {
+    background: var(--color-background-accent);
+    color: var(--color-text-primary);
+  }
+
+  &[data-today] {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+  }
+
+  &[data-outside-month] {
+    color: var(--color-text-tertiary);
+  }
+
+  &[data-unavailable] {
+    color: var(--color-text-tertiary);
+    text-decoration: line-through;
+    cursor: not-allowed;
+  }
+}

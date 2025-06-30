@@ -1,0 +1,312 @@
+/**
+ * Slider Component Styles
+ *
+ * Styles for the Slider component using design system tokens.
+ * Built to work with React Aria Slider for accessibility and theming.
+ */
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-family: var(--font-family-sans);
+  position: relative;
+
+  // Size variants
+  &.small {
+    .label {
+      font-size: var(--font-size-xs);
+    }
+
+    .output {
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  &.medium {
+    .label {
+      font-size: var(--font-size-sm);
+    }
+
+    .output {
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  &.large {
+    .label {
+      font-size: var(--font-size-base);
+    }
+
+    .output {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  &[data-disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &[data-invalid] {
+    .track {
+      border-color: var(--color-error);
+    }
+
+    .thumb {
+      border-color: var(--color-error);
+    }
+  }
+
+  // Variant styles
+  &.success {
+    .track {
+      background-color: color-mix(in srgb, var(--color-success) 20%, transparent);
+    }
+
+    .thumb {
+      border-color: var(--color-success);
+      background-color: var(--color-success);
+    }
+  }
+
+  &.warning {
+    .track {
+      background-color: color-mix(in srgb, var(--color-warning) 20%, transparent);
+    }
+
+    .thumb {
+      border-color: var(--color-warning);
+      background-color: var(--color-warning);
+    }
+  }
+
+  &.error {
+    .track {
+      background-color: color-mix(in srgb, var(--color-error) 20%, transparent);
+    }
+
+    .thumb {
+      border-color: var(--color-error);
+      background-color: var(--color-error);
+    }
+  }
+
+  // Orientation variants
+  &.horizontal {
+    .track {
+      height: 6px;
+      width: 100%;
+      min-width: 200px;
+    }
+
+    .thumb {
+      width: 20px;
+      height: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.small .thumb {
+      width: 16px;
+      height: 16px;
+    }
+
+    &.large .thumb {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.vertical {
+    .track {
+      width: 6px;
+      height: 200px;
+      min-height: 150px;
+    }
+
+    .thumb {
+      width: 20px;
+      height: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.small .thumb {
+      width: 16px;
+      height: 16px;
+    }
+
+    &.large .thumb {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+// Label
+.label {
+  font-weight: var(--font-weight-medium);
+  color: var(--text1);
+  line-height: var(--line-height-normal);
+  margin: 0;
+
+  &:has(+ .output) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+// Output value display
+.output {
+  font-weight: var(--font-weight-medium);
+  color: var(--text2);
+  line-height: var(--line-height-normal);
+  margin: 0;
+  min-width: fit-content;
+  text-align: right;
+}
+
+// Track container
+.track {
+  position: relative;
+  background-color: var(--surface4);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 50%, transparent);
+  }
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--surface4) 80%, var(--text3));
+  }
+
+  // Fill (progress) area
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--brand);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  // Horizontal fill
+  &.horizontal::before {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--slider-progress, 0%);
+  }
+
+  // Vertical fill
+  &.vertical::before {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--slider-progress, 0%);
+  }
+}
+
+// Thumb (draggable handle)
+.thumb {
+  position: absolute;
+  background-color: var(--surface2);
+  border: 2px solid var(--brand);
+  border-radius: var(--radius-full);
+  cursor: grab;
+  outline: none;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 50%, transparent), var(--shadow-md);
+  }
+
+  &[data-dragging] {
+    cursor: grabbing;
+    transform: scale(1.15);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      transform: none;
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+
+// Description text
+.description {
+  font-size: var(--font-size-xs);
+  color: var(--text2);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+// Error message
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  line-height: var(--line-height-normal);
+  margin: 0;
+  font-weight: var(--font-weight-medium);
+}
+
+// Header container (label + output)
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+// Multi-thumb styles (range slider)
+.multiThumb {
+  .thumb:nth-child(1) {
+    z-index: 2;
+  }
+
+  .thumb:nth-child(2) {
+    z-index: 1;
+  }
+
+  .track::before {
+    // For range sliders, this represents the selection between thumbs
+    left: var(--slider-start, 0%);
+    width: var(--slider-range, 0%);
+  }
+
+  &.vertical .track::before {
+    bottom: var(--slider-start, 0%);
+    height: var(--slider-range, 0%);
+  }
+}
+
+// States
+.slider {
+  &[data-readonly] {
+    .track,
+    .thumb {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &[data-required] .label::after {
+    content: ' *';
+    color: var(--color-error);
+  }
+}

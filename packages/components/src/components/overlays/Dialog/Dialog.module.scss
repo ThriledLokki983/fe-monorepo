@@ -1,0 +1,201 @@
+// Dialog container
+.dialog {
+  background: var(--surface2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--rad-shadow);
+  border: 1px solid color-mix(in srgb, var(--surface4) 60%, transparent);
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: auto;
+  padding: var(--space-2xl);
+  outline: none;
+  position: relative;
+
+  // Focus styles
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  // Size variants
+  &.small {
+    width: 400px;
+    min-height: 200px;
+  }
+
+  &.medium {
+    width: 500px;
+    min-height: 300px;
+  }
+
+  &.large {
+    width: 700px;
+    min-height: 400px;
+  }
+
+  &.fullscreen {
+    width: 95vw;
+    height: 90vh;
+    max-width: none;
+    max-height: none;
+    border-radius: var(--radius-md);
+  }
+}
+
+// Dialog header
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  gap: var(--space-md);
+}
+
+// Dialog title
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text1);
+  margin: 0;
+  flex: 1;
+}
+
+// Close button
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-base);
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+
+  &:hover {
+    background: color-mix(in srgb, var(--surface3) 80%, transparent);
+    color: var(--text1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 1px;
+  }
+
+  &:active {
+    background: color-mix(in srgb, var(--surface4) 70%, transparent);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Dialog content
+.content {
+  color: var(--text1);
+  line-height: var(--line-height-normal);
+}
+
+// Dialog footer (for action buttons)
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid color-mix(in srgb, var(--surface4) 40%, transparent);
+}
+
+// Alert dialog specific styles
+.alertDialog {
+  .title {
+    color: var(--color-error);
+  }
+}
+
+// Modal backdrop
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: color-mix(in srgb, var(--surface1) 20%, black 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  z-index: var(--z-index-modal);
+
+  &.entering {
+    animation: fadeIn 200ms ease-out;
+  }
+
+  &.exiting {
+    animation: fadeOut 150ms ease-in;
+  }
+}
+
+// Popover positioning
+.popover {
+  background: var(--surface2);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid color-mix(in srgb, var(--surface4) 60%, transparent);
+  padding: var(--space-lg);
+  outline: none;
+  z-index: var(--z-index-popover);
+
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 1px;
+  }
+
+  // Arrow for popover
+  .arrow {
+    fill: var(--surface2);
+    stroke: color-mix(in srgb, var(--surface4) 60%, transparent);
+    stroke-width: 1px;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .dialog {
+    &.small,
+    &.medium,
+    &.large {
+      width: 95vw;
+      max-width: none;
+    }
+  }
+
+  .modalBackdrop {
+    padding: var(--space-xs);
+  }
+}

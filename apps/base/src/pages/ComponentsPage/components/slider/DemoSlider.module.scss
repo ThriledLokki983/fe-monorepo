@@ -1,0 +1,117 @@
+/* Demo Slider Styles */
+.componentShowcase {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.tabContainer {
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--surface3);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+}
+
+.tab {
+  padding: var(--space-sm) var(--space-lg);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: var(--text1);
+    background: var(--surface2);
+  }
+
+  &.tabActive {
+    color: var(--brand);
+    border-bottom-color: var(--brand);
+    background: var(--surface2);
+  }
+}
+
+.tabPanel {
+  min-height: 400px;
+}
+
+.variantGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+
+  h4 {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text1);
+    border-bottom: 1px solid var(--surface3);
+    padding-bottom: var(--space-xs);
+  }
+}
+
+.componentRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  padding: var(--space-md);
+  background: var(--surface2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface3);
+}
+
+.componentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 250px;
+  flex: 1;
+}
+
+.status {
+  font-size: var(--font-size-sm);
+  color: var(--text2);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--surface3);
+  border-radius: var(--radius-sm);
+  align-self: flex-start;
+}
+
+.sizeVariants {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.variants {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.verticalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  padding: var(--space-lg);
+}
+
+.tabContent {
+  width: 100%;
+}
