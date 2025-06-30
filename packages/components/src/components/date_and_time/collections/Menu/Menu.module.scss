@@ -1,0 +1,324 @@
+@use '@mono/styles' as styles;
+
+/* Menu Button Styles */
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--color-background-hover);
+    border-color: var(--color-border-secondary);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-50);
+  }
+
+  &:active,
+  &[data-pressed] {
+    background: var(--color-background-pressed);
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      background: var(--color-background-primary);
+      border-color: var(--color-border-primary);
+    }
+  }
+}
+
+/* Button Variants */
+.menuButton.primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+  }
+
+  &:active,
+  &[data-pressed] {
+    background: var(--color-primary-700);
+    border-color: var(--color-primary-700);
+  }
+}
+
+.menuButton.secondary {
+  background: var(--color-background-secondary);
+  border-color: var(--color-border-primary);
+
+  &:hover {
+    background: var(--color-background-tertiary);
+  }
+}
+
+.menuButton.outline {
+  background: transparent;
+  border-color: var(--color-border-secondary);
+
+  &:hover {
+    background: var(--color-background-hover);
+  }
+}
+
+.menuButton.ghost {
+  background: transparent;
+  border-color: transparent;
+
+  &:hover {
+    background: var(--color-background-hover);
+  }
+}
+
+/* Button Sizes */
+.menuButton.small {
+  padding: var(--space-xxs) var(--space-sm);
+  font-size: var(--font-size-xs);
+  gap: var(--space-xxs);
+}
+
+.menuButton.large {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-base);
+  gap: var(--space-sm);
+}
+
+/* Icon Positioning */
+.iconStart {
+  order: -1;
+}
+
+.iconEnd {
+  order: 1;
+}
+
+/* Popover Styles */
+.popover {
+  min-width: 200px;
+  max-width: 320px;
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: var(--space-xs);
+  z-index: 1000;
+
+  &[data-entering] {
+    animation: popoverEnter 0.2s ease-out;
+  }
+
+  &[data-exiting] {
+    animation: popoverExit 0.15s ease-in;
+  }
+}
+
+@keyframes popoverEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes popoverExit {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+}
+
+/* Menu Styles */
+.menu {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Menu Item Styles */
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin: 0;
+  border: none;
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-tight);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover,
+  &[data-hovered] {
+    background: var(--color-background-hover);
+  }
+
+  &:focus,
+  &[data-focused] {
+    outline: none;
+    background: var(--color-background-accent);
+  }
+
+  &[data-selected] {
+    background: var(--color-primary-50);
+    color: var(--color-primary-700);
+
+    &::before {
+      content: '✓';
+      margin-right: var(--space-xs);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &.destructive {
+    color: var(--color-error);
+
+    &:hover,
+    &[data-hovered] {
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    &:focus,
+    &[data-focused] {
+      background: rgba(239, 68, 68, 0.15);
+    }
+  }
+}
+
+/* Menu Item Content */
+.menuItemContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.menuItemLabel {
+  font-weight: var(--font-weight-medium);
+}
+
+.menuItemDescription {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xxs);
+}
+
+.menuItemShortcut {
+  margin-left: auto;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family-mono);
+}
+
+.menuItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Menu Section Styles */
+.menuSection {
+  display: flex;
+  flex-direction: column;
+
+  &:not(:first-child) {
+    margin-top: var(--space-xs);
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--color-border-primary);
+  }
+}
+
+.menuSectionHeader {
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xxs);
+}
+
+/* Menu Separator Styles */
+.menuSeparator {
+  height: 1px;
+  background: var(--color-border-primary);
+  margin: var(--space-xs) 0;
+  border: none;
+}
+
+/* Submenu Styles */
+.submenuTrigger {
+  position: relative;
+
+  &::after {
+    content: '▶';
+    margin-left: auto;
+    font-size: var(--font-size-xs);
+    opacity: 0.6;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .popover {
+    min-width: 280px;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .menuButton {
+    padding: var(--space-sm);
+  }
+
+  .menuItem {
+    padding: var(--space-md);
+  }
+}

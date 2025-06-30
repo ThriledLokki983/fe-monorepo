@@ -132,7 +132,7 @@ export const DemoToggleButtonGroup = () => {
               <div className={styles.selectionGroup}>
                 <h4>Single Selection (Default)</h4>
                 <p className={styles.description}>Only one button can be selected at a time</p>
-                <ToggleButtonGroup 
+                <ToggleButtonGroup
                   selectionMode="single"
                   selectedKeys={singleSelection}
                   onSelectionChange={(keys) => {
@@ -150,7 +150,7 @@ export const DemoToggleButtonGroup = () => {
               <div className={styles.selectionGroup}>
                 <h4>Multiple Selection</h4>
                 <p className={styles.description}>Multiple buttons can be selected simultaneously</p>
-                <ToggleButtonGroup 
+                <ToggleButtonGroup
                   selectionMode="multiple"
                   selectedKeys={multipleSelection}
                   onSelectionChange={(keys) => {
@@ -234,7 +234,7 @@ export const DemoToggleButtonGroup = () => {
       <div className={styles.demoHeader}>
         <h2 className={styles.componentTitle}>ToggleButtonGroup</h2>
         <p className={styles.componentDescription}>
-          A group of toggle buttons that work together as a cohesive unit. Built on React Aria Components with support for 
+          A group of toggle buttons that work together as a cohesive unit. Built on React Aria Components with support for
           single and multiple selection modes, various orientations, and comprehensive accessibility features.
         </p>
       </div>

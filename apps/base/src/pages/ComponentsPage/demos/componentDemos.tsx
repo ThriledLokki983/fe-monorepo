@@ -5,7 +5,7 @@ interface ComponentDemo {
   name: string;
   description: string;
   component: React.ReactNode;
-  usage: string;
+  usage?: string | Record<string, string> | (() => JSX.Element);
   category: 'buttons' | 'forms' | 'layout' | 'feedback' | 'overlays' | 'navigation';
 }
 
@@ -15,14 +15,14 @@ export const componentDemos: ComponentDemo[] = [
     description: 'A versatile button component built on React Aria with multiple variants and sizes. Provides enhanced accessibility with keyboard navigation and screen reader support.',
     category: 'buttons',
     component: <Demos.DemoButton />,
-    usage: Demos.DemoButtonUsage,
+    // usage: Demos.DemoButtonUsage,
   },
   {
     name: 'ToggleButton',
     description: 'An accessible toggle button component built on React Aria. Supports pressed/unpressed states with multiple variants, sizes, and comprehensive keyboard navigation.',
     category: 'buttons',
     component: <Demos.DemoToggleButton />,
-    usage: Demos.DemoToggleButtonUsage,
+    // usage: Demos.DemoToggleButtonUsage,
   },
   {
     name: 'ToggleButtonGroup',
@@ -30,6 +30,13 @@ export const componentDemos: ComponentDemo[] = [
     category: 'buttons',
     component: <Demos.DemoToggleButtonGroup />,
     usage: Demos.DemoToggleButtonGroupUsage,
+  },
+  {
+    name: 'FileTrigger',
+    description: 'A file selection component that provides accessible file input functionality. Built on React Aria Components with support for file type restrictions, multiple file selection, directory selection, and comprehensive event handling.',
+    category: 'buttons',
+    component: <Demos.DemoFileTrigger />,
+    usage: Demos.DemoFileTriggerUsage,
   },
   {
     name: 'Icon',
@@ -163,5 +170,47 @@ export const componentDemos: ComponentDemo[] = [
     category: 'overlays',
     component: <Demos.DemoTooltip />,
     usage: Demos.DemoTooltipUsage,
+  },
+  {
+    name: 'Calendar',
+    description: 'Accessible calendar component built on React Aria. Allows users to select dates with full keyboard navigation, date validation, disabled dates support, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoCalendar />,
+    usage: Demos.DemoCalendarUsage,
+  },
+  {
+    name: 'DateField',
+    description: 'Accessible date field component built on React Aria. Allows users to enter dates with keyboard input, validation, date range restrictions, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoDateField />,
+    usage: Demos.DemoDateFieldUsage,
+  },
+  {
+    name: 'DatePicker',
+    description: 'Accessible date picker component built on React Aria. Combines date input with calendar popover for intuitive date selection with validation, disabled dates support, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoDatePicker />,
+    usage: Demos.DemoDatePickerUsage,
+  },
+  {
+    name: 'DateRangePicker',
+    description: 'Accessible date range picker component built on React Aria. Allows users to select start and end dates with dual input fields and range calendar popover, supporting validation, disabled dates, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoDateRangePicker />,
+    usage: Demos.DemoDateRangePickerUsage,
+  },
+  {
+    name: 'RangeCalendar',
+    description: 'Accessible range calendar component built on React Aria. Enables users to select date ranges directly within a calendar interface with validation, disabled dates support, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoRangeCalendar />,
+    usage: Demos.DemoRangeCalendarUsage,
+  },
+  {
+    name: 'TimeField',
+    description: 'Accessible time field component built on React Aria. Allows users to enter and edit time values with keyboard navigation, validation, and comprehensive accessibility features.',
+    category: 'forms',
+    component: <Demos.DemoTimeField />,
+    usage: Demos.DemoTimeFieldUsage,
   }
 ];

@@ -1,0 +1,82 @@
+@use "@mono/styles" as styles;
+
+.dateField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.dateInput {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  background: var(--color-background-primary);
+  min-height: 40px;
+  font-family: inherit;
+  font-size: inherit;
+
+  &:focus {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-color: var(--color-focus);
+  }
+
+  &:invalid {
+    border-color: var(--color-error);
+  }
+
+  &::placeholder {
+    color: var(--color-text-secondary);
+  }
+}
+
+.dateSegment {
+  padding: 0 2px;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  color: var(--color-text-primary);
+
+  &[data-type="literal"] {
+    padding: 0;
+  }
+
+  &[data-placeholder] {
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+
+  &:focus {
+    color: var(--color-background-primary);
+    background: var(--color-focus);
+    outline: none;
+    border-radius: 4px;
+    caret-color: transparent;
+  }
+
+  &[data-invalid] {
+    color: var(--color-error);
+
+    &:focus {
+      background: var(--color-error);
+      color: var(--color-background-primary);
+    }
+  }
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}

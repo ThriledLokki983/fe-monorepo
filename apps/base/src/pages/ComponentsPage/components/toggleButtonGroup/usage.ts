@@ -137,7 +137,7 @@ export const EventHandlingToggleButtonGroup = () => {
         <ToggleButton id="option2">Option 2</ToggleButton>
         <ToggleButton id="option3">Option 3</ToggleButton>
       </ToggleButtonGroup>
-      
+
       <div style={{ marginTop: '1rem' }}>
         <h4>Events:</h4>
         <ul>

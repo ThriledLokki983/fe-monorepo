@@ -437,6 +437,160 @@ export const componentDocumentation: Record<string, ComponentDocumentation> = {
     ],
   },
 
+  FileTrigger: {
+    name: 'FileTrigger',
+    description: 'A file selection component that provides accessible file input functionality. Built on React Aria Components with support for file type restrictions, multiple file selection, directory selection, and comprehensive event handling.',
+    usageExamples: [
+      {
+        title: 'Basic Usage',
+        code: `<FileTrigger onSelect={(files) => console.log(files)}>
+  <Button variant="primary">Choose File</Button>
+</FileTrigger>`,
+      },
+      {
+        title: 'File Type Restrictions',
+        description: 'Restrict file selection to specific types',
+        code: `<FileTrigger
+  acceptedFileTypes={['image/*']}
+  onSelect={(files) => console.log('Images:', files)}
+>
+  <Button variant="secondary">Select Images</Button>
+</FileTrigger>
+
+<FileTrigger
+  acceptedFileTypes={['.pdf', '.doc', '.docx', '.txt']}
+  onSelect={(files) => console.log('Documents:', files)}
+>
+  <Button variant="tertiary">Choose Document</Button>
+</FileTrigger>`,
+      },
+      {
+        title: 'Multiple File Selection',
+        code: `const [selectedFiles, setSelectedFiles] = useState([]);
+
+<FileTrigger
+  allowsMultiple={true}
+  onSelect={(files) => {
+    if (files) {
+      setSelectedFiles(Array.from(files));
+    }
+  }}
+>
+  <Button variant="primary">Select Multiple Files</Button>
+</FileTrigger>`,
+      },
+      {
+        title: 'Directory Selection',
+        code: `<FileTrigger
+  acceptDirectory
+  onSelect={(files) => {
+    console.log('Directory with', files?.length, 'files');
+  }}
+>
+  <Button variant="secondary">Select Folder</Button>
+</FileTrigger>`,
+      },
+      {
+        title: 'Different Button Variants and Sizes',
+        code: `<FileTrigger onSelect={handleFileSelect}>
+  <Button variant="primary" size="small">Small Upload</Button>
+</FileTrigger>
+
+<FileTrigger onSelect={handleFileSelect}>
+  <Button variant="secondary" size="medium">Medium Upload</Button>
+</FileTrigger>
+
+<FileTrigger onSelect={handleFileSelect}>
+  <Button variant="danger" size="large">Replace File</Button>
+</FileTrigger>`,
+      },
+      {
+        title: 'File Validation and Processing',
+        code: `const handleFileSelect = (files: FileList | null) => {
+  if (!files) return;
+
+  const fileArray = Array.from(files);
+  const validFiles = fileArray.filter(file => {
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert(\`\${file.name} is too large (max 5MB)\`);
+      return false;
+    }
+    return true;
+  });
+
+  console.log('Valid files:', validFiles);
+};
+
+<FileTrigger
+  acceptedFileTypes={['image/*']}
+  allowsMultiple={true}
+  onSelect={handleFileSelect}
+>
+  <Button variant="primary">Select Images (Max 5MB)</Button>
+</FileTrigger>`,
+      },
+    ],
+    props: [
+      {
+        name: 'acceptedFileTypes',
+        type: 'string[]',
+        defaultValue: '-',
+        description: 'Array of accepted file types (MIME types or file extensions)',
+      },
+      {
+        name: 'allowsMultiple',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether to allow multiple file selection',
+      },
+      {
+        name: 'acceptDirectory',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether to allow directory selection instead of files',
+      },
+      {
+        name: 'onSelect',
+        type: '(files: FileList | null) => void',
+        defaultValue: '-',
+        description: 'Callback fired when files are selected',
+        required: true,
+      },
+      {
+        name: 'children',
+        type: 'React.ReactNode',
+        defaultValue: '-',
+        description: 'Trigger element (typically a Button component)',
+        required: true,
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply to the trigger element',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the file trigger is disabled (React Aria)',
+      },
+    ],
+    notes: [
+      'Built on React Aria Components FileTrigger for comprehensive accessibility support.',
+      'FileTrigger is a renderless component that wraps a trigger element (usually a Button).',
+      'The onSelect callback receives a FileList object when files are selected.',
+      'acceptedFileTypes supports both MIME types (e.g., "image/*") and file extensions (e.g., ".pdf").',
+      'When allowsMultiple is true, users can select multiple files using Ctrl/Cmd+click or Shift+click.',
+      'acceptDirectory allows users to select entire folders, useful for bulk file operations.',
+      'The component automatically handles keyboard navigation and screen reader announcements.',
+      'File validation should be performed in the onSelect callback for security and UX.',
+      'Works seamlessly with any clickable child element, not just buttons.',
+      'Supports all standard HTML file input attributes through React Aria.',
+    ],
+  },
+
   ComboBox: {
     name: 'ComboBox',
     description: 'An accessible combobox component that allows users to select from a list of options or enter custom values, built with React Aria.',
@@ -3534,6 +3688,1202 @@ const handleNavigation = (key) => {
       'JavaScript-handled links do not support browser features like "Open in new tab".',
       'Disabled links are properly announced to screen readers and cannot be activated.',
       'All ARIA attributes are forwarded to the underlying element for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+  Calendar: {
+    name: 'Calendar',
+    description: 'An accessible calendar component built on React Aria. Allows users to select dates with full keyboard navigation, date validation, disabled dates support, and comprehensive accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic Calendar',
+        description: 'Simple date selection calendar',
+        code: `<Calendar
+  aria-label="Select a date"
+  value={selectedDate}
+  onChange={setSelectedDate}
+/>`,
+      },
+      {
+        title: 'Calendar with Default Value',
+        description: 'Calendar with pre-selected date',
+        code: `<Calendar
+  aria-label="Event date"
+  defaultValue={parseDate('2024-06-15')}
+  onChange={handleDateChange}
+/>`,
+      },
+      {
+        title: 'Calendar with Date Range Restrictions',
+        description: 'Restrict selectable dates to a specific range',
+        code: `<Calendar
+  aria-label="Available dates"
+  minValue={parseDate('2024-01-01')}
+  maxValue={parseDate('2024-12-31')}
+  defaultValue={parseDate('2024-06-15')}
+/>`,
+      },
+      {
+        title: 'Calendar with Disabled Dates',
+        description: 'Disable specific dates (e.g., weekends)',
+        code: `const isDateUnavailable = (date) => {
+  const dayOfWeek = date.toDate(getLocalTimeZone()).getDay();
+  return dayOfWeek === 0 || dayOfWeek === 6; // Disable weekends
+};
+
+<Calendar
+  aria-label="Weekday selection"
+  isDateUnavailable={isDateUnavailable}
+  defaultValue={parseDate('2024-06-17')}
+/>`,
+      },
+      {
+        title: 'Read-only Calendar',
+        description: 'Display-only calendar that cannot be changed',
+        code: `<Calendar
+  aria-label="Display date"
+  isReadOnly
+  defaultValue={parseDate('2024-06-15')}
+/>`,
+      },
+      {
+        title: 'Calendar with Validation',
+        description: 'Custom validation for date selection',
+        code: `<Calendar
+  aria-label="Appointment date"
+  validate={(value) =>
+    value < parseDate('2024-01-01')
+      ? 'Date must be in 2024 or later'
+      : null
+  }
+  defaultValue={parseDate('2024-06-15')}
+/>`,
+      },
+      {
+        title: 'Controlled Calendar',
+        description: 'Fully controlled calendar with external state',
+        code: `const [date, setDate] = useState(parseDate('2024-01-15'));
+
+<Calendar
+  aria-label="Controlled calendar"
+  value={date}
+  onChange={setDate}
+/>`,
+      },
+    ],
+    props: [
+      {
+        name: 'value',
+        type: 'DateValue | null',
+        defaultValue: 'undefined',
+        description: 'The selected date (controlled)',
+        required: false,
+      },
+      {
+        name: 'defaultValue',
+        type: 'DateValue',
+        defaultValue: 'undefined',
+        description: 'The initial selected date (uncontrolled)',
+        required: false,
+      },
+      {
+        name: 'onChange',
+        type: '(value: DateValue | null) => void',
+        defaultValue: 'undefined',
+        description: 'Handler called when the date selection changes',
+        required: false,
+      },
+      {
+        name: 'minValue',
+        type: 'DateValue',
+        defaultValue: 'undefined',
+        description: 'The earliest date that can be selected',
+        required: false,
+      },
+      {
+        name: 'maxValue',
+        type: 'DateValue',
+        defaultValue: 'undefined',
+        description: 'The latest date that can be selected',
+        required: false,
+      },
+      {
+        name: 'isDateUnavailable',
+        type: '(date: DateValue) => boolean',
+        defaultValue: 'undefined',
+        description: 'Function to determine if a specific date should be disabled',
+        required: false,
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the calendar is read-only and cannot be changed',
+        required: false,
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the entire calendar is disabled',
+        required: false,
+      },
+      {
+        name: 'autoFocus',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether to auto-focus the calendar on mount',
+        required: false,
+      },
+      {
+        name: 'validate',
+        type: '(value: DateValue) => ValidationError | true | null',
+        defaultValue: 'undefined',
+        description: 'Custom validation function for date selection',
+        required: false,
+      },
+      {
+        name: 'errorMessage',
+        type: 'ReactNode | ((validation: ValidationResult) => ReactNode)',
+        defaultValue: 'undefined',
+        description: 'Error message to display when validation fails',
+        required: false,
+      },
+      {
+        name: 'aria-label',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'Accessible label for the calendar',
+        required: false,
+      },
+      {
+        name: 'aria-labelledby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that labels the calendar',
+        required: false,
+      },
+      {
+        name: 'aria-describedby',
+        type: 'string',
+        defaultValue: 'undefined',
+        description: 'ID of element that describes the calendar',
+        required: false,
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: "''",
+        description: 'Additional CSS class names',
+        required: false,
+      },
+    ],
+    notes: [
+      'Built on React Aria Components Calendar for comprehensive accessibility support.',
+      'Supports all internationalization features including different calendar systems and locales.',
+      'Full keyboard navigation: arrow keys for date navigation, Page Up/Down for month navigation, Home/End for week boundaries.',
+      'Screen reader announcements for date changes, disabled dates, and navigation.',
+      'Uses @internationalized/date for robust date handling across time zones and calendar systems.',
+      'DateValue objects provide immutable date operations and prevent common date pitfalls.',
+      'The isDateUnavailable function can disable any dates (weekends, holidays, etc.).',
+      'Validation can be used for complex business rules beyond simple min/max dates.',
+      'Read-only mode is useful for displaying dates without allowing changes.',
+      'Error messages are automatically announced to screen readers when validation fails.',
+      'Focus management ensures proper tab order and keyboard accessibility.',
+      'Supports high contrast mode and follows system color preferences.',
+      'All ARIA attributes are forwarded to underlying elements for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+
+  DateField: {
+    name: 'DateField',
+    description: 'An accessible date field component built on React Aria. Allows users to enter dates with keyboard input, validation, date range restrictions, and comprehensive accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic DateField',
+        description: 'Simple date input field',
+        code: `<DateField
+  label="Select Date"
+  value={selectedDate}
+  onChange={setSelectedDate}
+/>`,
+      },
+      {
+        title: 'DateField with Description',
+        description: 'Date field with helper text',
+        code: `<DateField
+  label="Event Date"
+  description="Choose your event date"
+  value={date}
+  onChange={setDate}
+/>`,
+      },
+      {
+        title: 'DateField with Date Range Restrictions',
+        description: 'Restrict selectable dates to a specific range',
+        code: `<DateField
+  label="Birth Date"
+  description="Enter your birth date"
+  minValue={parseDate('1900-01-01')}
+  maxValue={parseDate('2025-12-31')}
+  isRequired
+/>`,
+      },
+      {
+        title: 'DateField with Validation',
+        description: 'Date field with custom validation and error messages',
+        code: `<DateField
+  label="Required Date"
+  description="This field is required"
+  isRequired
+  errorMessage="Please enter a valid date"
+  isInvalid={hasError}
+/>`,
+      },
+      {
+        title: 'Read-only DateField',
+        description: 'Display-only date field that cannot be changed',
+        code: `<DateField
+  label="Document Date"
+  description="This date cannot be changed"
+  value={parseDate('2025-06-15')}
+  isReadOnly
+/>`,
+      },
+      {
+        title: 'Disabled DateField',
+        description: 'Disabled date field that cannot be interacted with',
+        code: `<DateField
+  label="Disabled Date"
+  description="This field is disabled"
+  defaultValue={parseDate('2025-03-20')}
+  isDisabled
+/>`,
+      },
+      {
+        title: 'Controlled DateField',
+        description: 'Fully controlled date field with external state',
+        code: `const [date, setDate] = useState<CalendarDate>(parseDate('2025-06-15'));
+
+<DateField
+  label="Appointment Date"
+  value={date}
+  onChange={(newDate) => newDate && setDate(newDate)}
+/>`,
+      },
+    ],
+    props: [
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The label for the date field',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Description text to display below the input',
+      },
+      {
+        name: 'errorMessage',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Error message to display when validation fails',
+      },
+      {
+        name: 'value',
+        type: 'CalendarDate | null',
+        defaultValue: 'null',
+        description: 'The current value of the date field',
+      },
+      {
+        name: 'defaultValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The default value for uncontrolled date fields',
+      },
+      {
+        name: 'onChange',
+        type: '(value: CalendarDate | null) => void',
+        defaultValue: '-',
+        description: 'Handler called when the date value changes',
+      },
+      {
+        name: 'minValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The minimum allowed date',
+      },
+      {
+        name: 'maxValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The maximum allowed date',
+      },
+      {
+        name: 'isRequired',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date field is required',
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date field is read-only',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date field is disabled',
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date field is in an invalid state',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply to the date field',
+      },
+      {
+        name: 'children',
+        type: 'ReactNode',
+        defaultValue: '-',
+        description: 'Child elements to render within the date field',
+      },
+    ],
+    notes: [
+      'DateField provides keyboard input for dates with automatic formatting.',
+      'Date segments (month, day, year) can be navigated with arrow keys.',
+      'Supports date validation with customizable min/max values.',
+      'Integrates seamlessly with form libraries and validation schemas.',
+      'Provides comprehensive accessibility with ARIA labels and descriptions.',
+      'Error messages are automatically announced to screen readers.',
+      'Supports localization and different date formats.',
+      'Read-only mode is useful for displaying dates without allowing changes.',
+      'Focus management ensures proper tab order and keyboard accessibility.',
+      'Supports high contrast mode and follows system color preferences.',
+      'All ARIA attributes are forwarded to underlying elements for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+
+  DatePicker: {
+    name: 'DatePicker',
+    description: 'An accessible date picker component built on React Aria. Combines date input with calendar popover for intuitive date selection with validation, disabled dates support, and comprehensive accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic DatePicker',
+        description: 'Simple date picker with input and calendar popover',
+        code: `<DatePicker
+  label="Select Date"
+  value={selectedDate}
+  onChange={setSelectedDate}
+/>`,
+      },
+      {
+        title: 'DatePicker with Description',
+        description: 'Date picker with helper text',
+        code: `<DatePicker
+  label="Event Date"
+  description="Choose your event date from the calendar"
+  value={date}
+  onChange={setDate}
+/>`,
+      },
+      {
+        title: 'DatePicker with Date Range Restrictions',
+        description: 'Restrict selectable dates to a specific range',
+        code: `<DatePicker
+  label="Birth Date"
+  description="Enter your birth date"
+  minValue={parseDate('1900-01-01')}
+  maxValue={parseDate('2025-12-31')}
+  isRequired
+/>`,
+      },
+      {
+        title: 'DatePicker with Disabled Dates',
+        description: 'Disable specific dates (e.g., weekends)',
+        code: `<DatePicker
+  label="Weekday Only"
+  description="Weekends are disabled"
+  isDateUnavailable={(date) => {
+    const dayOfWeek = date.toDate(getLocalTimeZone()).getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  }}
+/>`,
+      },
+      {
+        title: 'DatePicker with Validation',
+        description: 'Date picker with custom validation and error messages',
+        code: `<DatePicker
+  label="Required Date"
+  description="This field is required"
+  isRequired
+  errorMessage="Please select a valid date"
+  isInvalid={hasError}
+/>`,
+      },
+      {
+        title: 'Read-only DatePicker',
+        description: 'Display-only date picker that cannot be changed',
+        code: `<DatePicker
+  label="Document Date"
+  description="This date cannot be changed"
+  value={parseDate('2025-06-15')}
+  isReadOnly
+/>`,
+      },
+      {
+        title: 'Disabled DatePicker',
+        description: 'Disabled date picker that cannot be interacted with',
+        code: `<DatePicker
+  label="Disabled Date"
+  description="This picker is disabled"
+  defaultValue={parseDate('2025-03-20')}
+  isDisabled
+/>`,
+      },
+      {
+        title: 'Controlled DatePicker',
+        description: 'Fully controlled date picker with external state',
+        code: `const [date, setDate] = useState<CalendarDate>(parseDate('2025-06-15'));
+
+<DatePicker
+  label="Appointment Date"
+  value={date}
+  onChange={(newDate) => newDate && setDate(newDate)}
+/>`,
+      },
+    ],
+    props: [
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The label for the date picker',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Description text to display below the input',
+      },
+      {
+        name: 'errorMessage',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Error message to display when validation fails',
+      },
+      {
+        name: 'value',
+        type: 'CalendarDate | null',
+        defaultValue: 'null',
+        description: 'The current value of the date picker',
+      },
+      {
+        name: 'defaultValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The default value for uncontrolled date pickers',
+      },
+      {
+        name: 'onChange',
+        type: '(value: CalendarDate | null) => void',
+        defaultValue: '-',
+        description: 'Handler called when the date value changes',
+      },
+      {
+        name: 'onOpenChange',
+        type: '(isOpen: boolean) => void',
+        defaultValue: '-',
+        description: 'Handler called when the calendar popover opens/closes',
+      },
+      {
+        name: 'minValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The minimum allowed date',
+      },
+      {
+        name: 'maxValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The maximum allowed date',
+      },
+      {
+        name: 'isDateUnavailable',
+        type: '(date: DateValue) => boolean',
+        defaultValue: '-',
+        description: 'Function to determine if a date should be unavailable for selection',
+      },
+      {
+        name: 'isRequired',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date picker is required',
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date picker is read-only',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date picker is disabled',
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date picker is in an invalid state',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply to the date picker',
+      },
+      {
+        name: 'children',
+        type: 'ReactNode',
+        defaultValue: '-',
+        description: 'Child elements to render within the date picker',
+      },
+    ],
+    notes: [
+      'DatePicker combines keyboard input with visual calendar selection.',
+      'The calendar popover opens on button click or when the input is focused.',
+      'Date segments (month, day, year) can be navigated with arrow keys in the input.',
+      'Calendar navigation supports keyboard shortcuts for month/year navigation.',
+      'Supports date validation with customizable min/max values and custom unavailable dates.',
+      'Integrates seamlessly with form libraries and validation schemas.',
+      'Provides comprehensive accessibility with ARIA labels and descriptions.',
+      'Error messages are automatically announced to screen readers.',
+      'Supports localization and different date formats.',
+      'Read-only mode displays the calendar but prevents date changes.',
+      'Focus management ensures proper tab order and keyboard accessibility.',
+      'Calendar automatically closes when a date is selected or focus moves away.',
+      'Supports high contrast mode and follows system color preferences.',
+      'All ARIA attributes are forwarded to underlying elements for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+
+  DateRangePicker: {
+    name: 'DateRangePicker',
+    description: 'An accessible date range picker component built on React Aria. Combines date range input with calendar popover for intuitive date range selection with validation, disabled dates support, and comprehensive accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic DateRangePicker',
+        description: 'Simple date range picker with input and calendar popover',
+        code: `<DateRangePicker
+  label="Select Date Range"
+  value={dateRange}
+  onChange={setDateRange}
+/>`,
+      },
+      {
+        title: 'DateRangePicker with Description',
+        description: 'Date range picker with helper text',
+        code: `<DateRangePicker
+  label="Event Duration"
+  description="Choose the start and end dates for your event"
+  value={eventRange}
+  onChange={setEventRange}
+/>`,
+      },
+      {
+        title: 'DateRangePicker with Date Range Restrictions',
+        description: 'Restrict selectable dates to a specific range',
+        code: `<DateRangePicker
+  label="Booking Period"
+  description="Select your booking dates"
+  minValue={parseDate('2025-01-01')}
+  maxValue={parseDate('2025-12-31')}
+  isRequired
+/>`,
+      },
+      {
+        title: 'DateRangePicker with Disabled Dates',
+        description: 'Disable specific dates (e.g., weekends)',
+        code: `<DateRangePicker
+  label="Business Days Only"
+  description="Weekends are disabled"
+  isDateUnavailable={(date) => {
+    const dayOfWeek = date.toDate(getLocalTimeZone()).getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  }}
+/>`,
+      },
+      {
+        title: 'DateRangePicker with Validation',
+        description: 'Date range picker with custom validation and error messages',
+        code: `<DateRangePicker
+  label="Required Date Range"
+  description="Both start and end dates are required"
+  isRequired
+  errorMessage="Please select a valid date range"
+  isInvalid={hasError}
+/>`,
+      },
+      {
+        title: 'Read-only DateRangePicker',
+        description: 'Display-only date range picker that cannot be changed',
+        code: `<DateRangePicker
+  label="Report Period"
+  description="This date range cannot be changed"
+  value={{
+    start: parseDate('2025-06-01'),
+    end: parseDate('2025-06-30')
+  }}
+  isReadOnly
+/>`,
+      },
+      {
+        title: 'Disabled DateRangePicker',
+        description: 'Disabled date range picker that cannot be interacted with',
+        code: `<DateRangePicker
+  label="Disabled Range"
+  description="This picker is disabled"
+  defaultValue={{
+    start: parseDate('2025-03-01'),
+    end: parseDate('2025-03-31')
+  }}
+  isDisabled
+/>`,
+      },
+      {
+        title: 'Controlled DateRangePicker',
+        description: 'Fully controlled date range picker with external state',
+        code: `const [range, setRange] = useState<DateRange>({
+  start: parseDate('2025-06-01'),
+  end: parseDate('2025-06-15')
+});
+
+<DateRangePicker
+  label="Project Timeline"
+  value={range}
+  onChange={(newRange) => newRange && setRange(newRange)}
+/>`,
+      },
+    ],
+    props: [
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The label for the date range picker',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Description text to display below the input',
+      },
+      {
+        name: 'errorMessage',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Error message to display when validation fails',
+      },
+      {
+        name: 'value',
+        type: 'DateRange | null',
+        defaultValue: 'null',
+        description: 'The current value of the date range picker (object with start and end dates)',
+      },
+      {
+        name: 'defaultValue',
+        type: 'DateRange',
+        defaultValue: '-',
+        description: 'The default value for uncontrolled date range pickers',
+      },
+      {
+        name: 'onChange',
+        type: '(value: DateRange | null) => void',
+        defaultValue: '-',
+        description: 'Handler called when the date range value changes',
+      },
+      {
+        name: 'onOpenChange',
+        type: '(isOpen: boolean) => void',
+        defaultValue: '-',
+        description: 'Handler called when the calendar popover opens/closes',
+      },
+      {
+        name: 'minValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The minimum allowed date',
+      },
+      {
+        name: 'maxValue',
+        type: 'CalendarDate',
+        defaultValue: '-',
+        description: 'The maximum allowed date',
+      },
+      {
+        name: 'isDateUnavailable',
+        type: '(date: DateValue) => boolean',
+        defaultValue: '-',
+        description: 'Function to determine if a date should be unavailable for selection',
+      },
+      {
+        name: 'allowsNonContiguousRanges',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether non-contiguous ranges are allowed when combined with unavailable dates',
+      },
+      {
+        name: 'isRequired',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date range picker is required',
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date range picker is read-only',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date range picker is disabled',
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the date range picker is in an invalid state',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply to the date range picker',
+      },
+      {
+        name: 'children',
+        type: 'ReactNode',
+        defaultValue: '-',
+        description: 'Child elements to render within the date range picker',
+      },
+    ],
+    notes: [
+      'DateRangePicker allows users to select both start and end dates in a single interface.',
+      'The calendar popover opens on button click or when either input is focused.',
+      'Date segments (month, day, year) can be navigated with arrow keys in both input fields.',
+      'Range selection in the calendar highlights the selected range for visual feedback.',
+      'Calendar navigation supports keyboard shortcuts for month/year navigation.',
+      'Supports date validation with customizable min/max values and custom unavailable dates.',
+      'Non-contiguous ranges can be allowed when combined with unavailable dates.',
+      'Automatically validates that end date is not before start date.',
+      'Integrates seamlessly with form libraries and validation schemas.',
+      'Provides comprehensive accessibility with ARIA labels and descriptions for both inputs.',
+      'Error messages are automatically announced to screen readers.',
+      'Supports localization and different date formats.',
+      'Read-only mode displays the calendar but prevents date changes.',
+      'Focus management ensures proper tab order and keyboard accessibility between inputs.',
+      'Calendar automatically closes when both dates are selected or focus moves away.',
+      'Range selection can be completed by clicking start and end dates or dragging.',
+      'Supports high contrast mode and follows system color preferences.',
+      'All ARIA attributes are forwarded to underlying elements for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+
+  RangeCalendar: {
+    name: 'RangeCalendar',
+    description: 'An accessible range calendar component built on React Aria. Enables users to select date ranges directly within a calendar interface with validation, disabled dates support, and comprehensive accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic RangeCalendar',
+        description: 'Simple range calendar for date range selection',
+        code: `<RangeCalendar
+  aria-label="Select date range"
+  value={dateRange}
+  onChange={setDateRange}
+/>`,
+      },
+      {
+        title: 'Controlled RangeCalendar',
+        description: 'Range calendar with controlled state and external buttons',
+        code: `const [range, setRange] = useState({
+  start: parseDate('2025-01-15'),
+  end: parseDate('2025-01-20')
+});
+
+<RangeCalendar
+  aria-label="Controlled date range"
+  value={range}
+  onChange={setRange}
+/>`,
+      },
+      {
+        title: 'RangeCalendar with Date Restrictions',
+        description: 'Restrict selectable dates to a specific range',
+        code: `<RangeCalendar
+  aria-label="Select booking dates"
+  minValue={parseDate('2025-01-01')}
+  maxValue={parseDate('2025-12-31')}
+/>`,
+      },
+      {
+        title: 'RangeCalendar with Disabled Dates',
+        description: 'Disable specific dates (e.g., weekends)',
+        code: `<RangeCalendar
+  aria-label="Select weekdays only"
+  isDateUnavailable={(date) => {
+    const dayOfWeek = date.toDate(getLocalTimeZone()).getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  }}
+/>`,
+      },
+      {
+        title: 'Read-only RangeCalendar',
+        description: 'Display-only range calendar that cannot be changed',
+        code: `<RangeCalendar
+  aria-label="View-only date range"
+  value={{
+    start: parseDate('2025-06-01'),
+    end: parseDate('2025-06-15')
+  }}
+  isReadOnly
+/>`,
+      },
+      {
+        title: 'Advanced RangeCalendar',
+        description: 'Range calendar with non-contiguous ranges and complex validation',
+        code: `<RangeCalendar
+  aria-label="Advanced date range selection"
+  value={range}
+  onChange={setRange}
+  minValue={parseDate('2025-01-01')}
+  maxValue={parseDate('2025-12-31')}
+  isDateUnavailable={isHolidayOrWeekend}
+  allowsNonContiguousRanges
+/>`,
+      },
+    ],
+    props: [
+      {
+        name: 'value',
+        type: 'RangeValue<DateValue> | null',
+        defaultValue: 'null',
+        description: 'The current value of the range calendar (object with start and end dates)',
+      },
+      {
+        name: 'defaultValue',
+        type: 'RangeValue<DateValue>',
+        defaultValue: '-',
+        description: 'The default value for uncontrolled range calendars',
+      },
+      {
+        name: 'onChange',
+        type: '(value: RangeValue<DateValue> | null) => void',
+        defaultValue: '-',
+        description: 'Handler called when the date range value changes',
+      },
+      {
+        name: 'onFocusChange',
+        type: '(isFocused: boolean) => void',
+        defaultValue: '-',
+        description: 'Handler called when the calendar focus state changes',
+      },
+      {
+        name: 'minValue',
+        type: 'DateValue',
+        defaultValue: '-',
+        description: 'The minimum allowed date',
+      },
+      {
+        name: 'maxValue',
+        type: 'DateValue',
+        defaultValue: '-',
+        description: 'The maximum allowed date',
+      },
+      {
+        name: 'isDateUnavailable',
+        type: '(date: DateValue) => boolean',
+        defaultValue: '-',
+        description: 'Function to determine if a date should be unavailable for selection',
+      },
+      {
+        name: 'allowsNonContiguousRanges',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether non-contiguous ranges are allowed when combined with unavailable dates',
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the range calendar is read-only',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the range calendar is disabled',
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the range calendar is in an invalid state',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply to the range calendar',
+      },
+      {
+        name: 'children',
+        type: 'ReactNode',
+        defaultValue: '-',
+        description: 'Child elements to render within the range calendar',
+      },
+    ],
+    notes: [
+      'RangeCalendar provides a visual interface for selecting date ranges directly within a calendar.',
+      'Range selection is completed by clicking start and end dates or by dragging across dates.',
+      'The selected range is visually highlighted for clear feedback.',
+      'Keyboard navigation allows users to select ranges using arrow keys and Space/Enter.',
+      'Calendar navigation supports keyboard shortcuts for month/year navigation.',
+      'Supports date validation with customizable min/max values and custom unavailable dates.',
+      'Non-contiguous ranges can be allowed when combined with unavailable dates.',
+      'Automatically validates that end date is not before start date.',
+      'Provides comprehensive accessibility with ARIA labels and descriptions.',
+      'Focus management ensures proper keyboard accessibility and screen reader support.',
+      'Range selection state is announced to screen readers for accessibility.',
+      'Supports localization and different date formats.',
+      'Read-only mode displays the range but prevents changes.',
+      'Calendar headers provide month/year context and navigation controls.',
+      'Supports high contrast mode and follows system color preferences.',
+      'All ARIA attributes are forwarded to underlying elements for enhanced accessibility.',
+      'The component follows React Aria patterns for consistent behavior across applications.',
+    ],
+  },
+
+  TimeField: {
+    name: 'TimeField',
+    description: 'An accessible time field component built on React Aria. Allows users to enter and edit time values with keyboard navigation, validation, and comprehensive accessibility features.',
+    usageExamples: [
+      {
+        title: 'Basic TimeField',
+        description: 'Simple time input field',
+        code: `<TimeField
+  label="Select Time"
+  value={time}
+  onChange={setTime}
+/>`,
+      },
+      {
+        title: 'TimeField with Description',
+        description: 'Time field with helper text',
+        code: `<TimeField
+  label="Meeting Time"
+  description="Choose your preferred meeting time"
+  value={time}
+  onChange={setTime}
+/>`,
+      },
+      {
+        title: 'TimeField with Validation',
+        description: 'Time field with custom validation and error messages',
+        code: `<TimeField
+  label="Working Hours"
+  description="Please select a time between 9 AM and 6 PM"
+  value={time}
+  onChange={validateAndSetTime}
+  isInvalid={hasError}
+  errorMessage="Please select a time during working hours"
+  isRequired
+/>`,
+      },
+      {
+        title: '24-Hour Format TimeField',
+        description: 'Time field using 24-hour format',
+        code: `<TimeField
+  label="24-Hour Time"
+  description="Time in 24-hour format"
+  hourCycle={24}
+  value={time}
+  onChange={setTime}
+/>`,
+      },
+      {
+        title: 'TimeField with Seconds',
+        description: 'Time field including seconds precision',
+        code: `<TimeField
+  label="Precise Time"
+  description="Time with seconds"
+  granularity="second"
+  value={time}
+  onChange={setTime}
+/>`,
+      },
+      {
+        title: 'Read-only TimeField',
+        description: 'Display-only time field that cannot be changed',
+        code: `<TimeField
+  label="Appointment Time"
+  description="This time cannot be changed"
+  value={parseTime('10:30')}
+  isReadOnly
+/>`,
+      },
+      {
+        title: 'Disabled TimeField',
+        description: 'Disabled time field that cannot be interacted with',
+        code: `<TimeField
+  label="Disabled Time"
+  description="This field is disabled"
+  defaultValue={parseTime('12:00')}
+  isDisabled
+/>`,
+      },
+      {
+        title: 'Controlled TimeField',
+        description: 'Fully controlled time field with external state',
+        code: `const [time, setTime] = useState<Time>(parseTime('14:30'));
+
+<TimeField
+  label="Meeting Time"
+  value={time}
+  onChange={(newTime) => newTime && setTime(newTime)}
+/>`,
+      },
+    ],
+    props: [
+      {
+        name: 'label',
+        type: 'string',
+        defaultValue: '-',
+        description: 'The label for the time field',
+      },
+      {
+        name: 'description',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Description text to display below the input',
+      },
+      {
+        name: 'errorMessage',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Error message to display when validation fails',
+      },
+      {
+        name: 'value',
+        type: 'TimeValue | null',
+        defaultValue: 'null',
+        description: 'The current value of the time field',
+      },
+      {
+        name: 'defaultValue',
+        type: 'TimeValue',
+        defaultValue: '-',
+        description: 'The default value for uncontrolled time fields',
+      },
+      {
+        name: 'onChange',
+        type: '(value: TimeValue | null) => void',
+        defaultValue: '-',
+        description: 'Handler called when the time value changes',
+      },
+      {
+        name: 'onFocus',
+        type: '(e: FocusEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the time field receives focus',
+      },
+      {
+        name: 'onBlur',
+        type: '(e: FocusEvent) => void',
+        defaultValue: '-',
+        description: 'Handler called when the time field loses focus',
+      },
+      {
+        name: 'hourCycle',
+        type: '12 | 24',
+        defaultValue: '12',
+        description: 'Whether to use 12 or 24 hour time format',
+      },
+      {
+        name: 'granularity',
+        type: '"hour" | "minute" | "second"',
+        defaultValue: '"minute"',
+        description: 'The smallest unit that is displayed in the time field',
+      },
+      {
+        name: 'isRequired',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the time field is required',
+      },
+      {
+        name: 'isReadOnly',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the time field is read-only',
+      },
+      {
+        name: 'isDisabled',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the time field is disabled',
+      },
+      {
+        name: 'isInvalid',
+        type: 'boolean',
+        defaultValue: 'false',
+        description: 'Whether the time field is in an invalid state',
+      },
+      {
+        name: 'className',
+        type: 'string',
+        defaultValue: '-',
+        description: 'Additional CSS classes to apply to the time field',
+      },
+      {
+        name: 'children',
+        type: 'ReactNode',
+        defaultValue: '-',
+        description: 'Child elements to render within the time field',
+      },
+    ],
+    notes: [
+      'TimeField provides a structured way to input and edit time values.',
+      'Time segments (hour, minute, AM/PM) can be navigated with arrow keys and Tab.',
+      'Each segment can be edited individually using keyboard input.',
+      'Supports both 12-hour (with AM/PM) and 24-hour time formats.',
+      'Granularity can be set to hour, minute, or second precision.',
+      'Automatic validation ensures valid time values (e.g., hours 0-23, minutes 0-59).',
+      'Integrates seamlessly with form libraries and validation schemas.',
+      'Provides comprehensive accessibility with ARIA labels and descriptions.',
+      'Error messages are automatically announced to screen readers.',
+      'Supports localization and different time formats.',
+      'Read-only mode displays the time but prevents editing.',
+      'Focus management ensures proper tab order and keyboard accessibility.',
+      'Segment navigation allows precise editing of individual time components.',
+      'Supports high contrast mode and follows system color preferences.',
+      'All ARIA attributes are forwarded to underlying elements for enhanced accessibility.',
       'The component follows React Aria patterns for consistent behavior across applications.',
     ],
   },

@@ -33,7 +33,7 @@ export const FileTrigger: React.FC<FileTriggerProps> = (props) => {
   // We'll wrap the children to apply the className if provided
   const wrappedChildren = className && React.isValidElement(children)
     ? React.cloneElement(children, {
-        className: `${children.props.className || ''} ${className}`.trim()
+        className: `${(children.props as any)?.className || ''} ${className}`.trim()
       } as any)
     : children;
 

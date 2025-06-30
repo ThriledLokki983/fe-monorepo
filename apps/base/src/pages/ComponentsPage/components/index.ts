@@ -2,6 +2,7 @@
 export { DemoButton } from './button/DemoButton';
 export { default as DemoToggleButton } from './toggleButton/DemoToggleButton';
 export { default as DemoToggleButtonGroup } from './toggleButtonGroup/DemoToggleButtonGroup';
+export { default as DemoFileTrigger } from './fileTrigger/DemoFileTrigger';
 export { DemoIcon } from './icon/DemoIcon';
 export { DemoComboBox } from './combobox/DemoComboBox';
 export { DemoSelect } from './select/DemoSelect';
@@ -21,12 +22,20 @@ export { DemoTooltip } from './tooltip/DemoTooltip';
 export { DemoLink } from './link/DemoLink';
 export { DemoBreadcrumbs } from './breadcrumbs/DemoBreadcrumbs';
 export { DemoDisclosure } from './disclosure/DemoDisclosure';
+export { DemoCalendar } from './calendar/DemoCalendar';
+export { DemoDateField } from './dateField/DemoDateField';
+export { DemoDatePicker } from './datePicker/DemoDatePicker';
+export { DemoDateRangePicker } from './dateRangePicker/DemoDateRangePicker';
+export { DemoRangeCalendar } from './rangeCalendar/DemoRangeCalendar';
+export { DemoTimeField } from './timeField/DemoTimeField';
+export { DemoMenu } from './menu/DemoMenu';
 
 
 // Demo Usages Export
 export { DemoButtonUsage } from './button/usage';
 export { DemoToggleButtonUsage } from './toggleButton/usage';
 export { DemoToggleButtonGroupUsage } from './toggleButtonGroup/usage';
+export { DemoFileTriggerUsage } from './fileTrigger/usage';
 export { DemoIconUsage } from './icon/usage';
 export { DemoComboBoxUsage } from './combobox/usage';
 export { DemoSelectUsage } from './select/usage';
@@ -46,3 +55,10 @@ export { tooltipUsageExample as DemoTooltipUsage } from './tooltip/usage';
 export { DemoLinkUsage } from './link/usage';
 export { DemoBreadcrumbsUsage } from './breadcrumbs/usage';
 export { DemoDisclosureUsage } from './disclosure/usage';
+export { DemoCalendarUsage } from './calendar/usage';
+export { DemoDateFieldUsage } from './dateField/usage';
+export { DemoDatePickerUsage } from './datePicker/usage';
+export { DemoDateRangePickerUsage } from './dateRangePicker/usage';
+export { DemoRangeCalendarUsage } from './rangeCalendar/usage';
+export { DemoTimeFieldUsage } from './timeField/usage';
+export { DemoMenuUsage } from './menu/usage';
