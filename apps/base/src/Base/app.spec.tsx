@@ -20,7 +20,7 @@ describe('App', () => {
       </BrowserRouter>
     );
     expect(
-      getAllByText(new RegExp('Welcome @fe-monorepo/base', 'gi')).length > 0
+      getAllByText(new RegExp('@base-design-system', 'gi')).length > 0
     ).toBeTruthy();
   });
 });
