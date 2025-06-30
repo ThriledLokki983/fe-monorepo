@@ -53,13 +53,13 @@ export interface SelectProps {
   /** Default open state */
   defaultOpen?: boolean;
   /** Selection change handler */
-  onSelectionChange?: (key: string | number | null) => void;
+  onSelectionChange?: (_key: string | number | null) => void;
   /** Open change handler */
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange?: (_open: boolean) => void;
   /** Render custom placeholder */
   renderPlaceholder?: () => React.ReactNode;
   /** Render custom selected value */
-  renderValue?: (selectedOption: SelectOption | null) => React.ReactNode;
+  renderValue?: (_selectedOption: SelectOption | null) => React.ReactNode;
 }
 
 export function Select({

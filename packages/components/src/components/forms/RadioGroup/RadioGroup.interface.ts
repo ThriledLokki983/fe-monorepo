@@ -23,7 +23,7 @@ export interface RadioGroupProps extends Omit<ReactAriaRadioGroupProps, 'childre
   /**
    * Error message for validation
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   errorMessage?: string | ((validation: ValidationResult) => string);
 
   /**
@@ -96,7 +96,7 @@ export interface RadioGroupProps extends Omit<ReactAriaRadioGroupProps, 'childre
   /**
    * Callback when the selection changes
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   onChange?: (value: string) => void;
 
   /**

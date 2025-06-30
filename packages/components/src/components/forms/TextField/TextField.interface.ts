@@ -22,7 +22,7 @@ export interface TextFieldProps extends Omit<ReactAriaTextFieldProps, 'children'
   /**
    * Error message to display when the field is invalid
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   errorMessage?: string | ((validation: ValidationResult) => string);
 
   /**
@@ -107,7 +107,7 @@ export interface TextFieldProps extends Omit<ReactAriaTextFieldProps, 'children'
   /**
    * Callback when the value changes
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   onChange?: (value: string) => void;
 
   /**

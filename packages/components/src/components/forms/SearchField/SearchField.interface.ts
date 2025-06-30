@@ -23,7 +23,7 @@ export interface SearchFieldProps extends Omit<ReactAriaSearchFieldProps, 'child
   /**
    * Error message to display when the field is invalid
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   errorMessage?: string | ((validation: ValidationResult) => string);
 
   /**
@@ -101,13 +101,13 @@ export interface SearchFieldProps extends Omit<ReactAriaSearchFieldProps, 'child
   /**
    * Callback when the value changes
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   onChange?: (value: string) => void;
 
   /**
    * Callback when the search is submitted (e.g., Enter key pressed)
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   onSubmit?: (value: string) => void;
 
   /**

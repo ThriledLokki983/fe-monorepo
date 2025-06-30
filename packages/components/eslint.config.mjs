@@ -20,6 +20,11 @@ export default [
       globals: {
         browser: true,
         es2021: true,
+        console: 'readonly',
+        process: 'readonly',
+        window: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
       },
     },
     plugins: {
@@ -37,6 +42,14 @@ export default [
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+      'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+      'no-undef': 'error',
+      'no-prototype-builtins': 'error',
+      'no-empty': 'warn',
     },
+  },
+  {
+    files: ['dist/**/*'],
+    ignores: ['dist/**/*'],
   },
 ];

@@ -24,18 +24,18 @@ interface BaseButtonProps {
   slot?: string;
   excludeFromTabOrder?: boolean;
   autoFocus?: boolean;
-  onHover?: (isHovering: boolean) => void;
-  onHoverStart?: (e: React.PointerEvent) => void;
-  onHoverEnd?: (e: React.PointerEvent) => void;
-  onFocus?: (e: React.FocusEvent) => void;
-  onBlur?: (e: React.FocusEvent) => void;
-  onFocusChange?: (isFocused: boolean) => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
-  onKeyUp?: (e: React.KeyboardEvent) => void;
-  onPressStart?: (e: React.PointerEvent) => void;
-  onPressEnd?: (e: React.PointerEvent) => void;
-  onPressChange?: (isPressed: boolean) => void;
-  onPressUp?: (e: React.PointerEvent) => void;
+  onHover?: (_isHovering: boolean) => void;
+  onHoverStart?: (_e: React.PointerEvent) => void;
+  onHoverEnd?: (_e: React.PointerEvent) => void;
+  onFocus?: (_e: React.FocusEvent) => void;
+  onBlur?: (_e: React.FocusEvent) => void;
+  onFocusChange?: (_isFocused: boolean) => void;
+  onKeyDown?: (_e: React.KeyboardEvent) => void;
+  onKeyUp?: (_e: React.KeyboardEvent) => void;
+  onPressStart?: (_e: React.PointerEvent) => void;
+  onPressEnd?: (_e: React.PointerEvent) => void;
+  onPressChange?: (_isPressed: boolean) => void;
+  onPressUp?: (_e: React.PointerEvent) => void;
 }
 
 // Button-specific props when no url is provided

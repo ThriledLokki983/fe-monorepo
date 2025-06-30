@@ -70,7 +70,7 @@ export interface SwitchProps extends Omit<ReactAriaSwitchProps, 'children'> {
   /**
    * Callback when the switch selection changes
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   onChange?: (isSelected: boolean) => void;
 
   /**

@@ -55,11 +55,11 @@ export interface ComboBoxProps {
   /** Required field */
   isRequired?: boolean;
   /** Selection change handler */
-  onSelectionChange?: (key: string | number | null) => void;
+  onSelectionChange?: (_key: string | number | null) => void;
   /** Input change handler */
-  onInputChange?: (value: string) => void;
+  onInputChange?: (_value: string) => void;
   /** Custom filter function */
-  filter?: (items: ComboBoxOption[], inputValue: string) => ComboBoxOption[];
+  filter?: (_items: ComboBoxOption[], _inputValue: string) => ComboBoxOption[];
 }
 
 export function ComboBox({
