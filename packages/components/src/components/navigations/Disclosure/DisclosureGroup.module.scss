@@ -1,0 +1,112 @@
+.disclosureGroup {
+  display: flex;
+  flex-direction: column;
+
+  // Default variant - clean spacing between items
+  &--default {
+    gap: var(--space-xs);
+
+    .disclosure {
+      &:not(:last-child) {
+        margin-bottom: var(--space-xs);
+      }
+    }
+  }
+
+  // Bordered variant - items have borders and are connected
+  &--bordered {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+
+    .disclosure {
+      border-bottom: 1px solid var(--border);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .trigger {
+        border: none;
+        border-radius: 0;
+      }
+    }
+  }
+
+  // Separated variant - items have distinct visual separation
+  &--separated {
+    gap: var(--space-sm);
+
+    .disclosure {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface1);
+
+      &:not(:last-child) {
+        margin-bottom: var(--space-sm);
+      }
+
+      .trigger {
+        border: none;
+        border-radius: var(--radius-md);
+      }
+    }
+  }
+
+  // Small size
+  &--small {
+    gap: var(--space-xxs);
+
+    &.disclosureGroup--default {
+      .disclosure:not(:last-child) {
+        margin-bottom: var(--space-xxs);
+      }
+    }
+
+    &.disclosureGroup--separated {
+      gap: var(--space-xs);
+
+      .disclosure:not(:last-child) {
+        margin-bottom: var(--space-xs);
+      }
+    }
+  }
+
+  // Medium size (default) - uses base gap values from the variant
+
+  // Large size
+  &--large {
+    gap: var(--space-sm);
+
+    &.disclosureGroup--default {
+      .disclosure:not(:last-child) {
+        margin-bottom: var(--space-sm);
+      }
+    }
+
+    &.disclosureGroup--separated {
+      gap: var(--space-md);
+
+      .disclosure:not(:last-child) {
+        margin-bottom: var(--space-md);
+      }
+    }
+  }
+
+  // Disabled state
+  &[data-disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  // Focus management for keyboard navigation
+  &:focus {
+    outline: none;
+  }
+
+  &[data-focus-visible] {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}

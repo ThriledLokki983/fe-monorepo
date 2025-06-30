@@ -1,11 +1,19 @@
 /**
  * CSS Layers Declaration
  *
- * This file declares all CSS layers in the correct order.
- * Layers declared first have lower priority in the cascade.
+ * This file declares all CSS layers in the correct priority order.
+ * Layers are listed from LOW priority to HIGH priority.
+ *
+ * Priority Order (low → high):
+ * 1. reset      - CSS resets and normalizations (lowest priority)
+ * 2. base       - Base element styles
+ * 3. tokens     - Design tokens and CSS custom properties
+ * 4. components - Component styles
+ * 5. patterns   - Layout and pattern styles
+ * 6. themes     - Theme overrides
+ * 7. utilities  - Utility classes (highest priority)
  *
  * Import this file FIRST in any stylesheet that uses the design system.
  */
 
-// @layer reset, base, tokens, components, patterns, themes, utilities;
-@layer reset, base, tokens, components, patterns, utilities, themes, overrides;
+@layer reset, base, tokens, components, patterns, themes, utilities;

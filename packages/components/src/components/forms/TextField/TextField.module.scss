@@ -1,0 +1,308 @@
+// TextField Styles
+.textField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-family: var(--font-family-sans);
+  position: relative;
+
+  // Size variants
+  &.small {
+    .textFieldLabel {
+      font-size: var(--font-size-xs);
+    }
+
+    .textFieldInput,
+    .textFieldTextArea {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-tight);
+    }
+
+    .textFieldTextArea {
+      min-height: 2.5rem;
+    }
+  }
+
+  &.medium {
+    .textFieldLabel {
+      font-size: var(--font-size-sm);
+    }
+
+    .textFieldInput,
+    .textFieldTextArea {
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+    }
+
+    .textFieldTextArea {
+      min-height: 3rem;
+    }
+  }
+
+  &.large {
+    .textFieldLabel {
+      font-size: var(--font-size-base);
+    }
+
+    .textFieldInput,
+    .textFieldTextArea {
+      padding: var(--space-md) var(--space-lg);
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-normal);
+    }
+
+    .textFieldTextArea {
+      min-height: 3.5rem;
+    }
+  }
+
+  // States
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .textFieldInput,
+    .textFieldTextArea {
+      background: var(--surface3);
+      border-color: var(--surface4);
+      color: var(--text3);
+      cursor: not-allowed;
+    }
+
+    .textFieldLabel {
+      color: var(--text3);
+    }
+  }
+
+  &[data-readonly] {
+    .textFieldInput,
+    .textFieldTextArea {
+      background: var(--surface3);
+      border-color: var(--surface4);
+      cursor: default;
+    }
+  }
+
+  &[data-invalid],
+  &.invalid {
+    .textFieldInput,
+    .textFieldTextArea {
+      border-color: var(--color-error);
+      background: color-mix(in srgb, var(--color-error) 5%, var(--surface2));
+    }
+
+    .textFieldLabel {
+      color: var(--color-error);
+    }
+
+    &[data-focus-within] {
+      .textFieldInput,
+      .textFieldTextArea {
+        outline-color: var(--color-error);
+        border-color: var(--color-error);
+      }
+    }
+  }
+
+  &[data-focus-within] {
+    .textFieldInput,
+    .textFieldTextArea {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+      border-color: var(--brand);
+    }
+  }
+
+  // Variant styles
+  &.success {
+    .textFieldInput,
+    .textFieldTextArea {
+      border-color: var(--color-success);
+    }
+
+    &[data-focus-within] {
+      .textFieldInput,
+      .textFieldTextArea {
+        outline-color: var(--color-success);
+        border-color: var(--color-success);
+      }
+    }
+  }
+
+  &.warning {
+    .textFieldInput,
+    .textFieldTextArea {
+      border-color: var(--color-warning);
+    }
+
+    &[data-focus-within] {
+      .textFieldInput,
+      .textFieldTextArea {
+        outline-color: var(--color-warning);
+        border-color: var(--color-warning);
+      }
+    }
+  }
+
+  &.error {
+    .textFieldInput,
+    .textFieldTextArea {
+      border-color: var(--color-error);
+    }
+
+    &[data-focus-within] {
+      .textFieldInput,
+      .textFieldTextArea {
+        outline-color: var(--color-error);
+        border-color: var(--color-error);
+      }
+    }
+  }
+}
+
+// TextField Label
+.textFieldLabel {
+  display: block;
+  font-weight: var(--font-weight-medium);
+  color: var(--text1);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-xs);
+}
+
+// TextField Input (single line)
+.textFieldInput {
+  width: 100%;
+  border: 2px solid var(--surface4);
+  border-radius: var(--radius-md);
+  background: var(--surface2);
+  color: var(--text1);
+  font-family: inherit;
+  transition: all var(--transition-fast);
+  outline: none;
+
+  &::placeholder {
+    color: var(--text3);
+    opacity: 1;
+  }
+
+  &:hover:not([disabled]):not([readonly]) {
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 3%, var(--surface2));
+  }
+
+  &:focus {
+    border-color: var(--brand);
+  }
+
+  &[data-hovered]:not([disabled]):not([readonly]) {
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 3%, var(--surface2));
+  }
+
+  &[data-focused] {
+    border-color: var(--brand);
+  }
+}
+
+// TextField TextArea (multiline)
+.textFieldTextArea {
+  width: 100%;
+  border: 2px solid var(--surface4);
+  border-radius: var(--radius-md);
+  background: var(--surface2);
+  color: var(--text1);
+  font-family: inherit;
+  transition: all var(--transition-fast);
+  outline: none;
+  resize: vertical;
+
+  &::placeholder {
+    color: var(--text3);
+    opacity: 1;
+  }
+
+  &:hover:not([disabled]):not([readonly]) {
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 3%, var(--surface2));
+  }
+
+  &:focus {
+    border-color: var(--brand);
+  }
+
+  &[data-hovered]:not([disabled]):not([readonly]) {
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 3%, var(--surface2));
+  }
+
+  &[data-focused] {
+    border-color: var(--brand);
+  }
+}
+
+// TextField Description
+.textFieldDescription {
+  font-size: var(--font-size-sm);
+  color: var(--text2);
+  line-height: var(--line-height-normal);
+  margin-top: var(--space-xs);
+}
+
+// TextField Error Message
+.textFieldError {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  line-height: var(--line-height-normal);
+  margin-top: var(--space-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+// Required indicator
+.required {
+  color: var(--color-error);
+  margin-left: var(--space-xxs);
+  font-weight: var(--font-weight-bold);
+}
+
+// High contrast mode adjustments
+@media (prefers-contrast: high) {
+  .textField {
+    .textFieldInput,
+    .textFieldTextArea {
+      border-width: 3px;
+    }
+
+    &[data-focus-within] {
+      .textFieldInput,
+      .textFieldTextArea {
+        outline-width: 3px;
+      }
+    }
+  }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .textField,
+  .textFieldInput,
+  .textFieldTextArea {
+    transition: none;
+  }
+}
+
+// Mobile adjustments
+@media (max-width: 640px) {
+  .textField {
+    &.small,
+    &.medium,
+    &.large {
+      .textFieldInput,
+      .textFieldTextArea {
+        font-size: var(--font-size-base);
+        padding: var(--space-sm) var(--space-md);
+      }
+    }
+  }
+}

@@ -1,0 +1,160 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  gap: var(--space-xs);
+
+  // React Aria focus management
+  &[data-focus-visible],
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  /* Breadcrumbs Variants */
+  &--default {
+    // Default styling - basic breadcrumbs
+    .breadcrumb {
+      &:not(:last-child)::after {
+        content: '/';
+        color: var(--text3);
+        margin: 0 var(--space-xs);
+        font-weight: var(--font-weight-normal);
+      }
+    }
+  }
+
+  &--minimal {
+    // Minimal styling - subtle separators
+    gap: var(--space-sm);
+
+    .breadcrumb {
+      &:not(:last-child)::after {
+        content: '›';
+        color: var(--text3);
+        margin: 0 var(--space-sm);
+        font-weight: var(--font-weight-light);
+        font-size: 1.1em;
+      }
+    }
+  }
+
+  &--compact {
+    // Compact styling - smaller spacing
+    gap: var(--space-xxs);
+
+    .breadcrumb {
+      &:not(:last-child)::after {
+        content: '▸';
+        color: var(--text3);
+        margin: 0 var(--space-xs);
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  /* Breadcrumbs Sizes */
+  &--small {
+    font-size: var(--font-size-sm);
+
+    .breadcrumb {
+      &:not(:last-child)::after {
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  &--medium {
+    font-size: var(--font-size-base);
+  }
+
+  &--large {
+    font-size: var(--font-size-lg);
+
+    .breadcrumb {
+      &:not(:last-child)::after {
+        font-size: 1.1em;
+      }
+    }
+  }
+
+  // Disabled state
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+
+  // Current page styling (automatically applied by React Aria)
+  &[data-current] {
+    :global(.react-aria-Link) {
+      color: var(--text1);
+      font-weight: var(--font-weight-medium);
+      text-decoration: none;
+      cursor: default;
+
+      &:hover {
+        color: var(--text1);
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Non-current breadcrumb links
+  &:not([data-current]) {
+    :global(.react-aria-Link) {
+      color: var(--text2);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+
+      &:hover:not([data-disabled]) {
+        color: var(--brand);
+        text-decoration: underline;
+      }
+
+      &[data-focus-visible] {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
+        border-radius: var(--radius-sm);
+      }
+
+      &[data-pressed]:not([data-disabled]) {
+        color: color-mix(in hsl, var(--brand) 80%, black 20%);
+      }
+    }
+  }
+
+  // Disabled breadcrumb
+  &[data-disabled] {
+    :global(.react-aria-Link) {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        color: var(--text2);
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Separator styling (handled by variant modifiers above)
+  &::after {
+    // Base styles for separators are defined in variant modifiers
+    flex-shrink: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+// Navigation landmark styling
+nav[aria-label] .breadcrumbs {
+  // Additional styling when breadcrumbs are in a navigation landmark
+  padding: var(--space-sm) 0;
+}

@@ -1,0 +1,208 @@
+/* Demo Form Component Styles */
+
+.componentShowcase {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.tabContainer {
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--surface3);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+}
+
+.tab {
+  padding: var(--space-sm) var(--space-lg);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: var(--text1);
+    background: var(--surface2);
+  }
+
+  &.tabActive {
+    color: var(--brand);
+    border-bottom-color: var(--brand);
+    background: var(--surface2);
+  }
+}
+
+.tabPanel {
+  min-height: 400px;
+}
+
+.variantGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.variantGroup h4 {
+  margin: 0 0 var(--space-md) 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-sm);
+}
+
+.componentRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background-color: var(--color-background-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.componentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.formActions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.fieldGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.sizeDemo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.stateDemo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.result {
+  padding: var(--space-md);
+  background-color: color-mix(in srgb, var(--color-success) 10%, var(--color-background-secondary));
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-md);
+}
+
+.result h5 {
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-success);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.result pre {
+  margin: 0;
+  padding: var(--space-sm);
+  background-color: color-mix(in srgb, var(--color-success) 5%, var(--color-background-secondary));
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  overflow-x: auto;
+}
+
+.errorDisplay {
+  padding: var(--space-md);
+  background-color: color-mix(in srgb, var(--color-error) 10%, var(--color-background-secondary));
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-md);
+}
+
+.errorDisplay h5 {
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-error);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.errorDisplay ul {
+  margin: 0;
+  padding-left: var(--space-md);
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+}
+
+.errorDisplay li {
+  margin-bottom: var(--space-xs);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tabList {
+    gap: 0;
+    padding-bottom: 0;
+  }
+
+  .tab {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .fieldGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .sizeDemo,
+  .stateDemo {
+    grid-template-columns: 1fr;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+
+  .componentRow {
+    padding: var(--space-md);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .tab {
+    border: 1px solid transparent;
+  }
+
+  .tabActive {
+    border: 1px solid var(--color-primary-500);
+  }
+
+  .componentRow {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}

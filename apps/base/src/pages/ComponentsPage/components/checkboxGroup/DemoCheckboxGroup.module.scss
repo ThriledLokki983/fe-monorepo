@@ -1,0 +1,187 @@
+// Demo CheckboxGroup Styles
+.demoContainer {
+  padding: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tabs {
+  width: 100%;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.section {
+  background: var(--surface2);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border2);
+
+  h3 {
+    margin: 0 0 var(--space-lg) 0;
+    color: var(--text1);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    border-bottom: 2px solid var(--brand);
+    padding-bottom: var(--space-sm);
+  }
+}
+
+.exampleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.example {
+  background: var(--surface3);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border3);
+
+  h4 {
+    margin: 0 0 var(--space-md) 0;
+    color: var(--text1);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+.sizeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+.sizeExample {
+  background: var(--surface3);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border3);
+  text-align: center;
+}
+
+.controlledGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.status {
+  color: var(--text2);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  margin: 0;
+  padding: var(--space-sm);
+  background: var(--surface1);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border1);
+}
+
+.submitButton {
+  background: var(--brand);
+  color: var(--brand-contrast);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--brand) 90%, black);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: var(--surface3);
+    color: var(--text3);
+    cursor: not-allowed;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 600px;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .demoContainer {
+    padding: var(--space-md);
+  }
+
+  .exampleGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .sizeGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .section {
+    padding: var(--space-md);
+
+    h3 {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  .example {
+    padding: var(--space-sm);
+
+    h4 {
+      font-size: var(--font-size-base);
+    }
+  }
+}
+
+// Focus and accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .submitButton {
+    transition: none;
+
+    &:hover:not(:disabled) {
+      transform: none;
+    }
+
+    &:active:not(:disabled) {
+      transform: none;
+    }
+  }
+}
+
+@media (prefers-contrast: high) {
+  .section {
+    border: 2px solid var(--border1);
+  }
+
+  .example {
+    border: 2px solid var(--border2);
+  }
+
+  .status {
+    border: 2px solid var(--border2);
+  }
+
+  .submitButton {
+    border: 2px solid var(--brand);
+
+    &:disabled {
+      border: 2px solid var(--text3);
+    }
+  }
+}

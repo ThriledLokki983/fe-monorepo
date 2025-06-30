@@ -35,3 +35,10 @@ Coding standards, domain knowledge, and preferences that AI should follow.
 3. Use Yarn for package management and dependency installation
 2. Follow the established workflow patterns
 3. Maintain consistency with Yarn package management
+
+
+## Component Development
+- **Component architecture**: Ensure components are modular and reusable and is built on top of react-aria-components
+- **Component Structure**: Follow Nx best practices for component organization
+- **Component Naming**: Use clear, descriptive names for components
+- **Component Documentation**: Document components using Context 7 for clarity and maintainability

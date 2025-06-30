@@ -1,0 +1,300 @@
+// Checkbox Styles
+.checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  cursor: pointer;
+  font-family: var(--font-family-sans);
+  position: relative;
+  user-select: none;
+
+  // Size variants
+  &.small {
+    gap: var(--space-xs);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+
+    .checkboxIndicator {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.medium {
+    gap: var(--space-sm);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+
+    .checkboxIndicator {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &.large {
+    gap: var(--space-md);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-normal);
+
+    .checkboxIndicator {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  // States
+  &[data-hovered] {
+    .checkboxIndicator {
+      border-color: var(--brand);
+      background: color-mix(in srgb, var(--brand) 5%, var(--surface2));
+    }
+  }
+
+  &[data-pressed] {
+    .checkboxIndicator {
+      background: color-mix(in srgb, var(--brand) 10%, var(--surface2));
+      transform: scale(0.95);
+    }
+  }
+
+  &[data-focus-visible] {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  &[data-selected] {
+    .checkboxIndicator {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: var(--surface2);
+
+      .checkIcon {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    &[data-hovered] .checkboxIndicator {
+      background: color-mix(in srgb, var(--brand) 90%, var(--text1) 10%);
+      border-color: color-mix(in srgb, var(--brand) 90%, var(--text1) 10%);
+    }
+  }
+
+  &[data-indeterminate] {
+    .checkboxIndicator {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: var(--surface2);
+
+      .indeterminateIcon {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  // Invalid state
+  &.invalid,
+  &[data-invalid] {
+    .checkboxIndicator {
+      border-color: var(--color-error);
+    }
+
+    .checkboxLabel {
+      color: var(--color-error);
+    }
+
+    &[data-selected],
+    &[data-indeterminate] {
+      .checkboxIndicator {
+        background: var(--color-error);
+        border-color: var(--color-error);
+      }
+    }
+  }
+
+  // Disabled state
+  &.disabled,
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .checkboxIndicator {
+      background: var(--surface3);
+      border-color: var(--surface4);
+      color: var(--text3);
+    }
+
+    .checkboxLabel {
+      color: var(--text3);
+    }
+  }
+
+  // Read-only state
+  &.readOnly,
+  &[data-readonly] {
+    cursor: default;
+
+    .checkboxIndicator {
+      background: var(--surface3);
+      border-color: var(--surface4);
+    }
+  }
+}
+
+// Checkbox Indicator
+.checkboxIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--surface4);
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  color: var(--surface2);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  margin-top: 2px; // Align with first line of text
+
+  // Variant styles
+  &.default {
+    // Default styling already defined above
+  }
+
+  &.success {
+    border-color: var(--color-success);
+
+    .checkbox[data-selected] &,
+    .checkbox[data-indeterminate] & {
+      background: var(--color-success);
+      border-color: var(--color-success);
+    }
+  }
+
+  &.warning {
+    border-color: var(--color-warning);
+
+    .checkbox[data-selected] &,
+    .checkbox[data-indeterminate] & {
+      background: var(--color-warning);
+      border-color: var(--color-warning);
+    }
+  }
+
+  &.error {
+    border-color: var(--color-error);
+
+    .checkbox[data-selected] &,
+    .checkbox[data-indeterminate] & {
+      background: var(--color-error);
+      border-color: var(--color-error);
+    }
+  }
+}
+
+// Checkbox Icon (SVG container)
+.checkboxIcon {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+// Check Icon (checkmark)
+.checkIcon {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--transition-fast);
+}
+
+// Indeterminate Icon (dash)
+.indeterminateIcon {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--transition-fast);
+  fill: currentColor;
+  stroke: none;
+}
+
+// Checkbox Label
+.checkboxLabel {
+  color: var(--text1);
+  font-weight: var(--font-weight-normal);
+  line-height: inherit;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxs);
+}
+
+// Required indicator
+.required {
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+  margin-left: var(--space-xxs);
+}
+
+// High contrast mode adjustments
+@media (prefers-contrast: high) {
+  .checkbox {
+    .checkboxIndicator {
+      border: 3px solid var(--text1);
+      background: var(--surface1);
+    }
+
+    &[data-selected],
+    &[data-indeterminate] {
+      .checkboxIndicator {
+        background: var(--text1);
+        border-color: var(--text1);
+        color: var(--surface1);
+      }
+    }
+
+    &[data-focus-visible] {
+      outline: 3px solid var(--brand);
+      outline-offset: 3px;
+    }
+  }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .checkbox,
+  .checkboxIndicator,
+  .checkIcon,
+  .indeterminateIcon {
+    transition: none;
+  }
+
+  .checkbox[data-pressed] .checkboxIndicator {
+    transform: none;
+  }
+}
+
+// Mobile adjustments
+@media (max-width: 640px) {
+  .checkbox {
+    &.small,
+    &.medium,
+    &.large {
+      gap: var(--space-sm);
+      font-size: var(--font-size-base);
+    }
+
+    &.small .checkboxIndicator,
+    &.medium .checkboxIndicator {
+      width: 18px;
+      height: 18px;
+    }
+
+    &.large .checkboxIndicator {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -1,0 +1,122 @@
+@use '@mono/styles' as styles;
+
+.componentShowcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  width: 100%;
+}
+
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.tabList {
+  display: flex;
+  gap: var(--spacing-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: var(--spacing-2);
+}
+
+.tab {
+  padding: var(--spacing-2) var(--spacing-4);
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-medium);
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-subtle);
+  }
+
+  &.tabActive {
+    color: var(--color-primary-600);
+    background: var(--color-primary-50);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.tabPanel {
+  min-height: 400px;
+  padding: var(--spacing-4) 0;
+}
+
+.variantGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+
+  h4 {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.componentRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-bg-surface);
+
+  &:hover {
+    border-color: var(--color-border);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-3);
+}
+
+.controlButton {
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--color-bg-subtle);
+    border-color: var(--color-primary-300);
+  }
+
+  &:active {
+    background: var(--color-primary-50);
+    border-color: var(--color-primary-400);
+  }
+}
+
+.selectedDate {
+  margin: var(--spacing-3) 0 0 0;
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid var(--color-primary-200);
+}
+
+.note {
+  margin: var(--spacing-2) 0 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
