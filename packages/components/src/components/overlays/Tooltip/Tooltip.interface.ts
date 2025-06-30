@@ -73,7 +73,7 @@ export interface TooltipTriggerWrapperProps {
   /**
    * Callback when the open state changes
    */
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange?: (_open: boolean) => void;
 }
 
 /**

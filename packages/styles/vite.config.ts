@@ -47,12 +47,14 @@ const scssPlugin = () => {
         throw error;
       }
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleHotUpdate({ file, server }: { file: string; server: any }) {
       // Handle hot reloading for SCSS files
       if (file.includes('.scss')) {
         console.log(`🔄 SCSS file changed: ${file}`);
         // Trigger rebuild for SCSS files
-        server.ws.send({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (server as any).ws.send({
           type: 'full-reload'
         });
       }

@@ -23,7 +23,7 @@ export interface CheckboxGroupProps extends Omit<ReactAriaCheckboxGroupProps, 'c
   /**
    * Error message for validation
    */
-  errorMessage?: string | ((validation: ValidationResult) => string);
+  errorMessage?: string | ((_validation: ValidationResult) => string);
 
   /**
    * Size variant for the checkbox group
@@ -95,7 +95,7 @@ export interface CheckboxGroupProps extends Omit<ReactAriaCheckboxGroupProps, 'c
   /**
    * Callback when the selection changes
    */
-  onChange?: (value: string[]) => void;
+  onChange?: (_value: string[]) => void;
 
   /**
    * Name attribute for HTML forms

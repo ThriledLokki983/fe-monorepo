@@ -9,7 +9,7 @@ export interface BaseDialogProps extends Omit<ReactAriaDialogProps, 'className'>
   /**
    * The content to display in the dialog
    */
-  children: React.ReactNode | (({ close }: { close: () => void }) => React.ReactNode);
+  children: React.ReactNode | ((_: { close: () => void }) => React.ReactNode);
   /**
    * Custom CSS class name
    */
@@ -70,7 +70,7 @@ export interface DialogTriggerProps {
   /**
    * Handler called when the dialog open state changes
    */
-  onOpenChange?: (isOpen: boolean) => void;
+  onOpenChange?: (_isOpen: boolean) => void;
   /**
    * Whether the dialog should be dismissible
    * @default true

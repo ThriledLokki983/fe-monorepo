@@ -75,7 +75,7 @@ export interface CheckboxProps extends Omit<ReactAriaCheckboxProps, 'children'> 
   /**
    * Callback when the selection state changes
    */
-  onChange?: (isSelected: boolean) => void;
+  onChange?: (_isSelected: boolean) => void;
 
   /**
    * Name attribute for HTML forms

@@ -23,7 +23,7 @@ export interface NumberFieldProps extends Omit<ReactAriaNumberFieldProps, 'child
   /**
    * Error message to display when the field is invalid
    */
-  errorMessage?: string | ((validation: ValidationResult) => string);
+  errorMessage?: string | ((_validation: ValidationResult) => string);
 
   /**
    * Size variant for the number field
@@ -114,7 +114,7 @@ export interface NumberFieldProps extends Omit<ReactAriaNumberFieldProps, 'child
   /**
    * Callback when the value changes
    */
-  onChange?: (value: number) => void;
+  onChange?: (_value: number) => void;
 
   /**
    * Name attribute for HTML forms

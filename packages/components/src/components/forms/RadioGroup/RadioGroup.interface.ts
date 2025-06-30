@@ -23,8 +23,8 @@ export interface RadioGroupProps extends Omit<ReactAriaRadioGroupProps, 'childre
   /**
    * Error message for validation
    */
-   
-  errorMessage?: string | ((validation: ValidationResult) => string);
+
+  errorMessage?: string | ((_validation: ValidationResult) => string);
 
   /**
    * Size variant for the radio group
@@ -96,8 +96,8 @@ export interface RadioGroupProps extends Omit<ReactAriaRadioGroupProps, 'childre
   /**
    * Callback when the selection changes
    */
-   
-  onChange?: (value: string) => void;
+
+  onChange?: (_value: string) => void;
 
   /**
    * Name attribute for HTML forms

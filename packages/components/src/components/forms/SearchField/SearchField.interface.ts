@@ -23,8 +23,8 @@ export interface SearchFieldProps extends Omit<ReactAriaSearchFieldProps, 'child
   /**
    * Error message to display when the field is invalid
    */
-   
-  errorMessage?: string | ((validation: ValidationResult) => string);
+
+  errorMessage?: string | ((_validation: ValidationResult) => string);
 
   /**
    * Size variant for the search field
@@ -101,14 +101,14 @@ export interface SearchFieldProps extends Omit<ReactAriaSearchFieldProps, 'child
   /**
    * Callback when the value changes
    */
-   
-  onChange?: (value: string) => void;
+
+  onChange?: (_value: string) => void;
 
   /**
    * Callback when the search is submitted (e.g., Enter key pressed)
    */
-   
-  onSubmit?: (value: string) => void;
+
+  onSubmit?: (_value: string) => void;
 
   /**
    * Callback when the search field is cleared

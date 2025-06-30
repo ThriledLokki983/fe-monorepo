@@ -22,8 +22,8 @@ export interface TextFieldProps extends Omit<ReactAriaTextFieldProps, 'children'
   /**
    * Error message to display when the field is invalid
    */
-   
-  errorMessage?: string | ((validation: ValidationResult) => string);
+
+  errorMessage?: string | ((_validation: ValidationResult) => string);
 
   /**
    * Size variant for the text field
@@ -107,8 +107,8 @@ export interface TextFieldProps extends Omit<ReactAriaTextFieldProps, 'children'
   /**
    * Callback when the value changes
    */
-   
-  onChange?: (value: string) => void;
+
+  onChange?: (_value: string) => void;
 
   /**
    * Name attribute for HTML forms

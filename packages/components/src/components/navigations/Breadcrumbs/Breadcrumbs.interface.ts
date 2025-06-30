@@ -19,7 +19,7 @@ export interface BreadcrumbsProps {
   className?: string;
   // React Aria Breadcrumbs props
   isDisabled?: boolean;
-  onAction?: (key: React.Key) => void;
+  onAction?: (_key: React.Key) => void;
   // Dynamic collection support
   items?: Iterable<BreadcrumbItem>;
   // ARIA props

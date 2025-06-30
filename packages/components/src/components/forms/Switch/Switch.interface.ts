@@ -70,8 +70,8 @@ export interface SwitchProps extends Omit<ReactAriaSwitchProps, 'children'> {
   /**
    * Callback when the switch selection changes
    */
-   
-  onChange?: (isSelected: boolean) => void;
+
+  onChange?: (_isSelected: boolean) => void;
 
   /**
    * Name attribute for HTML forms

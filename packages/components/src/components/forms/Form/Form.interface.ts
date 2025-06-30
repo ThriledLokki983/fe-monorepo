@@ -58,17 +58,17 @@ export interface FormProps extends Omit<ReactAriaFormProps, 'children' | 'target
   /**
    * Called when the form is submitted
    */
-  onSubmit?: (event: React.FormEvent) => void;
+  onSubmit?: (_event: React.FormEvent) => void;
 
   /**
    * Called when the form is reset
    */
-  onReset?: (event: React.FormEvent) => void;
+  onReset?: (_event: React.FormEvent) => void;
 
   /**
    * Called when the form has validation errors
    */
-  onInvalid?: (event: React.FormEvent) => void;
+  onInvalid?: (_event: React.FormEvent) => void;
 
   /**
    * Form ID for identification
