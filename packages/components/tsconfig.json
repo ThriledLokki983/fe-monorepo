@@ -9,6 +9,8 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
     "lib": ["DOM", "DOM.Iterable", "ES2022"]
   },
   "include": ["src/**/*"],

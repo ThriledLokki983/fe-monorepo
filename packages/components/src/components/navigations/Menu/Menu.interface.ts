@@ -5,7 +5,6 @@ import {
   MenuItemProps as ReactAriaMenuItemProps,
   MenuSectionProps as ReactAriaMenuSectionProps,
   PopoverProps as ReactAriaPopoverProps,
-  Selection,
 } from 'react-aria-components';
 
 export interface MenuButtonProps<T extends object = object>

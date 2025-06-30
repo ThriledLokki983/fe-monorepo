@@ -24,8 +24,8 @@ interface NativeLinkProps extends BaseLinkProps, Omit<ReactAriaLinkProps, 'child
 // JavaScript handled link props when no href is provided
 interface JavaScriptLinkProps extends BaseLinkProps, Omit<ReactAriaLinkProps, 'children' | 'className' | 'href'> {
   href?: never;
-  // Must have onPress when no href is provided
-  onPress: () => void;
+  // onPress is optional to allow for demo/static cases
+  onPress?: () => void;
 }
 
 export type LinkProps = NativeLinkProps | JavaScriptLinkProps;

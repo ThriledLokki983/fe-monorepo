@@ -1,18 +1,9 @@
-import React, { useState } from 'react';
-import { Button, Icon } from '@mono/components';
+import { useState } from 'react';
 import { componentDemos } from '../ComponentsPage/demos/componentDemos';
 import styles from './Components.module.scss';
 
 // Note: This file is not currently being used by the routing.
 // The actual Components page is at /ComponentsPage/Components.tsx
-
-interface ComponentDemo {
-  name: string;
-  description: string;
-  component: React.ReactNode;
-  usage: string;
-  category: 'buttons' | 'forms' | 'layout' | 'feedback';
-}
 
 // const componentDemos: ComponentDemo[] = [
 //   {
@@ -211,7 +202,7 @@ export const Components = () => {
             <section className={styles.usage}>
               <h2>Usage</h2>
               <pre className={styles.codeBlock}>
-                <code>{selectedDemo.usage}</code>
+                <code>{typeof selectedDemo.usage === 'string' ? selectedDemo.usage : ''}</code>
               </pre>
             </section>
           </>

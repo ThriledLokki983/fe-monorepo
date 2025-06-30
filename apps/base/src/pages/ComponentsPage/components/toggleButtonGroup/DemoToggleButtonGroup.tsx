@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ToggleButtonGroup, ToggleButton } from '@mono/components';
 import styles from './DemoToggleButtonGroup.module.scss';
 
@@ -18,7 +18,7 @@ export const DemoToggleButtonGroup = () => {
     { key: 'events' as const, label: 'Event Handling' },
   ];
 
-  const handleEvent = (eventType: string, value?: any) => {
+  const handleEvent = (eventType: string, value?: unknown) => {
     const timestamp = new Date().toLocaleTimeString();
     const message = value !== undefined
       ? `${timestamp}: ${eventType} - ${JSON.stringify(value)}`
@@ -187,8 +187,6 @@ export const DemoToggleButtonGroup = () => {
                 <ToggleButtonGroup
                   selectionMode="multiple"
                   onSelectionChange={(keys) => handleEvent('onSelectionChange', Array.from(keys))}
-                  onFocus={() => handleEvent('onFocus')}
-                  onBlur={() => handleEvent('onBlur')}
                 >
                   <ToggleButton id="option1">Option 1</ToggleButton>
                   <ToggleButton id="option2">Option 2</ToggleButton>

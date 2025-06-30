@@ -5,9 +5,6 @@ export { TimeField } from './TimeField/TimeField';
 export { Calendar } from './Calendar/Calendar';
 export { RangeCalendar } from './RangeCalendar/RangeCalendar';
 
-// Collections
-export * from './collections';
-
 export type { DatePickerProps } from './DatePicker/DatePicker.interface';
 export type { DateRangePickerProps } from './DateRangePicker/DateRangePicker.interface';
 export type { DateFieldProps } from './DateField/DateField.interface';
